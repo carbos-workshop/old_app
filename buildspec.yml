@@ -1,0 +1,11 @@
+version: 0.1
+
+phases:
+  build:
+    commands:
+        - npm install
+        - npm run build
+artifacts:
+  files:
+        - '**/*' # all files on github
+  base-directory: build_webpack # only upload build/* files to s3 bucket
