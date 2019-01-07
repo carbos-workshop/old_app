@@ -6,8 +6,8 @@ module.exports = {
       network_id: "*"
     },
     buddy: {
-      host: "ganache"
-      port: 8545
+      host: "ganache",
+      port: 8545,
       network_id: "*"
     }
   }
