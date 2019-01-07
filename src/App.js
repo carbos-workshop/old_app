@@ -12,6 +12,9 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
+// /testing
+import TestButtonContainer from './user/ui/testbutton/TestButtonContainer'
+
 class App extends Component {
   render() {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
@@ -34,6 +37,7 @@ class App extends Component {
 
     return (
       <div className="App">
+                <TestButtonContainer />
         <nav className="navbar pure-menu pure-menu-horizontal">
           <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
           <ul className="pure-menu-list navbar-right">
@@ -41,7 +45,6 @@ class App extends Component {
             <OnlyAuthLinks />
           </ul>
         </nav>
-
         {this.props.children}
       </div>
     );

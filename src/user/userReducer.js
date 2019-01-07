@@ -17,6 +17,13 @@ const userReducer = (state = initialState, action) => {
     })
   }
 
+  // if (action.type === 'TEST_ACTION')
+  // {
+  //   return Object.assign({}, state, {
+  //     smerph: action.payload
+  //   })
+  // }
+
   return state
 }
 
