@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames'
+
+import C3ProcessForm from './c3'
 
 const styles = theme => ({
   root: {
-    height: '100px',
-    width: '100%',
-    background: 'sand',
+
+  },
+  flexUp: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  title: {
+    textAlign: 'center',
+    marginBottom: theme.spacing.unit * 5,
   },
 });
 
@@ -19,13 +28,13 @@ class Demo extends Component {
   render() {
     const { classes } = this.props
     return(
-      <div className={classes.root}>
-        <Typography variant="h2">
-          Demo
+      <div className={classNames([
+          classes.root,
+          classes.flexUp])}>
+        <Typography className={classes.title} variant="h4">
+          Carbon Conservation Contract Proposal
         </Typography>
-        <Typography variant="body1">
-          Demo
-        </Typography>
+        <C3ProcessForm />
       </div>
     )
   }
