@@ -10,7 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const styles = {
+const styles = theme => ({
   root: {
     // flexGrow: 1,
   },
@@ -22,13 +22,14 @@ const styles = {
     fontFamily: 'RegencieLight',
   },
   linkWrapper: {
-    marginRight: '5em',
+    // marginRight: '5em',
   },
   button: {
     color: '#fff',
-    margin: '0 1em'
+    marginRight: theme.spacing.unit * 2,
+    marginLeft: theme.spacing.unit * 2,
   },
-};
+})
 
 class Header extends React.Component {
 
@@ -61,7 +62,7 @@ class Header extends React.Component {
           <Toolbar>
             <Link to="/" className={classes.grow}>
               <Typography variant="h4" color="inherit" className={classes.homelink}>
-                Carbos
+                carbos
               </Typography>
             </Link>
             <span className={classes.linkWrapper}>
