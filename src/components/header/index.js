@@ -19,6 +19,7 @@ const styles = {
   },
   homelink: {
     color: 'white',
+    fontFamily: 'RegencieLight',
   },
   linkWrapper: {
     marginRight: '5em',
@@ -38,10 +39,10 @@ class Header extends React.Component {
       <div>
         <span className={classes.linkWrapper}>
           <Link to="/dashboard">
-            <Button className={classes.button} variant="flat">Dashboard</Button>
+            <Button className={classes.button} variant="text">Dashboard</Button>
           </Link>
           <Link to="/profile">
-            <Button className={classes.button} variant="flat">Profile</Button>
+            <Button className={classes.button} variant="text">Profile</Button>
           </Link>
         </span>
         <LogoutButtonContainer />
@@ -59,10 +60,15 @@ class Header extends React.Component {
         <AppBar position="static">
           <Toolbar>
             <Link to="/" className={classes.grow}>
-              <Typography variant="h6" color="inherit" className={classes.homelink}>
-                Carbos Demo
+              <Typography variant="h4" color="inherit" className={classes.homelink}>
+                Carbos
               </Typography>
             </Link>
+            <span className={classes.linkWrapper}>
+              <Link to="/demo">
+                <Button className={classes.button} variant="text">View Demo</Button>
+              </Link>
+            </span>
             <OnlyGuestLinks />
             <OnlyAuthLinks />
           </Toolbar>
