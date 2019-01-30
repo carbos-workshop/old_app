@@ -8,6 +8,7 @@ import { UserIsAuthenticated } from './util/wrappers.js'
 // Layouts
 import App from './App'
 import Home from './layouts/home/Home'
+import Demo from './layouts/demo/Demo'
 import Dashboard from './layouts/dashboard/Dashboard'
 import Profile from './user/layouts/profile/Profile'
 
@@ -23,6 +24,7 @@ ReactDOM.render((
           <IndexRoute component={Home} />
           <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
+          <Route path="demo" component={Demo} />
         </Route>
       </Router>
     </Provider>
