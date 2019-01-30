@@ -1,35 +1,35 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
     height: '100px',
     width: '100%',
-    background: 'gold',
+    background: 'sand',
   },
 });
 
-class Dashboard extends Component {
-  constructor(props, { authData }) {
-    super(props)
-    authData = this.props
-  }
+class Demo extends Component {
+  // constructor(props, { authData }) {
+  //   super(props)
+  //   authData = this.props
+  // }
 
   render() {
     const { classes } = this.props
     return(
       <div className={classes.root}>
         <Typography variant="h2">
-          Dashboard
+          Demo
         </Typography>
         <Typography variant="body">
-          Congratulations {this.props.authData.name}! If you're seeing this page, you've logged in with UPort successfully.
+          Demo
         </Typography>
       </div>
     )
   }
 }
 
-export default withStyles(styles)(Dashboard)
+export default withStyles(styles)(Demo)
