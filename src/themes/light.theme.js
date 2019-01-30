@@ -26,6 +26,13 @@ const theme = createMuiTheme({
         color: '#bdbdbd',
       },
     },
+    MuiButton: {
+      root: {
+        '&:hover': {
+          backgroundColor: 'rgba(255,255,255,0.08)'
+        }
+      }
+    }
   },
 });
 

@@ -33,7 +33,7 @@ function LoginButton(props) {
       variant="outlined"
       onClick={(event) => props.onLoginUserClick(event)}>
       <Typography className={classes.buttonText}>
-        Login with UPort
+        Login
       </Typography>
       <Icon className={classes.logoWrapper}>
         <img className={classes.logo} src={uPortLogo} alt="UPort Logo" />
