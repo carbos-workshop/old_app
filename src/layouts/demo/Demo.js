@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
     height: '100px',
     width: '100%',
-    background: 'tomato',
+    background: 'sand',
   },
 });
 
-class Home extends Component {
+class Demo extends Component {
+  // constructor(props, { authData }) {
+  //   super(props)
+  //   authData = this.props
+  // }
+
   render() {
     const { classes } = this.props
     return(
       <div className={classes.root}>
         <Typography variant="h2">
-          HOME
-          - need to login to use App
-          - description of app
+          Demo
+        </Typography>
+        <Typography variant="body">
+          Demo
         </Typography>
       </div>
     )
   }
 }
 
-export default withStyles(styles)(Home)
+export default withStyles(styles)(Demo)

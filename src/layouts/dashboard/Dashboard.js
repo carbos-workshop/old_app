@@ -1,4 +1,15 @@
 import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles';
+// import classNames from 'classnames';
+import Typography from '@material-ui/core/Typography';
+
+const styles = theme => ({
+  root: {
+    height: '100px',
+    width: '100%',
+    background: 'gold',
+  },
+});
 
 class Dashboard extends Component {
   constructor(props, { authData }) {
@@ -7,17 +18,19 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { classes } = this.props
     return(
-      <main className="container">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
-            <h1>Dashboard</h1>
-            <p><strong>Congratulations {this.props.authData.name}!</strong> If you're seeing this page, you've logged in with UPort successfully.</p>
-          </div>
-        </div>
-      </main>
+      <div className={classes.root}>
+        <Typography variant="h2">
+          Dashboard
+        </Typography>
+        <Typography variant="body1">
+          -DEtials about C3s owned
+          Congratulations {this.props.authData.name}! If you're seeing this page, you've logged in with UPort successfully.
+        </Typography>
+      </div>
     )
   }
 }
 
-export default Dashboard
+export default withStyles(styles)(Dashboard)
