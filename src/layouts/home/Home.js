@@ -18,6 +18,8 @@ class Home extends Component {
       <div className={classes.root}>
         <Typography variant="h2">
           HOME
+          - need to login to use App
+          - description of app
         </Typography>
       </div>
     )

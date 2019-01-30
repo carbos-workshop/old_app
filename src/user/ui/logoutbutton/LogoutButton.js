@@ -33,7 +33,7 @@ function LogoutButton(props) {
       variant="outlined"
       onClick={(event) => props.onLogoutUserClick(event)}>
       <Typography className={classes.buttonText}>
-        Logout from uPort
+        Logout
       </Typography>
       <Icon className={classes.logoWrapper}>
         <img className={classes.logo} src={uPortLogo} alt="UPort Logo" />

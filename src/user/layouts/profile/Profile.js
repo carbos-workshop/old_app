@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
-// import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
@@ -11,6 +10,7 @@ const styles = theme => ({
   },
 });
 
+//TODO move this to larger layout directory
 class Profile extends Component {
   constructor(props, { authData }) {
     super(props)
@@ -22,12 +22,13 @@ class Profile extends Component {
     return(
       <div className={classes.root}>
         <Typography variant="h2">
-          Profile
+          uPort Profile
         </Typography>
-        <Typography variant="body">
+        <Typography variant="body1">
           Change these details in UPort to see them reflected here.
           Name: {this.props.authData.name}
         </Typography>
+
       </div>
     )
   }

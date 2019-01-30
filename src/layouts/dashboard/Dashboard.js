@@ -24,7 +24,8 @@ class Dashboard extends Component {
         <Typography variant="h2">
           Dashboard
         </Typography>
-        <Typography variant="body">
+        <Typography variant="body1">
+          -DEtials about C3s owned
           Congratulations {this.props.authData.name}! If you're seeing this page, you've logged in with UPort successfully.
         </Typography>
       </div>
