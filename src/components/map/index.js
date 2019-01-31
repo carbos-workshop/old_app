@@ -46,13 +46,13 @@ class LeafletMap extends React.Component {
     const { classes } = this.props
     return(
       <div className={classes.root}>
-        <Map style={{height:'500px'}} center={this.readGeometry(this.props.geometry)[0]} zoom={16}>
+        <Map style={{height:'500px'}} center={this.props.center} zoom={16}>
           <TileLayer
             url={this.state.tiles}
           	attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
           	subdomains='abcd'
           />
-          <Polygon color={'red'} positions={this.readGeometry(this.props.geometry)}>
+        <Polygon color={'red'} positions={this.props.polygon}>
           </Polygon>
         </Map>
       </div>
@@ -64,7 +64,7 @@ class LeafletMap extends React.Component {
 
 LeafletMap.defaultProps = {
   center: [39.7392, -104.9903],
-  polygon: [[-104.921298536263, 39.6125972845498],[-104.92130044769, 39.6120259701034],[-104.921992613112, 39.6120376089511],[-104.921992324116, 39.6124785821555],[-104.921991460977, 39.6126050156913],[-104.921298536263, 39.6125972845498]]
+  polygon: [[ 39.6125972845498,-104.921298536263],[39.6120259701034,-104.92130044769],[39.6120376089511,-104.921992613112],[39.6124785821555,-104.921992324116],[39.6126050156913,-104.921991460977],[39.6125972845498, -104.921298536263]]
 }
 LeafletMap.propTypes = {
   center: PropTypes.array,
