@@ -33,8 +33,16 @@ class LeafletMap extends React.Component {
   readGeometry = geometry => {
     let wkt = new Wkt.Wkt()
     wkt.read(geometry)
-    console.log(wkt.components);
-    return wkt.toJson()
+    wkt.components.forEach( entry => {
+      entry.forEach( shape => {
+         shape.forEach(point => {
+           let temp = point.x
+           point.x = point.y
+           point.y = temp
+         })
+      })
+    })
+  return wkt.toJson();
   }
 
   componentDidMount(){
@@ -46,13 +54,13 @@ class LeafletMap extends React.Component {
     const { classes } = this.props
     return(
       <div className={classes.root}>
-        <Map style={{height:'500px'}} center={this.props.center} zoom={16}>
+        <Map style={{height:'500px'}} center={this.readGeometry(this.props.geometry).coordinates[0][0][0]} zoom={16}>
           <TileLayer
             url={this.state.tiles}
           	attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
           	subdomains='abcd'
           />
-        <Polygon color={'red'} positions={this.props.polygon}>
+        <Polygon color={'red'} positions={this.readGeometry(this.props.geometry).coordinates}>
           </Polygon>
         </Map>
       </div>
