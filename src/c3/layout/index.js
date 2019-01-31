@@ -8,9 +8,11 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import {connect} from "react-redux";
 
 //steps
 import FindProperty from './steps/findProperty.js'
+import ConfirmProperty from './steps/confirmProperty.js'
 
 const styles = theme => ({
   root: {
@@ -29,12 +31,14 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Find Your Property Address',
-  'Confirm Your Property Address',
-  'Estimate Carbon Levels',
-  'Terms and Conditions',
-  'Submit Deposit',
-  'Done!'];
+  return [
+    'Find Your Property',
+    'Confirm Your Address',
+    'Estimate Carbon Levels',
+    'Terms and Conditions',
+    'Submit Deposit',
+    'Done!'
+  ];
 }
 
 function getStepContent(step) {
@@ -42,7 +46,7 @@ function getStepContent(step) {
     case 0:
       return (<FindProperty />)
     case 1:
-      return 'An ad group contains one or more ads which target a shared set of keywords.';
+      return (<ConfirmProperty/>)
     case 2:
       return `Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
@@ -58,6 +62,12 @@ function getStepContent(step) {
       return 'Unknown step';
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    c3: state.c3,
+  };
+};
 
 class C3ProcessForm extends React.Component {
   state = {
@@ -81,6 +91,22 @@ class C3ProcessForm extends React.Component {
       activeStep: 0,
     });
   };
+
+  validateStep = step => {
+    switch(step){
+      case 0:
+        return !(Boolean(this.props.c3.owner.firstname
+          && this.props.c3.owner.lastname
+          && this.props.c3.postalAddress.street
+          && this.props.c3.postalAddress.county
+          && this.props.c3.postalAddress.zip
+          && this.props.c3.postalAddress.state)) //all fields are filled in before next button enabled
+      case 1:
+        return true //property shape & details are confirmed and in redux store
+      default:
+        return false
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -113,6 +139,7 @@ class C3ProcessForm extends React.Component {
                       color="primary"
                       onClick={this.handleNext}
                       className={classes.button}
+                      disabled={this.validateStep(this.state.activeStep)}
                     >
                       {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                     </Button>
@@ -139,4 +166,4 @@ C3ProcessForm.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles)(C3ProcessForm);
+export default connect(mapStateToProps)(withStyles(styles)(C3ProcessForm));
