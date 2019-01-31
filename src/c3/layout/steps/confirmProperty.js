@@ -2,15 +2,19 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import { connect } from 'react-redux'
-import {
-
-} from '../../c3Actions'
+// import {
+//
+// } from '../../c3Actions'
 import {
   getParcelByOwnerName,
   getParcelByAddress
 } from '../../requests'
+
+import LeafletMap from '../../../components/map'
 
 const styles = theme => ({
   root: {
@@ -79,7 +83,7 @@ class ConfirmProperty extends React.Component {
           })
         }
         else {
-          console.log('Too many or too few Parcels returned by query.  Should be handled by same UI Event.')
+          //separate function -> if > 0, store and move on, if = 0, search by name and move on TODO
           this.setState({
             properties: res.data.results,
             loading: false,
@@ -99,8 +103,20 @@ class ConfirmProperty extends React.Component {
     })
   }
 
+  selectProperty = property => {
+    this.setState({
+      property: property,
+      properties: []
+    })
+  }
+
+
+
   render(){
     const { classes } = this.props;
+
+    const geometry = "MULTIPOLYGON(((-104.921298536263 39.6125972845498,-104.92130044769 39.6120259701034,-104.921992613112 39.6120376089511,-104.921992324116 39.6124785821555,-104.921991460977 39.6126050156913,-104.921298536263 39.6125972845498)))"
+
     return(
       <div className={classes.root}>
         {
@@ -119,9 +135,20 @@ class ConfirmProperty extends React.Component {
               {
                 this.state.properties.length > 0
                 ?
-                <Typography className={classes.explaination} variant="body1">
-                  Oops! We found multiple properties that match the information you gave us. Please select the correct one.
-                </Typography>
+                <div>
+                  <Typography className={classes.explaination} variant="body1">
+                    Oops! We found multiple properties that match the information you gave us. Please select the correct one.
+                  </Typography>
+                  <List>
+                    {
+                      this.state.properties.map(property => (
+                        <ListItem key={property.parcel_id} button onClick={() => {this.selectProperty(property)}}>
+                          <ListItemText primary={`${property.mail_address1} ${property.mail_address3}`} secondary={`${property.owner}`} inset={true}/>
+                        </ListItem>
+                      ))
+                    }
+                  </List>
+                </div>
                 :
                 <Typography className={classes.explaination} variant="body1">
                   Oh no! We didn't find any properties that match the information you gave us.  Please check your information and try again.
@@ -134,6 +161,7 @@ class ConfirmProperty extends React.Component {
               <Typography className={classes.explaination} variant="body1">
                 Please confirm that this property boundary is accurate and that you {`, ${this.props.user.data.name},`} are the owner.
               </Typography>
+              <LeafletMap geometry={geometry}/>
             </div>)
 
         }
