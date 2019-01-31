@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 
 //steps
 import FindProperty from './steps/findProperty.js'
+import ConfirmProperty from './steps/confirmProperty.js'
 
 const styles = theme => ({
   root: {
@@ -45,7 +46,7 @@ function getStepContent(step) {
     case 0:
       return (<FindProperty />)
     case 1:
-      return 'An ad group contains one or more ads which target a shared set of keywords.';
+      return (<ConfirmProperty/>)
     case 2:
       return `Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
@@ -94,7 +95,14 @@ class C3ProcessForm extends React.Component {
   validateStep = step => {
     switch(step){
       case 0:
-        return !(Boolean(this.props.c3.owner.firstname && this.props.c3.owner.lastname && this.props.c3.postalAddress))
+        return !(Boolean(this.props.c3.owner.firstname
+          && this.props.c3.owner.lastname
+          && this.props.c3.postalAddress.street
+          && this.props.c3.postalAddress.county
+          && this.props.c3.postalAddress.zip
+          && this.props.c3.postalAddress.state)) //all fields are filled in before next button enabled
+      case 1:
+        return true //property shape & details are confirmed and in redux store
       default:
         return false
     }
