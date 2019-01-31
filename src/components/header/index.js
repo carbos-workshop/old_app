@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   homelink: {
     color: 'white',
-    fontFamily: 'RegencieLight',
+    fontWeight: '300',
   },
   linkWrapper: {
     // marginRight: '5em',
