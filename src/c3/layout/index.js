@@ -8,6 +8,7 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import {connect} from "react-redux";
 
 //steps
 import FindProperty from './steps/findProperty.js'
@@ -29,12 +30,14 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Find Your Property Address',
-  'Confirm Your Property Address',
-  'Estimate Carbon Levels',
-  'Terms and Conditions',
-  'Submit Deposit',
-  'Done!'];
+  return [
+    'Find Your Property',
+    'Confirm Your Address',
+    'Estimate Carbon Levels',
+    'Terms and Conditions',
+    'Submit Deposit',
+    'Done!'
+  ];
 }
 
 function getStepContent(step) {
@@ -59,6 +62,12 @@ function getStepContent(step) {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    c3: state.c3,
+  };
+};
+
 class C3ProcessForm extends React.Component {
   state = {
     activeStep: 0,
@@ -81,6 +90,15 @@ class C3ProcessForm extends React.Component {
       activeStep: 0,
     });
   };
+
+  validateStep = step => {
+    switch(step){
+      case 0:
+        return !(Boolean(this.props.c3.owner.firstname && this.props.c3.owner.lastname && this.props.c3.postalAddress))
+      default:
+        return false
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -113,6 +131,7 @@ class C3ProcessForm extends React.Component {
                       color="primary"
                       onClick={this.handleNext}
                       className={classes.button}
+                      disabled={this.validateStep(this.state.activeStep)}
                     >
                       {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                     </Button>
@@ -139,4 +158,4 @@ C3ProcessForm.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles)(C3ProcessForm);
+export default connect(mapStateToProps)(withStyles(styles)(C3ProcessForm));

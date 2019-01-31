@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames'
 
-import C3ProcessForm from './c3'
+import C3 from '../../c3/layout'
 
 const styles = theme => ({
   root: {
@@ -34,7 +34,7 @@ class Demo extends Component {
         <Typography className={classes.title} variant="h4">
           Carbon Conservation Contract Proposal
         </Typography>
-        <C3ProcessForm />
+        <C3 />
       </div>
     )
   }
