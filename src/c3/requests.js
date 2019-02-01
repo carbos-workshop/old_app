@@ -1,7 +1,14 @@
 const axios = require('axios');
 
+//required for EPA Biomass map projection
+const transformation = require('transform-coordinates')
+const transform = transformation('EPSG:4326', '3857')
+
 const KEY = 'vzczNNHVi5' //TODO
-const reportAll = 'https://reportallusa.com/api/parcels.php?'
+const reportAllBaseURL = 'https://reportAllBaseURLusa.com/api/parcels.php?'
+const soilGridsBaseURL = 'https://rest.soilgrids.org/query?'
+const ecologicalLandUnitsBaseURL = 'https://rmgsc.cr.usgs.gov/arcgis/rest/services/globalelus/MapServer/identify?'
+const epaBiomassBaseURL = 'https://geodata.epa.gov/arcgis/rest/services/ORD/ROE_BiomassPerSquareMile/MapServer/identify?'
 
 //TEMP TO SAVE API CALLS
 let response = [{
@@ -70,11 +77,30 @@ let response = [{
 
 //location required. Can be county, state, or zip code. Can be a combination of city,state.
 export function getParcelByOwnerName(firstname, lastname, location ){
-  return axios.get(`${reportAll}v=3&return_buildings=true&client=${KEY}&region=${location}&owner=${lastname} ${firstname}`)
+  return axios.get(`${reportAllBaseURL}v=3&return_buildings=true&client=${KEY}&region=${location}&owner=${lastname} ${firstname}`)
 }
 
 //location required. Can be county, state, or zip code. Can be a combination of city,state.
 export function getParcelByAddress(street, location){
   return new Promise( (resolve,reject) => {resolve({data: {results: response} })}) //TEMP
-  // return axios.get(`${reportAll}v=3&return_buildings=true&client=${KEY}&region=${location}&address=${street}`)
+  // return axios.get(`${reportAllBaseURL}v=3&return_buildings=true&client=${KEY}&region=${location}&address=${street}`)
+}
+
+//get soil information from Soil Grids API based on lat lng point
+export function getSoilCarbon(lat, lng){
+  return axios.get(`${soilGridsBaseURL}lon=${lng}&lat=${lat}&attributes=ORCDRC`)
+}
+
+export function getEcologicalLandUnits(lat, lng){
+  console.log('sending', {lat, lng});
+  return axios.get(`${ecologicalLandUnitsBaseURL}geometry=${lng},${lat}&tolerance=0&layers=all&mapExtent=--180.0000000000001,-56.00013888888891,179.99999999999926,83.62486111111086&imageDisplay=4096,4096,96&f=json`)
+}
+
+export function getBiomass(lat, lng){
+  //convert lat/lng strings to numbers then to web mercarder format
+  let y = parseFloat(lat);
+  let x = parseFloat(lng);
+  let coords = transform.forward({x: x, y: y})
+
+  return axios.get(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`)
 }
