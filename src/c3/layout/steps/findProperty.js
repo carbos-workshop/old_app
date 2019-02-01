@@ -171,7 +171,7 @@ class FindProperty extends React.Component {
             </TextField>
           </div>
         </div>
-        <Typography className={classes.explaination} variant="body1">
+        <Typography className={classes.explaination} variant="body2">
           We'll use this information to search for a valid legal address.
         </Typography>
       </div>
