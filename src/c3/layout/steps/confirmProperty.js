@@ -190,10 +190,16 @@ class ConfirmProperty extends React.Component {
                   </Typography>
                 </div>
                 :
-                <Typography className={classes.explaination} variant="body2">
-                  Oh no! We didn't find any properties that match the information you gave us.  Please check the information provided and try again.
-                  If you continue to encounter problems, please reach out to <a className={classes.helplink} href="mailto:help@carbos.co">help@carbos.co</a>
-                </Typography>
+                <div className={classes.explaination}>
+                  <Typography variant="body2">
+                    Oh no! We didn't find any properties that match the information you gave us.  Please check the information provided and try again.
+                    If you continue to encounter problems, please reach out to <a className={classes.helplink} href="mailto:help@carbos.co">help@carbos.co</a>
+                  </Typography>
+                  <Typography variant="body2">
+                    If you believe you are seeing this message in error, we can <Button color="primary" onClick={()=>{this.fetchParcelByName()}}>Search Additional Properties</Button>
+                  </Typography>
+                </div>
+
               }
             </div>
             :
