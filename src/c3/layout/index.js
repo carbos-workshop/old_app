@@ -9,6 +9,9 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {connect} from "react-redux";
+import {
+  updateC3Property,
+} from '../c3Actions'
 
 //steps
 import FindProperty from './steps/findProperty.js'
@@ -63,6 +66,14 @@ function getStepContent(step) {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onOwnerPropertyUpdate: property => {
+      dispatch(updateC3Property(property))
+    },
+  }
+}
+
 const mapStateToProps = state => {
   return {
     c3: state.c3,
@@ -81,6 +92,11 @@ class C3ProcessForm extends React.Component {
   };
 
   handleBack = () => {
+    //specific actions to be taken when traveling back to the activeStep
+    if (this.state.activeStep === 1){
+      this.props.onOwnerPropertyUpdate(null)
+    }
+
     this.setState(state => ({
       activeStep: state.activeStep - 1,
     }));
@@ -102,7 +118,8 @@ class C3ProcessForm extends React.Component {
           && this.props.c3.postalAddress.zip
           && this.props.c3.postalAddress.state)) //all fields are filled in before next button enabled
       case 1:
-        return true //property shape & details are confirmed and in redux store
+        return !(Boolean(this.props.c3.property
+          && this.props.c3.propertyConfirmation)) //property is confirmed and in redux store for use in carbon queries
       default:
         return false
     }
@@ -166,4 +183,8 @@ C3ProcessForm.propTypes = {
   classes: PropTypes.object,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(C3ProcessForm));
+const C3ProcessFormWrapper = connect(
+  mapStateToProps,
+mapDispatchToProps)(withStyles(styles)(C3ProcessForm));
+
+export default C3ProcessFormWrapper

@@ -8,7 +8,9 @@ const initialState = {
     state: 'California',
     county: 'Riverside',
     zip: '92879'
-  }
+  },
+  property: null,
+  propertyConfirmation: false,
 }
 
 function c3Reducer(state = initialState, action) {
@@ -54,6 +56,14 @@ function c3Reducer(state = initialState, action) {
             ...state.postalAddress,
             zip: action.payload
           }
+        }
+      case 'C3_PROPERTY_UPDATED':
+        return { ...state,
+          property: action.payload
+        }
+      case 'C3_PROPERTY_CONFIRMATION_UPDATED':
+        return { ...state,
+          propertyConfirmation: action.payload
         }
     default:
       return state

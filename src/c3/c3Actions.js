@@ -4,6 +4,8 @@ export const C3_POSTAL_ADDRESS_STREET_UPDATED = 'C3_POSTAL_ADDRESS_STREET_UPDATE
 export const C3_POSTAL_ADDRESS_COUNTY_UPDATED = 'C3_POSTAL_ADDRESS_COUNTY_UPDATED'
 export const C3_POSTAL_ADDRESS_ZIP_UPDATED = 'C3_POSTAL_ADDRESS_ZIP_UPDATED'
 export const C3_POSTAL_ADDRESS_STATE_UPDATED = 'C3_POSTAL_ADDRESS_STATE_UPDATED'
+export const C3_PROPERTY_UPDATED = 'C3_PROPERTY_UPDATED'
+export const C3_PROPERTY_CONFIRMATION_UPDATED = 'C3_PROPERTY_CONFIRMATION_UPDATED'
 
 
 function C3OwnerFirstnameUpdated(name) {
@@ -48,6 +50,20 @@ function C3PostalAddressStateUpdated(state) {
   }
 }
 
+function C3PropertyUpdated(property) {
+  return {
+    type: C3_PROPERTY_UPDATED,
+    payload: property
+  }
+}
+
+function C3PropertyConfirmationUpdated(status) {
+  return {
+    type: C3_PROPERTY_CONFIRMATION_UPDATED,
+    payload: status
+  }
+}
+
 export function updateC3OwnerFirstname(name) {
   return function(dispatch) {
     dispatch(C3OwnerFirstnameUpdated(name))
@@ -81,5 +97,17 @@ export function updateC3PostalAddressZip(zip) {
 export function updateC3PostalAddressState(state) {
   return function(dispatch) {
     dispatch(C3PostalAddressStateUpdated(state))
+  }
+}
+
+export function updateC3Property(property) {
+  return function(dispatch) {
+    dispatch(C3PropertyUpdated(property))
+  }
+}
+
+export function updateC3PropertyConfirmation(status) {
+  return function(dispatch) {
+    dispatch(C3PropertyConfirmationUpdated(status))
   }
 }
