@@ -82,7 +82,7 @@ class FindProperty extends React.Component {
         return this.props.onOwnerLastnameUpdate(e.target.value)
       case 'street':
         return this.props.onPostalAddressStreetUpdate(e.target.value)
-      case 'city':
+      case 'county':
         return this.props.onPostalAddressCountyUpdate(e.target.value)
       case 'zip':
         return this.props.onPostalAddressZipUpdate(e.target.value)

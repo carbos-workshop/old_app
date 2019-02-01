@@ -75,6 +75,6 @@ export function getParcelByOwnerName(firstname, lastname, location ){
 
 //location required. Can be county, state, or zip code. Can be a combination of city,state.
 export function getParcelByAddress(street, location){
-  return new Promise( (resolve,reject) => {resolve({data: {results: response} })}) //TEMP
-  //return axios.get(`${reportAll}v=3&return_buildings=true&client=${KEY}&region=${location}&address=${street}`)
+  // return new Promise( (resolve,reject) => {resolve({data: {results: response} })}) //TEMP
+  return axios.get(`${reportAll}v=3&return_buildings=true&client=${KEY}&region=${location}&address=${street}`)
 }
