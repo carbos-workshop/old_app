@@ -88,19 +88,18 @@ export function getParcelByAddress(street, location){
 
 //get soil information from Soil Grids API based on lat lng point
 export function getSoilCarbon(lat, lng){
-  return axios.get(`${soilGridsBaseURL}lon=${lng}&lat=${lat}&attributes=ORCDRC`)
+  return axios.get(`${soilGridsBaseURL}lon=${lng}&lat=${lat}&attributes=ORCDRC,BLDFIE`)
 }
 
 export function getEcologicalLandUnits(lat, lng){
-  console.log('sending', {lat, lng});
   return axios.get(`${ecologicalLandUnitsBaseURL}geometry=${lng},${lat}&tolerance=0&layers=all&mapExtent=--180.0000000000001,-56.00013888888891,179.99999999999926,83.62486111111086&imageDisplay=4096,4096,96&f=json`)
 }
 
 export function getBiomass(lat, lng){
   //convert lat/lng strings to numbers then to web mercarder format
+
   let y = parseFloat(lat);
   let x = parseFloat(lng);
   let coords = transform.forward({x: x, y: y})
-
   return axios.get(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`)
 }
