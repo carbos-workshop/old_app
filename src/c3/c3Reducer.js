@@ -1,13 +1,13 @@
 const initialState = {
   owner: {
-    firstname: 'Deborah',
-    lastname: 'Carter',
+    firstname: 'default',
+    lastname: 'default',
   },
   postalAddress: {
-    street: '1950 Lucy Lane',
-    state: 'California',
-    county: 'Riverside',
-    zip: '92879'
+    street: 'xxxx default street',
+    state: 'Hawaii',
+    county: 'default',
+    zip: '88888'
   },
   property: null,
   propertyConfirmation: false,

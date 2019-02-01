@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames'
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import List from '@material-ui/core/List';
@@ -7,13 +8,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
 import {
   updateC3Property,
   updateC3PropertyConfirmation,
 } from '../../c3Actions'
 import {
-  // getParcelByOwnerName,
+  getParcelByOwnerName,
   getParcelByAddress
 } from '../../requests'
 
@@ -28,6 +30,9 @@ const styles = theme => ({
   },
   loadedRoot:{
 
+  },
+  inline: {
+    display: 'inline',
   },
   explaination: {
     margin: theme.spacing.unit,
@@ -78,6 +83,10 @@ class ConfirmProperty extends React.Component {
   }
 
   componentWillMount(){
+    this.fetchParcelByAddress()
+  }
+
+  fetchParcelByAddress = () => {
     getParcelByAddress(this.props.c3.postalAddress.street, (`${this.props.c3.postalAddress.county}, ${this.props.c3.postalAddress.state}`))
       .then( res => {
         // console.log('Returned by Parcel Address Query ->', res.data.results);
@@ -88,7 +97,31 @@ class ConfirmProperty extends React.Component {
           })
         }
         else {
-          //separate function -> if > 0, store and move on, if = 0, search by name and move on TODO
+          this.setState({
+            properties: res.data.results,
+            loading: false,
+          })
+        }
+      })
+      .catch( error => {
+        console.log(error);
+      })
+  }
+
+
+  fetchParcelByName = () => {
+    this.setState({
+      loading: true,
+    });
+    getParcelByOwnerName(this.props.c3.owner.firstname, this.props.c3.owner.lastname, this.props.c3.postalAddress.zip)
+      .then( res => {
+        if (res.data.results.length === 1){
+          this.props.onOwnerPropertyUpdate(res.data.results[0])
+          this.setState({
+            loading: false,
+          })
+        }
+        else {
           this.setState({
             properties: res.data.results,
             loading: false,
@@ -127,7 +160,7 @@ class ConfirmProperty extends React.Component {
           this.state.loading
           ?
           <div className={classes.loadingRoot}>
-            <Typography className={classes.explaination} variant="subtitle1">
+            <Typography className={classes.explaination} variant="body2">
               Searching Properties...
             </Typography>
             <LinearProgress />
@@ -140,7 +173,7 @@ class ConfirmProperty extends React.Component {
                 this.state.properties.length > 0
                 ?
                 <div>
-                  <Typography className={classes.explaination} variant="body1">
+                  <Typography className={classes.explaination} variant="body2">
                     Oops! We found multiple properties that match the information you gave us. Please select the correct one.
                   </Typography>
                   <List>
@@ -152,12 +185,21 @@ class ConfirmProperty extends React.Component {
                       ))
                     }
                   </List>
+                  <Typography className={classNames([classes.explaination, classes.inline])} variant="body2">
+                    If you don't see your property listed, we can <Button color="primary" onClick={()=>{this.fetchParcelByName()}}>Search Additional Properties</Button>
+                  </Typography>
                 </div>
                 :
-                <Typography className={classes.explaination} variant="body1">
-                  Oh no! We didn't find any properties that match the information you gave us.  Please check your information and try again.
-                  If you continue to encounter problems, please reach out to <a className={classes.helplink} href="mailto:help@carbos.co">help@carbos.co</a>
-                </Typography>
+                <div className={classes.explaination}>
+                  <Typography variant="body2">
+                    Oh no! We didn't find any properties that match the information you gave us.  Please check the information provided and try again.
+                    If you continue to encounter problems, please reach out to <a className={classes.helplink} href="mailto:help@carbos.co">help@carbos.co</a>
+                  </Typography>
+                  <Typography variant="body2">
+                    If you believe you are seeing this message in error, we can <Button color="primary" onClick={()=>{this.fetchParcelByName()}}>Search Additional Properties</Button>
+                  </Typography>
+                </div>
+
               }
             </div>
             :
