@@ -5,7 +5,7 @@ const transformation = require('transform-coordinates')
 const transform = transformation('EPSG:4326', '3857')
 
 const KEY = 'vzczNNHVi5' //TODO
-const reportAllBaseURL = 'https://reportAllBaseURLusa.com/api/parcels.php?'
+const reportAllBaseURL = 'https://reportallusa.com/api/parcels.php?'
 const soilGridsBaseURL = 'https://rest.soilgrids.org/query?'
 const ecologicalLandUnitsBaseURL = 'https://rmgsc.cr.usgs.gov/arcgis/rest/services/globalelus/MapServer/identify?'
 const epaBiomassBaseURL = 'https://geodata.epa.gov/arcgis/rest/services/ORD/ROE_BiomassPerSquareMile/MapServer/identify?'

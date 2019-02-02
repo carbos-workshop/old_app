@@ -32,7 +32,7 @@ class Demo extends Component {
           classes.root,
           classes.flexUp])}>
         <Typography className={classes.title} variant="h4">
-          Carbon Conservation Contract Proposal
+          Carbon Conservation Contract
         </Typography>
         <C3 />
       </div>

@@ -53,19 +53,19 @@ class CalculateCarbon extends React.Component{
     // console.log(this.props);
     getSoilCarbon(this.props.c3.property.latitude, this.props.c3.property.longitude)
       .then(res => {
-        // console.log(
+        console.log('SOIL ->',
           this.calculateBelowGroundCarbon(
             this.calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft),
             res.data.properties
           )
-        // )
+        )
       })
       .catch( error => {
         console.log(error);
       })
     getEcologicalLandUnits(this.props.c3.property.latitude, this.props.c3.property.longitude)
       .then(res => {
-        console.log(
+        console.log('ELU ->',
         res.data.results[1].attributes.ELU_GLC_De,
         res.data.results[1].attributes.ELU_Site,)
       })
@@ -78,12 +78,12 @@ class CalculateCarbon extends React.Component{
           console.error('unexpected response from EPA Biomass API', res)
         }
         else {
-          // console.log(
+          console.log('BIO ->',
             this.calculateAboveGroundCarbon(
               this.calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft),
               parseFloat(res.data.results[1].attributes.Biomass_pe)
             )
-          // )
+          )
         }
       })
       .catch( error => {
@@ -108,15 +108,18 @@ class CalculateCarbon extends React.Component{
   calculateActualLandArea = (total, building) => {
     if (building) {
       return total - convert.squareFeetToAcres(building)
-    } else console.log('no building footprint provided to calculate actual land area')
-    return total
+    }
+    else {
+      console.log('No building footprint provided to calculate actual land area.')
+      return total
+    }
   }
 
   //@param ratio = Tg Biomass per square mile
   //@param area = area in acres
   //returns metric tons of CO2
   calculateAboveGroundCarbon = (area, ratio) => {
-    //very, "alpha", approximate carbon/weight ratio calc
+    //very "alpha" approximate carbon/weight ratio calc
     return convert.teragramsToTons(convert.acresToSquareMiles(area) * ratio) * 0.47
   }
 

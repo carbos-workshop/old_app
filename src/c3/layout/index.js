@@ -38,10 +38,9 @@ const styles = theme => ({
 function getSteps() {
   return [
     'Find Your Property',
-    'Confirm Your Address',
-    'Estimate Carbon Levels',
-    'Terms and Conditions',
-    'Submit Deposit',
+    'Confirm Your Information',
+    'Generate Carbon Estimate',
+    'Submit Contract Proposal',
     'Done!'
   ];
 }
@@ -57,8 +56,6 @@ function getStepContent(step) {
     case 3:
       return
     case 4:
-      return
-    case 5:
       return
     default:
       return 'Unknown step';
