@@ -11,11 +11,11 @@ const initialState = {
   },
   property: null,
   propertyConfirmation: false,
-  description: null,
+  description: '',
   carbon: {
-    total: null,
-    aboveGround: null,
-    belowGround: null,
+    total: 0,
+    aboveGround: 0,
+    belowGround: 0,
   }
 
 }

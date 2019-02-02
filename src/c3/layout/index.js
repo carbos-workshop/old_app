@@ -116,6 +116,11 @@ class C3ProcessForm extends React.Component {
       case 1:
         return !(Boolean(this.props.c3.property
           && this.props.c3.propertyConfirmation)) //property is confirmed and in redux store for use in carbon queries
+      case 2:
+        return !(Boolean(this.props.c3.carbon.aboveGround > 0
+          && this.props.c3.carbon.belowGround > 0
+          && this.props.c3.description.length > 0)) //description is a existant string and both carbon values are positive numbers
+        return
       default:
         return false
     }
