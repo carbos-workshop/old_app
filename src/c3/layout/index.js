@@ -16,6 +16,8 @@ import {
 //steps
 import FindProperty from './steps/findProperty.js'
 import ConfirmProperty from './steps/confirmProperty.js'
+import CalculateCarbon from './steps/calculateCarbon.js'
+
 
 const styles = theme => ({
   root: {
@@ -36,10 +38,9 @@ const styles = theme => ({
 function getSteps() {
   return [
     'Find Your Property',
-    'Confirm Your Address',
-    'Estimate Carbon Levels',
-    'Terms and Conditions',
-    'Submit Deposit',
+    'Confirm Your Information',
+    'Generate Carbon Estimate',
+    'Submit Contract Proposal',
     'Done!'
   ];
 }
@@ -51,15 +52,10 @@ function getStepContent(step) {
     case 1:
       return (<ConfirmProperty/>)
     case 2:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+      return (<CalculateCarbon/>);
     case 3:
       return
     case 4:
-      return
-    case 5:
       return
     default:
       return 'Unknown step';
