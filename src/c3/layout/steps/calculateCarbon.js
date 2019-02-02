@@ -74,7 +74,6 @@ const styles = theme => ({
   },
   statsHeader:{
     marginTop: theme.spacing.unit,
-    textAlign: 'center',
     fontWeight: '700',
   },
   chartWrapper: {
@@ -90,6 +89,9 @@ const styles = theme => ({
   bold: {
     fontWeight: '700',
     color: theme.palette.primary.main,
+  },
+  centered: {
+    textAlign: 'center',
   },
 })
 
@@ -224,7 +226,7 @@ class CalculateCarbon extends React.Component{
           </div>
           :
           <div className={classes.loadedRoot}>
-            <Typography className={classNames([classes.statsHeader,classes.explaination])} variant="h5">
+            <Typography className={classNames([classes.statsHeader,classes.explaination, classes.centered])} variant="h5">
               This property holds up to
               <span className={classes.statsHighlight}>{this.trimDecimals(this.props.c3.carbon.total)}</span>
               tons of CO<sub>2</sub>!
