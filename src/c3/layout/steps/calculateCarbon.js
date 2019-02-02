@@ -93,16 +93,14 @@ class CalculateCarbon extends React.Component{
 
   //returns metric tons of CO2
   //@param area = area in acres
-  //@param data contains two major objects ORCDRC (organic carbon content) and BLDFIE (bulk earth density)
+  //@param data contains two major objects ORCDRC (organic carbon content permille) and BLDFIE (bulk earth density kg/m3)
   calculateBelowGroundCarbon = (area, data) => {
-    //use kg/m3 soil density to convert g/kg carbon to g/m3 (grams carbon per cubic meter of soil)
-    let sl1 = data.ORCDRC.M.sl1 * data.BLDFIE.M.sl1
-    let sl2 = data.ORCDRC.M.sl2 * data.BLDFIE.M.sl2
-    let sl3 = data.ORCDRC.M.sl3 * data.BLDFIE.M.sl3
-    let sl4 = data.ORCDRC.M.sl4 * data.BLDFIE.M.sl4
-    let carbon = ((5*(sl1+sl2)) + (10*(sl2+sl3)) + (15*(sl3+sl4))) * (1/60)  //trapezodial average of g/m3 at multiple depths
-    let volume = convert.acresToSquareMeters(area) * .3 // 30cm depth for volume
-    return convert.gramsToTons(carbon * volume)
+    //average the BLDFIE densities across soil slices and multiply by slice volume to get kg soil per 'slice'
+    //then average ORCDRC ermilles across the 'slice' height take the permille of the 'slice'
+    let slice1 = ((data.BLDFIE.M.sl1 + data.BLDFIE.M.sl2)/2) * (convert.acresToSquareMeters(area) * .05) * (((data.ORCDRC.M.sl1 + data.ORCDRC.M.sl2)/2)/1000)
+    let slice2 = ((data.BLDFIE.M.sl2 + data.BLDFIE.M.sl3)/2) * (convert.acresToSquareMeters(area) * .1) * (((data.ORCDRC.M.sl2 + data.ORCDRC.M.sl3)/2)/1000)
+    let slice3 = ((data.BLDFIE.M.sl3 + data.BLDFIE.M.sl4)/2) * (convert.acresToSquareMeters(area) * .15) * (((data.ORCDRC.M.sl3 + data.ORCDRC.M.sl4)/2)/1000)
+    return convert.kilogramsToTons(slice1 + slice2 + slice3)
   }
 
   calculateActualLandArea = (total, building) => {
