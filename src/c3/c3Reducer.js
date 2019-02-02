@@ -11,6 +11,13 @@ const initialState = {
   },
   property: null,
   propertyConfirmation: false,
+  description: null,
+  carbon: {
+    total: null,
+    aboveGround: null,
+    belowGround: null,
+  }
+
 }
 
 function c3Reducer(state = initialState, action) {
@@ -64,6 +71,26 @@ function c3Reducer(state = initialState, action) {
       case 'C3_PROPERTY_CONFIRMATION_UPDATED':
         return { ...state,
           propertyConfirmation: action.payload
+        }
+      case 'C3_ABOVE_GROUND_CARBON_UPDATED':
+        return { ...state,
+          carbon: {
+            ...state.carbon,
+            total: state.carbon.belowGround + action.payload,
+            aboveGround: action.payload
+          }
+        }
+      case 'C3_BELOW_GROUND_CARBON_UPDATED':
+        return { ...state,
+          carbon: {
+            ...state.carbon,
+            total: state.carbon.aboveGround + action.payload,
+            belowGround: action.payload
+          }
+        }
+      case 'C3_ELU_DESCRIPTION_UPDATED':
+        return { ...state,
+          description: action.payload
         }
     default:
       return state
