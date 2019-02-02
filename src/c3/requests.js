@@ -97,7 +97,6 @@ export function getEcologicalLandUnits(lat, lng){
 
 export function getBiomass(lat, lng){
   //convert lat/lng strings to numbers then to web mercarder format
-
   let y = parseFloat(lat);
   let x = parseFloat(lng);
   let coords = transform.forward({x: x, y: y})

@@ -6,6 +6,9 @@ export const C3_POSTAL_ADDRESS_ZIP_UPDATED = 'C3_POSTAL_ADDRESS_ZIP_UPDATED'
 export const C3_POSTAL_ADDRESS_STATE_UPDATED = 'C3_POSTAL_ADDRESS_STATE_UPDATED'
 export const C3_PROPERTY_UPDATED = 'C3_PROPERTY_UPDATED'
 export const C3_PROPERTY_CONFIRMATION_UPDATED = 'C3_PROPERTY_CONFIRMATION_UPDATED'
+export const C3_ELU_DESCRIPTION_UPDATED = 'C3_ELU_DESCRIPTION_UPDATED'
+export const C3_ABOVE_GROUND_CARBON_UPDATED = 'C3_ABOVE_GROUND_CARBON_UPDATED'
+export const C3_BELOW_GROUND_CARBON_UPDATED = 'C3_BELOW_GROUND_CARBON_UPDATED'
 
 
 function C3OwnerFirstnameUpdated(name) {
@@ -64,6 +67,27 @@ function C3PropertyConfirmationUpdated(status) {
   }
 }
 
+function C3AboveGroundCarbonUpdated(carbon) {
+  return {
+    type: C3_ABOVE_GROUND_CARBON_UPDATED,
+    payload: carbon
+  }
+}
+
+function C3BelowGroundCarbonUpdated(carbon) {
+  return {
+    type: C3_BELOW_GROUND_CARBON_UPDATED,
+    payload: carbon
+  }
+}
+
+function C3ELUDescriptionUpdated(elu) {
+  return {
+    type: C3_ELU_DESCRIPTION_UPDATED,
+    payload: elu
+  }
+}
+
 export function updateC3OwnerFirstname(name) {
   return function(dispatch) {
     dispatch(C3OwnerFirstnameUpdated(name))
@@ -109,5 +133,23 @@ export function updateC3Property(property) {
 export function updateC3PropertyConfirmation(status) {
   return function(dispatch) {
     dispatch(C3PropertyConfirmationUpdated(status))
+  }
+}
+
+export function updateC3AboveGroundCarbon(carbon) {
+  return function(dispatch) {
+    dispatch(C3AboveGroundCarbonUpdated(carbon))
+  }
+}
+
+export function updateC3BelowGroundCarbon(carbon) {
+  return function(dispatch) {
+    dispatch(C3BelowGroundCarbonUpdated(carbon))
+  }
+}
+
+export function updateC3ELUDescription(elu) {
+  return function(dispatch) {
+    dispatch(C3ELUDescriptionUpdated(elu))
   }
 }

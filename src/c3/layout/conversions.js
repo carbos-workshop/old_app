@@ -8,6 +8,9 @@ export default {
   gramsToTons: g => {
     return g/1000000
   },
+  kilogramsToTons: kg => {
+    return kg/1000
+  },
   squareFeetToAcres: sqft => {
     return sqft/43560
   },

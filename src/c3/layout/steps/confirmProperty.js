@@ -80,6 +80,7 @@ class ConfirmProperty extends React.Component {
 
   state = {
     loading: true,
+    properties: []
   }
 
   componentWillMount(){
@@ -89,7 +90,6 @@ class ConfirmProperty extends React.Component {
   fetchParcelByAddress = () => {
     getParcelByAddress(this.props.c3.postalAddress.street, (`${this.props.c3.postalAddress.county}, ${this.props.c3.postalAddress.state}`))
       .then( res => {
-        // console.log('Returned by Parcel Address Query ->', res.data.results);
         if (res.data.results.length === 1){
           this.props.onOwnerPropertyUpdate(res.data.results[0])
           this.setState({
