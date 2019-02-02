@@ -1,8 +1,8 @@
 const axios = require('axios');
 
 //required for EPA Biomass map projection
-const transformation = require('transform-coordinates')
-const transform = transformation('EPSG:4326', '3857')
+import convert from './conversions'
+const transform = convert.coordinateSystem('EPSG:4326', '3857')
 
 const KEY = 'vzczNNHVi5' //TODO
 const reportAllBaseURL = 'https://reportallusa.com/api/parcels.php?'

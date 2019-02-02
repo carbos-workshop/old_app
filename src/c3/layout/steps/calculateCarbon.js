@@ -14,7 +14,7 @@ import {
   updateC3BelowGroundCarbon,
   updateC3ELUDescription,
 } from '../../c3Actions'
-import convert from '../conversions.js'
+import convert from '../../conversions.js'
 import PieChart from 'react-chartjs-2'
 
 const mapStateToProps = (state, ownProps) => {
