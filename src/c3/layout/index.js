@@ -120,7 +120,6 @@ class C3ProcessForm extends React.Component {
         return !(Boolean(this.props.c3.carbon.aboveGround > 0
           && this.props.c3.carbon.belowGround > 0
           && this.props.c3.description.length > 0)) //description is a existant string and both carbon values are positive numbers
-        return
       default:
         return false
     }

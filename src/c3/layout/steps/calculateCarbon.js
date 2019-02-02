@@ -1,6 +1,7 @@
 import React from  'react'
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import {
@@ -46,6 +47,10 @@ const styles = theme => ({
   },
   loadedRoot:{
     display: 'flex',
+    flexDirection: 'column',
+  },
+  statsWrapper: {
+    display: 'flex',
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
   },
@@ -62,19 +67,29 @@ const styles = theme => ({
   stats: {
     marginLeft: theme.spacing.unit * 2,
   },
+  statsHighlight:{
+    color: theme.palette.primary.main,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
   statsHeader:{
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit,
+    textAlign: 'center',
     fontWeight: '700',
   },
   chartWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    height: '200px',
+    height: '250px',
     width: '500px',
   },
   chart: {
     // height: '200px',
     // width: '500px'
+  },
+  bold: {
+    fontWeight: '700',
+    color: theme.palette.primary.main,
   },
 })
 
@@ -187,15 +202,11 @@ class CalculateCarbon extends React.Component{
     const chartData = {
         labels: [ "Soil", "Biomass" ],
         datasets: [{
-            // label: '# of Votes',
             data: [this.trimDecimals(this.props.c3.carbon.belowGround), this.trimDecimals(this.props.c3.carbon.aboveGround)],
             backgroundColor: [
-                '#424242',
-                this.props.theme.palette.primary.main,
+                this.props.theme.palette.grey[800],
+                this.props.theme.palette.grey[600],
             ],
-            // options: {
-            //   hoverBackgroundColor:
-            // }
             borderWidth: 0
         }]
     }
@@ -213,30 +224,49 @@ class CalculateCarbon extends React.Component{
           </div>
           :
           <div className={classes.loadedRoot}>
-            <div className={classes.chartWrapper}>
-              <PieChart
-                className={classes.chart}
-                data={chartData}
-                width={100}
-                height={50}
-                options={{
-                  maintainAspectRatio: false
-                }}
-              />
-            </div>
-            <div className={classes.carbonStats}>
-              <Typography className={classes.statsHeader} variant="body1">
-                Ecological Land Unit
-              </Typography>
-              <Typography className={classes.stats} variant="subtitle1">
-                {this.props.c3.description}
-              </Typography>
-              <Typography className={classes.statsHeader} variant="body1">
-                Estimated Carbon Storage
-              </Typography>
-              <Typography className={classes.stats} variant="subtitle1">
-                {this.trimDecimals(this.props.c3.carbon.total)} tCO<sub>2</sub>e
-              </Typography>
+            <Typography className={classNames([classes.statsHeader,classes.explaination])} variant="h5">
+              This property holds up to
+              <span className={classes.statsHighlight}>{this.trimDecimals(this.props.c3.carbon.total)}</span>
+              tons of CO<sub>2</sub>!
+            </Typography>
+            <div className={classes.statsWrapper}>
+              <div className={classes.chartWrapper}>
+                <PieChart
+                  className={classes.chart}
+                  data={chartData}
+                  width={100}
+                  height={50}
+                  options={{
+                    maintainAspectRatio: false
+                  }}
+                />
+              </div>
+              <div className={classes.carbonStats}>
+                <Typography className={classes.statsHeader} variant="body1">
+                  Ecological Land Unit
+                </Typography>
+                <Typography className={classes.stats} variant="subtitle1">
+                  {this.props.c3.description}
+                </Typography>
+                <Typography className={classes.statsHeader} variant="body1">
+                  Total Storage Estimate
+                </Typography>
+                <Typography className={classes.stats} variant="subtitle1">
+                  <span className={classes.bold}>{this.trimDecimals(this.props.c3.carbon.total)}</span> tCO<sub>2</sub>e
+                </Typography>
+                <Typography className={classes.statsHeader} variant="body1">
+                  Above Ground CO<sub>2</sub>
+                </Typography>
+                <Typography className={classes.stats} variant="subtitle1">
+                  <span className={classes.bold}>{this.trimDecimals(this.props.c3.carbon.aboveGround)}</span> tons
+                </Typography>
+                <Typography className={classes.statsHeader} variant="body1">
+                  Below Ground CO<sub>2</sub>
+                </Typography>
+                <Typography className={classes.stats} variant="subtitle1">
+                  <span className={classes.bold}>{this.trimDecimals(this.props.c3.carbon.belowGround)}</span> tons
+                </Typography>
+              </div>
             </div>
           </div>
         }
