@@ -17,6 +17,7 @@ import {
 import FindProperty from './steps/findProperty.js'
 import ConfirmProperty from './steps/confirmProperty.js'
 import CalculateCarbon from './steps/calculateCarbon.js'
+import Submission from './steps/submission.js'
 
 
 const styles = theme => ({
@@ -54,9 +55,9 @@ function getStepContent(step) {
     case 2:
       return (<CalculateCarbon/>);
     case 3:
-      return
+      return (<Submission />)
     case 4:
-      return
+      return `done`
     default:
       return 'Unknown step';
   }
