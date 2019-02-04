@@ -1,5 +1,5 @@
-const axios = require('axios');
-const jsonp = require('jsonp')
+import axios from 'axios'
+import jsonp from 'jsonp'
 //required for EPA Biomass map projection
 import convert from './conversions'
 const transform = convert.coordinateSystem('EPSG:4326', '3857')
