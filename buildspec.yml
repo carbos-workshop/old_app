@@ -8,4 +8,4 @@ phases:
 artifacts:
   files:
         - '**/*' # all files on github
-  base-directory: build_webpack # only upload build/* files to s3 bucket
+  base-directory: build # only upload build/* files to s3 bucket
