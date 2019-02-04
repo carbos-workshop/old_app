@@ -26,7 +26,8 @@ const styles = theme => ({
 const mapStateToProps = (state, ownProps) => {
   return {
     c3: state.c3,
-    user: state.user
+    property: state.c3.property,
+    user: state.user,
   }
 }
 
@@ -96,7 +97,7 @@ class Submission extends React.Component{
                 <Typography className={classes.explaination} variant="subtitle1">
                   Here are your contract details:
                 </Typography>
-                <ContractDetailCard c3={this.props.c3}/>
+                <ContractDetailCard c3={this.props.c3} property={this.props.property}/>
               </div>
             </div>
         }

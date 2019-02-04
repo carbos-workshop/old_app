@@ -18,7 +18,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {
   trimDecimals
 } from '../../util/utils.js'
+
 import { Identicon } from 'ethereum-react-components';
+import LeafletMap from '../map'
 
 const styles = theme => ({
   card: {
@@ -60,9 +62,9 @@ class ContractDetailCard extends React.Component {
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar component={
-              ()=>(<Identicon size="medium" address="0xF5A5d5c30BfAC14bf207b6396861aA471F9A711D" />)
-            }/>
+            <Avatar component={()=>(
+              <Identicon size="medium" address="0xF5A5d5c30BfAC14bf207b6396861aA471F9A711D" />
+            )}/>
           }
           action={
             <IconButton>
@@ -74,12 +76,14 @@ class ContractDetailCard extends React.Component {
         />
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/paella.jpg"
-          title="Map"
+          image=" "
+          component={()=>(
+            <LeafletMap data={this.props.property} geometry={this.props.property.geom_as_wkt} center={[this.props.property.latitude, this.props.property.longitude]}/>
+          )}
         />
         <CardContent>
           <Typography component="p">
-            Show content
+            Carbon Stats / Set Price Overrides
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
