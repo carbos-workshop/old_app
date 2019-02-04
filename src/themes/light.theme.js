@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { red, lightBlue } from '@material-ui/core/colors/';
+import { red, yellow } from '@material-ui/core/colors/';
 
 const theme = createMuiTheme({
   typography: {
@@ -16,8 +16,9 @@ const theme = createMuiTheme({
       dark: red[600],
     },
     secondary: {
-      main: lightBlue[400],
-      dark: lightBlue[600]
+      light: yellow[100],
+      main: yellow[400],
+      dark: yellow[600],
     },
   },
   overrides: {

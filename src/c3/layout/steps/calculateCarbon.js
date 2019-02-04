@@ -14,8 +14,13 @@ import {
   updateC3BelowGroundCarbon,
   updateC3ELUDescription,
 } from '../../c3Actions'
+import {
+  trimDecimals
+} from '../../../util/utils.js'
 import convert from '../../conversions.js'
 import PieChart from 'react-chartjs-2'
+import Warning from '../../../components/warning'
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -86,6 +91,10 @@ const styles = theme => ({
     // height: '200px',
     // width: '500px'
   },
+  helplink:{
+    color: theme.palette.primary.light,
+    fontWeight: '700'
+  },
   bold: {
     fontWeight: '700',
     color: theme.palette.primary.main,
@@ -117,7 +126,7 @@ class CalculateCarbon extends React.Component{
         this.responseReceived('belowGround')
       })
       .catch( error => {
-        console.log(error);
+        this.receivedApiError(error)
       })
     getEcologicalLandUnits(this.props.c3.property.latitude, this.props.c3.property.longitude)
       .then(res => {
@@ -125,7 +134,7 @@ class CalculateCarbon extends React.Component{
         this.responseReceived('description')
       })
       .catch( error => {
-        console.log(error);
+        this.receivedApiError(error)
       })
     getBiomass(this.props.c3.property.latitude, this.props.c3.property.longitude)
       .then(res => {
@@ -143,7 +152,7 @@ class CalculateCarbon extends React.Component{
         }
       })
       .catch( error => {
-        console.log(error);
+        this.receivedApiError(error)
       })
   }
 
@@ -167,6 +176,13 @@ class CalculateCarbon extends React.Component{
       console.log('No building footprint provided to calculate actual land area.')
       return total
     }
+  }
+
+  receivedApiError = error => {
+    console.log(error);
+    this.setState({
+      apiError: true
+    })
   }
 
   //@param ratio = Tg Biomass per square mile
@@ -194,17 +210,13 @@ class CalculateCarbon extends React.Component{
     )
   }
 
-  trimDecimals = number => {
-    return Number.parseFloat(number).toFixed(2)
-  }
-
   render(){
     const { classes } = this.props
 
     const chartData = {
         labels: [ "Soil", "Biomass" ],
         datasets: [{
-            data: [this.trimDecimals(this.props.c3.carbon.belowGround), this.trimDecimals(this.props.c3.carbon.aboveGround)],
+            data: [trimDecimals(this.props.c3.carbon.belowGround), trimDecimals(this.props.c3.carbon.aboveGround)],
             backgroundColor: [
                 this.props.theme.palette.grey[800],
                 this.props.theme.palette.grey[600],
@@ -225,52 +237,60 @@ class CalculateCarbon extends React.Component{
             <LinearProgress />
           </div>
           :
-          <div className={classes.loadedRoot}>
-            <Typography className={classNames([classes.statsHeader,classes.explaination, classes.centered])} variant="h5">
-              This property holds up to
-              <span className={classes.statsHighlight}>{this.trimDecimals(this.props.c3.carbon.total)}</span>
-              tons of CO<sub>2</sub>!
-            </Typography>
-            <div className={classes.statsWrapper}>
-              <div className={classes.chartWrapper}>
-                <PieChart
-                  className={classes.chart}
-                  data={chartData}
-                  width={100}
-                  height={50}
-                  options={{
-                    maintainAspectRatio: false
-                  }}
-                />
-              </div>
-              <div className={classes.carbonStats}>
-                <Typography className={classes.statsHeader} variant="body1">
-                  Ecological Land Unit
-                </Typography>
-                <Typography className={classes.stats} variant="subtitle1">
-                  {this.props.c3.description}
-                </Typography>
-                <Typography className={classes.statsHeader} variant="body1">
-                  Total Storage Estimate
-                </Typography>
-                <Typography className={classes.stats} variant="subtitle1">
-                  <span className={classes.bold}>{this.trimDecimals(this.props.c3.carbon.total)}</span> tCO<sub>2</sub>e
-                </Typography>
-                <Typography className={classes.statsHeader} variant="body1">
-                  Above Ground CO<sub>2</sub>
-                </Typography>
-                <Typography className={classes.stats} variant="subtitle1">
-                  <span className={classes.bold}>{this.trimDecimals(this.props.c3.carbon.aboveGround)}</span> tons
-                </Typography>
-                <Typography className={classes.statsHeader} variant="body1">
-                  Below Ground CO<sub>2</sub>
-                </Typography>
-                <Typography className={classes.stats} variant="subtitle1">
-                  <span className={classes.bold}>{this.trimDecimals(this.props.c3.carbon.belowGround)}</span> tons
-                </Typography>
+
+            this.state.apiError
+            ?
+            <Warning title="API ERROR">
+              This is likely a temporary issue.  If it persists, contact <a className={classes.helplink} href="mailto:help@carbos.co">help@carbos.co</a>
+            </Warning>
+            :
+            <div className={classes.loadedRoot}>
+              <Typography className={classNames([classes.statsHeader,classes.explaination, classes.centered])} variant="h5">
+                This property holds up to
+                <span className={classes.statsHighlight}>{trimDecimals(this.props.c3.carbon.total)}</span>
+                tons of CO<sub>2</sub>!
+              </Typography>
+              <div className={classes.statsWrapper}>
+                <div className={classes.chartWrapper}>
+                  <PieChart
+                    className={classes.chart}
+                    data={chartData}
+                    width={100}
+                    height={50}
+                    options={{
+                      maintainAspectRatio: false
+                    }}
+                  />
+                </div>
+                <div className={classes.carbonStats}>
+                  <Typography className={classes.statsHeader} variant="body1">
+                    Ecological Land Unit
+                  </Typography>
+                  <Typography className={classes.stats} variant="subtitle1">
+                    {this.props.c3.description}
+                  </Typography>
+                  <Typography className={classes.statsHeader} variant="body1">
+                    Total Storage
+                  </Typography>
+                  <Typography className={classes.stats} variant="subtitle1">
+                    <span className={classes.bold}>{trimDecimals(this.props.c3.carbon.total)}</span> tCO<sub>2</sub>e
+                  </Typography>
+                  <Typography className={classes.statsHeader} variant="body1">
+                    Above Ground CO<sub>2</sub>
+                  </Typography>
+                  <Typography className={classes.stats} variant="subtitle1">
+                    <span className={classes.bold}>{trimDecimals(this.props.c3.carbon.aboveGround)}</span> tons
+                  </Typography>
+                  <Typography className={classes.statsHeader} variant="body1">
+                    Below Ground CO<sub>2</sub>
+                  </Typography>
+                  <Typography className={classes.stats} variant="subtitle1">
+                    <span className={classes.bold}>{trimDecimals(this.props.c3.carbon.belowGround)}</span> tons
+                  </Typography>
+                </div>
               </div>
             </div>
-          </div>
+
         }
       </div>
     )
