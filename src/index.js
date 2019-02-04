@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { UserIsAuthenticated } from './util/wrappers.js'
@@ -26,8 +26,8 @@ ReactDOM.render((
           <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
           <Route path="demo" component={Demo} />
+          <Route path="*" component={()=>(<p>Not Found</p>)} />
         </Route>
-        <Redirect from="*" to="/" />
       </Router>
     </Provider>
   ),
