@@ -1,5 +1,5 @@
 const axios = require('axios');
-
+const jsonp = require('jsonp')
 //required for EPA Biomass map projection
 import convert from './conversions'
 const transform = convert.coordinateSystem('EPSG:4326', '3857')
@@ -100,5 +100,18 @@ export function getBiomass(lat, lng){
   let y = parseFloat(lat);
   let x = parseFloat(lng);
   let coords = transform.forward({x: x, y: y})
-  return axios.get(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`)
+
+  //chrome has problems with this request due to Same Origin CORS Policy
+  // return axios.get(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`)
+
+  //JSONP request to get around CORS issue in chrome for this API
+  return new Promise((resolve,reject) =>{
+     jsonp(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`, null, (err, data) => {
+      if (err) {
+        resolve(err)
+      } else {
+        resolve(data)
+      }
+    })
+   })
 }

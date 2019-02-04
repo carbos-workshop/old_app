@@ -18,8 +18,11 @@ const styles = theme => ({
   explaination: {
     margin: theme.spacing.unit,
   },
-  disclaimer: {
-
+  contractWrapper: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  contract: {
+    marginTop: theme.spacing.unit,
   },
 })
 
@@ -93,11 +96,11 @@ class Submission extends React.Component{
               :
                 null
               }
-              <div className={classes.disclaimer}>
+              <div className={classes.contractWrapper}>
                 <Typography className={classes.explaination} variant="subtitle1">
                   Here are your contract details:
                 </Typography>
-                <ContractDetailCard c3={this.props.c3} property={this.props.property}/>
+                <ContractDetailCard className={classes.contract} c3={this.props.c3} property={this.props.property}/>
               </div>
             </div>
         }
