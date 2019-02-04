@@ -1,5 +1,5 @@
-const epsg = require('epsg-index/all.json')
-const proj4 = require('proj4')
+import epsg from 'epsg-index/all.json'
+import proj4 from 'proj4'
 const leadingEPSG = /^epsg:/i
 
 export default {
