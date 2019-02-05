@@ -46,8 +46,8 @@ function getSteps() {
     'Find Your Property',
     'Confirm Your Information',
     'Generate Carbon Estimate',
-    'Submit Contract Proposal',
-    'Done!'
+    'Reivew Contract Proposal',
+    'Submit'
   ];
 }
 
