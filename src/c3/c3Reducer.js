@@ -12,12 +12,14 @@ const initialState = {
   property: null,
   propertyConfirmation: false,
   description: '',
+  ownerNameMismatch: false,
+  ppt: 0,
   carbon: {
     total: 0,
     aboveGround: 0,
     belowGround: 0,
-  }
-
+  },
+  sumbitted: false
 }
 
 function c3Reducer(state = initialState, action) {
@@ -91,6 +93,14 @@ function c3Reducer(state = initialState, action) {
       case 'C3_ELU_DESCRIPTION_UPDATED':
         return { ...state,
           description: action.payload
+        }
+      case 'C3_OWNER_NAME_MISMATCH_UPDATED':
+        return { ...state,
+          ownerNameMismatch: action.payload
+        }
+      case 'C3_PRICE_PER_TON_UPDATED':
+        return { ...state,
+          ppt: action.payload
         }
     default:
       return state

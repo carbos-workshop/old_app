@@ -9,6 +9,10 @@ export const C3_PROPERTY_CONFIRMATION_UPDATED = 'C3_PROPERTY_CONFIRMATION_UPDATE
 export const C3_ELU_DESCRIPTION_UPDATED = 'C3_ELU_DESCRIPTION_UPDATED'
 export const C3_ABOVE_GROUND_CARBON_UPDATED = 'C3_ABOVE_GROUND_CARBON_UPDATED'
 export const C3_BELOW_GROUND_CARBON_UPDATED = 'C3_BELOW_GROUND_CARBON_UPDATED'
+export const C3_OWNER_NAME_MISMATCH_UPDATED = 'C3_OWNER_NAME_MISMATCH_UPDATED'
+export const C3_PRICE_PER_TON_UPDATED = 'C3_PRICE_PER_TON_UPDATED'
+
+
 
 
 function C3OwnerFirstnameUpdated(name) {
@@ -88,6 +92,20 @@ function C3ELUDescriptionUpdated(elu) {
   }
 }
 
+function C3OwnerNameMismatchpdated(status) {
+  return {
+    type: C3_OWNER_NAME_MISMATCH_UPDATED,
+    payload: status
+  }
+}
+
+function C3PricePerTonUpdated(ppt) {
+  return {
+    type: C3_PRICE_PER_TON_UPDATED,
+    payload: ppt
+  }
+}
+
 export function updateC3OwnerFirstname(name) {
   return function(dispatch) {
     dispatch(C3OwnerFirstnameUpdated(name))
@@ -151,5 +169,17 @@ export function updateC3BelowGroundCarbon(carbon) {
 export function updateC3ELUDescription(elu) {
   return function(dispatch) {
     dispatch(C3ELUDescriptionUpdated(elu))
+  }
+}
+
+export function updateC3OwnerNameMismatch(status) {
+  return function(dispatch) {
+    dispatch(C3OwnerNameMismatchpdated(status))
+  }
+}
+
+export function updateC3PricePerTon(ppt) {
+  return function(dispatch) {
+    dispatch(C3PricePerTonUpdated(ppt))
   }
 }

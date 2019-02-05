@@ -6,6 +6,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
+import SendIcon from '@material-ui/icons/SendTwoTone';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {connect} from "react-redux";
@@ -17,7 +18,8 @@ import {
 import FindProperty from './steps/findProperty.js'
 import ConfirmProperty from './steps/confirmProperty.js'
 import CalculateCarbon from './steps/calculateCarbon.js'
-import Submission from './steps/submission.js'
+import Review from './steps/review.js'
+import Submit from './steps/submit.js'
 
 
 const styles = theme => ({
@@ -33,6 +35,9 @@ const styles = theme => ({
   },
   resetContainer: {
     padding: theme.spacing.unit * 3,
+  },
+  rightIcon:{
+    marginLeft: theme.spacing.unit,
   },
 });
 
@@ -55,9 +60,9 @@ function getStepContent(step) {
     case 2:
       return (<CalculateCarbon/>);
     case 3:
-      return (<Submission />)
+      return (<Review />)
     case 4:
-      return `done`
+      return (<Submit />)
     default:
       return 'Unknown step';
   }
@@ -122,16 +127,44 @@ class C3ProcessForm extends React.Component {
           && this.props.c3.carbon.belowGround > 0
           && this.props.c3.description.length > 0)) //description is a existant string and both carbon values are positive numbers
       case 3:
-        return true //must submit contract to proceed
+        return !(Boolean(this.props.c3.carbon.aboveGround > 0
+          && this.props.c3.carbon.belowGround > 0
+          && this.props.c3.description.length > 0
+          && this.props.c3.description.length > 0
+          && this.props.c3.owner.firstname
+          && this.props.c3.owner.lastname
+          && this.props.c3.property
+          && this.props.c3.propertyConfirmation)) //all required c3 fields have values
+      case 4:
+        return !Boolean(this.props.c3.submitted)
       default:
         return false
     }
+  }
+
+  submitC3 = () => {
+    console.log('time to submit')
+    console.log(this.props.c3);
+    this.handleNext()
   }
 
   render() {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
+
+    const submitContractButton = (
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        disabled={this.validateStep(this.state.activeStep)}
+        onClick={this.submitC3}
+      >
+        Submit
+       <SendIcon className={classes.rightIcon} />
+      </Button>
+    )
 
     return (
       <div className={classes.root}>
@@ -154,15 +187,20 @@ class C3ProcessForm extends React.Component {
                     >
                       Back
                     </Button>
-                    <Button
+                    {
+                      this.state.activeStep === 3
+                      ? submitContractButton
+                      :
+                      <Button
                       variant="contained"
                       color="primary"
                       onClick={this.handleNext}
                       className={classes.button}
                       disabled={this.validateStep(this.state.activeStep)}
-                    >
-                      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                    </Button>
+                      >
+                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                      </Button>
+                    }
                   </div>
                 </div>
               </StepContent>

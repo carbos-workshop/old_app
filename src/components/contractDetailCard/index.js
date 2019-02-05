@@ -11,7 +11,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SendIcon from '@material-ui/icons/SendTwoTone';
+
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Table from '@material-ui/core/Table';
@@ -19,8 +19,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
+import Slider from '@material-ui/lab/Slider';
+import { connect } from 'react-redux'
 
+import {
+  updateC3PricePerTon,
+} from '../../c3/c3Actions'
 import {
   trimDecimals
 } from '../../util/utils.js'
@@ -53,15 +57,26 @@ const styles = theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
+  explaination:{
+    margin: theme.spacing.unit,
+    textAlign: 'center',
+  },
   avatar: {
     backgroundColor: theme.palette.primary.main,
   },
   number:{
     color:theme.palette.primary.main,
   },
-  rightIcon:{
-    marginLeft: theme.spacing.unit,
-  }
+  // rightIcon:{
+  //   marginLeft: theme.spacing.unit,
+  // },
+  sliderWrapper: {
+    width: '60%',
+    margin: '0 auto'
+  },
+  slider: {
+    padding: `${theme.spacing.unit * 2}px 0px`,
+  },
 });
 
 let id = 0;
@@ -76,12 +91,28 @@ function createData(title, biomass, soil, total ) {
   };
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onC3PricePerTonUpdate: ppt => {
+      dispatch(updateC3PricePerTon(ppt))
+    },
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
 class ContractDetailCard extends React.Component {
   state = {
     expanded: false,
     price: 0,
     ppt: 0,
+    usdppt: 0,
     ratio: 0,
+    pptModifier: 0,
   };
 
   handleExpandClick = () => {
@@ -90,25 +121,55 @@ class ContractDetailCard extends React.Component {
 
   componentWillMount(){
     getEthPricePerTon()
-      .then( ratio => {
-        convert.etherToUsd(ratio)
+      .then( ethRatio => {
+        convert.etherToUsd(ethRatio)
           .then(usdRatio=>{
             this.setState({
-              price: ratio * this.props.c3.carbon.total,
-              ppt: ratio,
+              price: ethRatio * this.props.c3.carbon.total,
+              ppt: ethRatio,
               usdppt: usdRatio,
             })
+            this.props.onC3PricePerTonUpdate(ethRatio)
           })
+
       })
   }
+
+  changePpt = (e, value) => {
+    this.setState({
+      pptModifier: value,
+    });
+    this.props.onC3PricePerTonUpdate(this.state.ppt * (1 + (value/100))) //store new ETH PPT in redux store
+  };
+
+  getModifiedPricePerTon = type => {
+    switch(type){
+      case 'USD':
+        return this.state.usdppt * (1 + (this.state.pptModifier/100))
+      case 'ETH':
+        return this.state.ppt * (1 + (this.state.pptModifier/100))
+      default:
+        return 0
+    }
+  }
+
 
   render() {
     const { classes } = this.props;
 
-    const rows = [
-      createData('Carbon (Tons)', trimDecimals(this.props.c3.carbon.aboveGround, 6), trimDecimals(this.props.c3.carbon.belowGround, 6), trimDecimals(this.props.c3.carbon.total,6) ),
-      createData('ETH', this.props.c3.carbon.aboveGround * this.state.ppt, this.props.c3.carbon.belowGround * this.state.ppt, this.state.price ),
-      createData('USD', trimDecimals(this.props.c3.carbon.aboveGround * this.state.usdppt, 2), trimDecimals(this.props.c3.carbon.belowGround * this.state.usdppt, 2), trimDecimals(this.props.c3.carbon.total * this.state.usdppt, 2))
+    const contractValueRows = [
+      createData('Carbon (Tons)',
+        trimDecimals(this.props.c3.carbon.aboveGround, 6),
+        trimDecimals(this.props.c3.carbon.belowGround, 6),
+        trimDecimals(this.props.c3.carbon.total,6) ),
+      createData('ETH',
+        this.props.c3.carbon.aboveGround * this.getModifiedPricePerTon('ETH'),
+        this.props.c3.carbon.belowGround * this.getModifiedPricePerTon('ETH'),
+        this.props.c3.carbon.total * this.getModifiedPricePerTon('ETH')),
+      createData('USD',
+      trimDecimals(this.props.c3.carbon.aboveGround * this.getModifiedPricePerTon('USD'), 2),
+      trimDecimals(this.props.c3.carbon.belowGround * this.getModifiedPricePerTon('USD'), 2),
+      trimDecimals(this.props.c3.carbon.total * this.getModifiedPricePerTon('USD'), 2))
     ];
 
     const subheader = (
@@ -117,7 +178,7 @@ class ContractDetailCard extends React.Component {
           {`${trimDecimals(this.props.c3.carbon.total, 6)} tons`}
         </Typography>
         <Typography variant="subtitle2">
-          {`${trimDecimals(this.state.price, 6)} Ξ`}
+          {`${this.props.c3.carbon.total * this.getModifiedPricePerTon('ETH')} Ξ`}
         </Typography>
       </div>
     )
@@ -156,7 +217,7 @@ class ContractDetailCard extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
+              {contractValueRows.map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
                     {row.title}
@@ -174,16 +235,47 @@ class ContractDetailCard extends React.Component {
             <Typography variant="h6">
               Optional Configuration
             </Typography>
+            <Typography className={classes.explaination} variant="subtitle1">
+              You have the option to price your carbon tonnage above the standard rate.
+              <br/>
+              <strong>We do not recommend doing this</strong>, but this is your contract.
+            </Typography>
+            <div className={classes.sliderWrapper}>
+              <Typography id="label">Change Price Per Ton</Typography>
+              <Slider
+                aria-labelledby="label"
+                classes={{ container: classes.slider }}
+                value={this.state.pptModifier}
+                onChange={this.changePpt}
+              />
+            </div>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Unit of Value</TableCell>
+                  <TableCell align="right">Price Per Ton</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      ETH
+                    </TableCell>
+                    <TableCell align="right">{this.getModifiedPricePerTon('ETH')}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell component="th" scope="row">
+                      USD
+                    </TableCell>
+                    <TableCell align="right">{trimDecimals(this.getModifiedPricePerTon('USD'),2)}</TableCell>
+                  </TableRow>
+              </TableBody>
+            </Table>
+
+
           </CardContent>
         </Collapse>
         <CardActions className={classes.actions} disableActionSpacing>
-          <Button
-            variant="contained"
-            color="primary"
-          >
-            Submit
-           <SendIcon className={classes.rightIcon} />
-          </Button>
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
@@ -204,5 +296,8 @@ ContractDetailCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+const ContractDetailCardWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps)(withStyles(styles)(ContractDetailCard))
 
-export default withStyles(styles)(ContractDetailCard);
+export default ContractDetailCardWrapper
