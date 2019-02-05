@@ -1,5 +1,5 @@
 import axios from 'axios'
-import jsonp from 'jsonp'
+// import jsonp from 'jsonp'
 //required for EPA Biomass map projection
 import convert from './conversions'
 const transform = convert.coordinateSystem('EPSG:4326', '3857')
@@ -102,16 +102,33 @@ export function getBiomass(lat, lng){
   let coords = transform.forward({x: x, y: y})
 
   //chrome has problems with this request due to Same Origin CORS Policy
-  // return axios.get(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`)
+  return axios.get(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`)
 
   //JSONP request to get around CORS issue in chrome for this API
-  return new Promise((resolve,reject) =>{
-     jsonp(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`, null, (err, data) => {
-      if (err) {
-        resolve(err)
-      } else {
-        resolve(data)
-      }
-    })
-   })
+  // WARNING: this seemed to make no difference in chrome
+  // return new Promise((resolve,reject) =>{
+  //    jsonp(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`, null, (err, data) => {
+  //     if (err) {
+  //       resolve(err)
+  //     } else {
+  //       resolve(data)
+  //     }
+  //   })
+  //  })
+}
+
+export async function getEthExchangeRate(){
+  return axios.get("https://api.coinmarketcap.com/v1/ticker/ethereum/")
+}
+
+export async function getUsdPricePerTon(){
+  // get usd price per tons
+  let price = 50
+  return await price
+}
+
+export async function getEthPricePerTon(){
+  // get usd price per tons
+  let price = 50
+  return await convert.usdToEther(price)
 }

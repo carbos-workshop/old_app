@@ -1,4 +1,8 @@
 import { Connect } from 'uport-connect'
+import Web3 from 'web3'
 
-export let uport = new Connect('Carbos')
-export const web3 = uport.getWeb3()
+export const uport = new Connect('Carbos')
+const provider = uport.getProvider()
+export const web3 = new Web3(provider)
+
+// export const web3 = new Web3(Web3.givenProvider || "ws://localhost:8546")

@@ -9,7 +9,7 @@ import uPortLogo from '../../../img/uport-logo.svg'
 
 const styles = theme => ({
   root: {
-    border: '1px solid rgba(255,255,255.23) !important',
+    border: '1px solid white !important',
   },
   buttonText: {
     fontWeight: '700',

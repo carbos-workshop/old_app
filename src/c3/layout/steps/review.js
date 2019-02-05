@@ -3,7 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
-
+import {
+  updateC3OwnerNameMismatch
+} from '../../c3Actions'
 import ContractDetailCard from '../../../components/contractDetailCard'
 import Warning from '../../../components/warning'
 
@@ -36,11 +38,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    onC3OwnerNameMismatchUpdate: property => {
+      dispatch(updateC3OwnerNameMismatch(property))
+    },
   }
 }
 
-class Submission extends React.Component{
+class Review extends React.Component{
 
   state = {
     loading: {
@@ -51,8 +55,7 @@ class Submission extends React.Component{
   }
 
   componentWillMount(){
-    console.log(this.props.c3);
-    console.log(this.props.user)
+    this.props.onC3OwnerNameMismatchUpdate(this.ownerNameMismatch())
     this.setState({
       nameMismatch: this.ownerNameMismatch()
     })
@@ -70,6 +73,7 @@ class Submission extends React.Component{
 
   render(){
     const { classes } = this.props
+
     return(
       <div className={classes.root}>
         {
@@ -109,9 +113,9 @@ class Submission extends React.Component{
   }
 }
 
-const SubmissionWrapper = connect(
+const ReviewWrapper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(Submission))
+)(withStyles(styles)(Review))
 
-export default SubmissionWrapper
+export default ReviewWrapper

@@ -11,10 +11,14 @@ function userLoggedIn(user) {
 
 export function loginUser() {
   return function(dispatch) {
-    // UPort and its web3 instance are defined in ./../../../util/wrappers.
-    // Request uPort persona of account passed via QR
-    uport.requestCredentials().then((credentials) => {
-      dispatch(userLoggedIn(credentials))
+
+    uport.requestDisclosure({
+      requested: ['name', 'country'],
+      notifications: true
+    })
+
+    uport.onResponse('disclosureReq').then(res => {
+      dispatch(userLoggedIn(res.payload))
 
       // Used a manual redirect here as opposed to a wrapper.
       // This way, once logged in a user can still access the home page.
