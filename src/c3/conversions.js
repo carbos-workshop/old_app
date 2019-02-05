@@ -1,6 +1,8 @@
 import epsg from 'epsg-index/all.json'
 import proj4 from 'proj4'
-const leadingEPSG = /^epsg:/i
+import {
+  getEthExchangeRate
+} from './requests'
 
 export default {
   acresToSquareMeters: acres => {
@@ -22,6 +24,7 @@ export default {
     return tg * 1000000
   },
   coordinateSystem: (from, to) => {
+    const leadingEPSG = /^epsg:/i
   	if ('string' !== typeof from) throw new Error('from must be a string')
   	from = from.replace(leadingEPSG, '')
   	const fromEPSG = epsg[from]
@@ -33,5 +36,19 @@ export default {
   	if (!toEPSG) throw new Error(to + ' is not a valid EPSG coordinate system')
 
   	return proj4(fromEPSG.proj4, toEPSG.proj4)
+  },
+  usdToEther: usd => {
+    // return new Promise(resolve => {
+    return getEthExchangeRate()
+      .then(res => {
+        return usd/res.data[0].price_usd
+      })
+    // })
+  },
+  etherToUsd: eth => {
+    return getEthExchangeRate()
+      .then(res => {
+        return res.data[0].price_usd * eth
+      })
   }
 }

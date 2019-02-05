@@ -138,14 +138,14 @@ class CalculateCarbon extends React.Component{
       })
     getBiomass(this.props.c3.property.latitude, this.props.c3.property.longitude)
       .then(res => {
-        if (!res.results.length) {
+        if (!res.data.results.length) {
           console.error('unexpected response from EPA Biomass API', res)
         }
         else {
           this.props.onC3AboveGroundCarbonUpdate(
             this.calculateAboveGroundCarbon(
               this.calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft),
-              parseFloat(res.results[1].attributes.Biomass_pe)
+              parseFloat(res.data.results[1].attributes.Biomass_pe)
             )
           )
           this.responseReceived('aboveGround')
