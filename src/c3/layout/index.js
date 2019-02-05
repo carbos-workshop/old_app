@@ -143,7 +143,7 @@ class C3ProcessForm extends React.Component {
   }
 
   submitC3 = () => {
-    console.log('time to submit')
+    console.log('TODO -> DISCLAIMER/EXPLAINATION MODAL')
     console.log(this.props.c3);
     this.handleNext()
   }
