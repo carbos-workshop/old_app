@@ -7,7 +7,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 // import {
 //   createTransactionObject,
 // } from '../../../util/utils'
-import { connectToMetaMask } from '../../../util/connectors'
+import { connectToMetaMask, web3 } from '../../../util/connectors'
 
 const styles = theme => ({
   root: {
@@ -59,21 +59,27 @@ class Submit extends React.Component{
         })
       }
       else if (res[0]){
-        console.log('found metamask rinkeby wallet ->', res[0]);
         this.setState({
           loading: {
             ...this.state.loading,
             type: 'Building Transaction...'
           }
         })
+        this.deployC3(this.buildC3Transaction(res[0]))
       } else {console.log('There was a problem connecting to Meta Mask')}
     })
   }
 
-  componentDidMount(){
-    //might be some async issues here with first time login
-    let web3 = window.web3
-    console.log('web3 @ mount', web3);
+  buildC3Transaction = wallet => {
+    return {
+      from: wallet,
+      to: '0x0',
+      value: web3.utils.toWei('1', 'gwei'),
+    }
+  }
+  
+  deployC3 = transaction => {
+      console.log('need to deploy -> ', transaction);
   }
 
 

@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -190,11 +190,6 @@ class ContractDetailCard extends React.Component {
             <Avatar component={()=>(
               <Identicon size="medium" address="0xF5A5d5c30BfAC14bf207b6396861aA471F9A711D" />
             )}/>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
           }
           title={<Typography variant="h5">Carbon Conservation Contract ({this.props.c3.description})</Typography>}
           subheader={subheader}
