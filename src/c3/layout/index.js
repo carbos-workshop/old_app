@@ -9,6 +9,12 @@ import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/SendTwoTone';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import {connect} from "react-redux";
 import {
   updateC3Property,
@@ -85,6 +91,7 @@ const mapStateToProps = state => {
 class C3ProcessForm extends React.Component {
   state = {
     activeStep: 0,
+    openDisclaimer: false,
   };
 
   handleNext = () => {
@@ -108,6 +115,15 @@ class C3ProcessForm extends React.Component {
     this.setState({
       activeStep: 0,
     });
+  };
+
+  handleOpenDisclaimer = () => {
+    this.setState({ openDisclaimer: true });
+  };
+
+  handleCloseDisclaimer = () => {
+    this.setState({ openDisclaimer: false });
+    this.handleNext()
   };
 
   validateStep = step => {
@@ -143,9 +159,8 @@ class C3ProcessForm extends React.Component {
   }
 
   submitC3 = () => {
-    console.log('TODO -> DISCLAIMER/EXPLAINATION MODAL')
+    this.handleOpenDisclaimer()
     console.log(this.props.c3);
-    this.handleNext()
   }
 
   render() {
@@ -159,7 +174,7 @@ class C3ProcessForm extends React.Component {
         color="primary"
         className={classes.button}
         disabled={this.validateStep(this.state.activeStep)}
-        onClick={this.submitC3}
+        onClick={this.handleOpenDisclaimer}
       >
         Submit
        <SendIcon className={classes.rightIcon} />
@@ -215,6 +230,24 @@ class C3ProcessForm extends React.Component {
             </Button>
           </Paper>
         )}
+        <Dialog
+           open={this.state.openDisclaimer}
+           onClose={this.handleCloseDisclaimer}
+         >
+           <DialogTitle>{"Connecting To Meta Mask"}</DialogTitle>
+           <DialogContent>
+             <DialogContentText>
+               Submitting a Contract requires a deposit of 10% the contract's value.
+               This deposit will be returned to you once the contract has been endorsed, minus gas costs.
+               We need to connect to Meta Mask in order to submit this contract.
+             </DialogContentText>
+           </DialogContent>
+           <DialogActions>
+             <Button onClick={this.handleCloseDisclaimer} color="primary" autoFocus>
+               Got it!
+             </Button>
+           </DialogActions>
+         </Dialog>
       </div>
     );
   }

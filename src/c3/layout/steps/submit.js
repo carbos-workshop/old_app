@@ -3,10 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import {
-  createTransactionObject,
-} from '../../../util/utils'
-import { uport } from '../../../util/connectors'
+// import Button from '@material-ui/core/Button';
+// import {
+//   createTransactionObject,
+// } from '../../../util/utils'
+import { connectToMetaMask } from '../../../util/connectors'
 
 const styles = theme => ({
   root: {
@@ -18,6 +19,9 @@ const styles = theme => ({
   explaination: {
     margin: theme.spacing.unit
   },
+  hidden: {
+    display: 'none'
+  }
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -28,7 +32,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    c3: state.c3
+    c3: state.c3,
+    user: state.user.data
   }
 }
 
@@ -37,27 +42,39 @@ class Submit extends React.Component{
   state = {
     loading: {
       active: true,
-      type: 'Submitting Transaction...'
-    }
+      type: 'Connecting to Meta Mask...'
+    },
+    metaMaskFailure: false,
+  }
+
+  componentWillMount(){
+    connectToMetaMask().then(res => {
+      if (res === false){
+        this.setState({
+          metaMaskFailure: true,
+          loading: {
+            active: true,
+            type: 'Failed to Connect to Meta Mask.'
+          }
+        })
+      }
+      else if (res === true){
+        this.setState({
+          loading: {
+            ...this.state.loading,
+            type: 'Building Transaction...'
+          }
+        })
+      } else {console.log('There was a problem connecting to Meta Mask')}
+    })
   }
 
   componentDidMount(){
-
-    let txObj = {
-        // from: 'did:ethr:0x60ffc1a9ed87bd44cd5c1bf43b16e7a7a70c0de9',
-        to: '0x7bb53B80ccA74eEC085c93995Fb72a7057bb53aa',//'0xc3245e75d3ecd1e81a9bfb6558b6dafe71e9f347',
-        value: web3.utils.toWei('1', 'ether'),
-        net: '0x4',
-        appName: 'Carbos'
-    }
-
-    uport.sendTransaction(txObj,'test-transaction')
-    uport.onResponse('test-transaction').then(res => {
-     console.log(res);
-    })
-
-
+    //might be some async issues here with first time login
+    let web3 = window.web3
+    console.log('web3 @ mount', web3);
   }
+
 
   render(){
     const { classes } = this.props
@@ -71,7 +88,7 @@ class Submit extends React.Component{
                 <Typography className={classes.explaination} variant="body2">
                   {this.state.loading.type}
                 </Typography>
-                <LinearProgress />
+                <LinearProgress className={(this.state.metaMaskFailure ? classes.hidden : null)}/>
               </div>
             </div>
           : null
