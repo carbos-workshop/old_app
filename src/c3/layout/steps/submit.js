@@ -82,7 +82,6 @@ class Submit extends React.Component{
     console.log('sending to  -> ', escrow);
 
     let value = web3.utils.toWei('0.001', 'ether') //VALUE MUST BE string? IN WEI, any high number (like in eth) breaks it
-    console.log(value);
     return {
       from : account,
       to: escrow,
