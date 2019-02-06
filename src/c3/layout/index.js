@@ -150,8 +150,8 @@ class C3ProcessForm extends React.Component {
           && this.props.c3.description.length > 0
           && this.props.c3.owner.firstname
           && this.props.c3.owner.lastname
-          && this.props.user.address,
-          && this.props.c3.property,
+          && this.props.user.address
+          && this.props.c3.property
           && this.props.c3.propertyConfirmation)) //all required c3 fields have values
       case 4:
         return !Boolean(this.props.c3.submitted)
