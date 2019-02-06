@@ -3,6 +3,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import {
+  createTransactionObject,
+} from '../../../util/utils'
+import { uport } from '../../../util/connectors'
 
 const styles = theme => ({
   root: {
@@ -33,8 +37,17 @@ class Submit extends React.Component{
   state = {
     loading: {
       active: true,
-      type: 'Submitting Deposit...'
+      type: 'Submitting Transaction...'
     }
+  }
+
+  componentDidMount(){
+    uport.sendTransaction(
+      createTransactionObject(),
+      'test-transaction')
+    uport.onResponse('test-transaction').then(res => {
+     console.log(res);
+    })
   }
 
   render(){

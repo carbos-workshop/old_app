@@ -241,7 +241,7 @@ class ContractDetailCard extends React.Component {
               <strong>We do not recommend doing this</strong>, but this is your contract.
             </Typography>
             <div className={classes.sliderWrapper}>
-              <Typography id="label">Change Price Per Ton</Typography>
+              <Typography id="label">Price Per Ton</Typography>
               <Slider
                 aria-labelledby="label"
                 classes={{ container: classes.slider }}
