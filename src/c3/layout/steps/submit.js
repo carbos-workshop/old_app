@@ -7,7 +7,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 // import {
 //   createTransactionObject,
 // } from '../../../util/utils'
-import { connectToMetaMask, web3 } from '../../../util/connectors'
+import { connectToMetaMask, web3, uport } from '../../../util/connectors'
 
 const styles = theme => ({
   root: {
@@ -47,39 +47,84 @@ class Submit extends React.Component{
     metaMaskFailure: false,
   }
 
-  componentWillMount(){
-    connectToMetaMask().then(res => {
-      if (res === false){
-        this.setState({
-          metaMaskFailure: true,
-          loading: {
-            active: true,
-            type: 'Failed to Connect to Meta Mask.'
-          }
-        })
-      }
-      else if (res[0]){
-        this.setState({
-          loading: {
-            ...this.state.loading,
-            type: 'Building Transaction...'
-          }
-        })
-        this.deployC3(this.buildC3Transaction(res[0]))
-      } else {console.log('There was a problem connecting to Meta Mask')}
-    })
+  componentDidMount(){
+
+    this.deployC3(this.buildC3Transaction('0x0000000000000000000000000000000000000000', this.props.user.address))
+
+  /*-------------------------WORKS - METAMASK---------------------------------
+   WORKS - METAMASK
+  connectToMetaMask().then(res => {
+    if (res === false){
+      this.setState({
+        metaMaskFailure: true,
+        loading: {
+          active: true,
+          type: 'Failed to Connect to Meta Mask.'
+        }
+      })
+    }
+    else if (res[0]){
+      this.setState({
+        loading: {
+          ...this.state.loading,
+          type: 'Building Transaction...'
+        }
+      })
+      this.deployC3(this.buildC3Transaction('0x0000000000000000000000000000000000000000', res[0]))
+    } else {console.log('There was a problem connecting to Meta Mask')}
+  })
+  -----------------------------------------------------------------------*/
+
   }
 
-  buildC3Transaction = wallet => {
+  buildC3Transaction = (escrow,account)  => {
+    console.log('sending from  -> ', account);
+    console.log('sending to  -> ', escrow);
+
+    let value = web3.utils.toWei('0.001', 'ether') //VALUE MUST BE string? IN WEI, any high number (like in eth) breaks it
+    console.log(value);
     return {
-      from: wallet,
-      to: '0x0',
-      value: web3.utils.toWei('1', 'gwei'),
+      from : account,
+      to: escrow,
+      value: value,
+      appName: 'Carbos-Local-Test',
     }
+
+/* --------------------------WORKS - METAMASK--------------------------------
+    return {
+      from: account || this.props.user.address,
+      to: escrow,
+      data: '',
+      value: web3.utils.toWei('0.5', 'ether'),
+    }
+-----------------------------------------------------------------------*/
   }
-  
+
   deployC3 = transaction => {
       console.log('need to deploy -> ', transaction);
+
+      web3.eth.sendTransaction(transaction, (err, res)=>{
+        console.log('err',err);
+        console.log('res',res);
+      })
+
+/* --------------------------WORKS - METAMASK--------------------------------
+      window.web3.eth.sendTransaction(transaction, (error, res) => {
+        if (error){
+          this.setState({
+            metaMaskFailure: true,
+            loading: {
+              active: true,
+              type: 'Failed to Connect to Meta Mask.'
+            }
+          })
+        }
+        else {
+          console.log('res->',res);
+        }
+      })
+-----------------------------------------------------------------------*/
+
   }
 
 

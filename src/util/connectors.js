@@ -1,10 +1,16 @@
-import { Connect } from 'uport-connect'
+import { Connect, UportSubprovider } from 'uport-connect'
 import Web3 from 'web3'
 
-export const uport = new Connect('Carbos')
+export const uport = new Connect('Carbos_Local_3',{
+    description: 'testing so much',
+    network: 'rinkeby',
+    bannerImage: 'https://assets.wordpress.envato-static.com/uploads/2018/01/image1.png',
+    profileImage: 'https://assets.wordpress.envato-static.com/uploads/2018/01/image1.png'
+})
 const provider = uport.getProvider()
 export const web3 = new Web3(provider)
-// console.log('uport', uport);
+console.log(uport);
+console.log(web3);
 
 export async function connectToMetaMask() {
   // Modern dapp browsers...

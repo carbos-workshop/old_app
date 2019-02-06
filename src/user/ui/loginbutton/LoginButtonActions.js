@@ -13,9 +13,10 @@ export function loginUser() {
   return function(dispatch) {
 
     uport.requestDisclosure({
-      requested: ['name', 'country' ],
-      notifications: true,
+      requested: ['name', 'country', 'image' ],
+      // notifications: true,
       network_id: '0x4',
+      accountType: 'keypair'
     })
 
     uport.onResponse('disclosureReq').then(res => {
