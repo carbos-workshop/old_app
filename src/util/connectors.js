@@ -26,7 +26,6 @@ export async function connectToMetaMask() {
   else if (window.web3) {
       console.log('opening metamask legacy')
       window.web3 = new Web3(window.web3.currentProvider);
-      return true
   }
   // Non-dapp browsers...
   else {

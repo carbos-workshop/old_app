@@ -58,7 +58,8 @@ class Submit extends React.Component{
           }
         })
       }
-      else if (res === true){
+      else if (res[0]){
+        console.log('found metamask rinkeby wallet ->', res[0]);
         this.setState({
           loading: {
             ...this.state.loading,
