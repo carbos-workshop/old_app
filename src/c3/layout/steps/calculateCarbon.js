@@ -165,7 +165,7 @@ class CalculateCarbon extends React.Component{
     let slice1 = ((data.BLDFIE.M.sl1 + data.BLDFIE.M.sl2)/2) * (convert.acresToSquareMeters(area) * .05) * (((data.ORCDRC.M.sl1 + data.ORCDRC.M.sl2)/2)/1000)
     let slice2 = ((data.BLDFIE.M.sl2 + data.BLDFIE.M.sl3)/2) * (convert.acresToSquareMeters(area) * .1) * (((data.ORCDRC.M.sl2 + data.ORCDRC.M.sl3)/2)/1000)
     let slice3 = ((data.BLDFIE.M.sl3 + data.BLDFIE.M.sl4)/2) * (convert.acresToSquareMeters(area) * .15) * (((data.ORCDRC.M.sl3 + data.ORCDRC.M.sl4)/2)/1000)
-    return convert.kilogramsToTons(slice1 + slice2 + slice3)
+    return convert.kilogramsToTons(slice1 + slice2 + slice3) * .9 //TEMP * .9 temp band aid to subtract out soil coarse fragments
   }
 
   calculateActualLandArea = (total, building) => {
