@@ -5,9 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    height: '100px',
-    width: '100%',
-    background: 'tomato',
+
   },
 });
 
@@ -17,10 +15,19 @@ class Home extends Component {
     return(
       <div className={classes.root}>
         <Typography variant="h2">
-          HOME
-          - need to login to use App
-          - description of app
+          Carbos
         </Typography>
+        <ul>
+          <li>
+            <Typography variant="body1">need to login to use App</Typography>
+          </li>
+          <li>
+            <Typography variant="body1">description of app</Typography>
+          </li>
+          <li>
+            <Typography variant="body1">graphics</Typography>
+          </li>
+        </ul>
       </div>
     )
   }

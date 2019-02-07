@@ -25,7 +25,7 @@ ReactDOM.render((
           <IndexRoute component={Home} />
           <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
-          <Route path="demo" component={Demo} />
+          <Route path="demo" component={UserIsAuthenticated(Demo)} />
           <Route path="*" component={()=>(<p>Not Found</p>)} />
         </Route>
       </Router>

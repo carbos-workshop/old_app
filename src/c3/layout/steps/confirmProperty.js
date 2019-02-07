@@ -48,18 +48,9 @@ const styles = theme => ({
 
 const mapStateToProps = (state, ownProps) => {
 
-  // ******************* TEMP (while circumventing uPort login) *******************
-  let tempUser
-  if (!state.user.data) {
-    tempUser = { data: { name: 'BACKDOOR USER' } }
-  } else {
-    tempUser = state.user
-  }
-  //********************************* END TEMP *************************************
-
   return {
     c3: state.c3,
-    user: tempUser,
+    user: state.user.data,
     property: state.c3.property,
     propertyConfirmation: state.c3.propertyConfirmation
   }
@@ -217,7 +208,7 @@ class ConfirmProperty extends React.Component {
                 }
                 label={
                   <Typography variant="body1">
-                    I confirm that this information is accurate and that I, {`${this.props.user.data.name}`}, am the owner of this property.
+                    I confirm that this information is accurate and that I, {`${this.props.user.name}`}, am the owner of this property.
                   </Typography>
                 }
               />
