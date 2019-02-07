@@ -6,7 +6,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {
   updateC3OwnerAddress
 } from '../../c3Actions'
-import { connectToMetaMask, web3, uport } from '../../../util/connectors'
+import { connectToMetaMask, web3 } from '../../../util/connectors' // { uport }
 import convert from '../../conversions'
 import { calculateActualLandArea } from '../../utils'
 
@@ -138,7 +138,7 @@ class Submit extends React.Component{
     //possible redundancies in storing BOTH ra_id and lat_lng, either one can be used to lookup geometry again
     //lat_lng being more flexible, ra_id tying up completely to reportall
     return {
-      geometry: web3.utils.soliditySha3(this.props.c3.property.geom_as_wkt), //hash of the property's multipolygon shape (ESRI LAT/LNG PAIRS)
+      geometry_hash: web3.utils.soliditySha3(this.props.c3.property.geom_as_wkt), //hash of the property's multipolygon shape (ESRI LAT/LNG PAIRS)
       ra_id: this.props.c3.property.rausa_id, //reportall lookup
       lat_lng: [this.props.c3.property.latitude, this.props.c3.property.longitude], //property point lookup
       hectares: convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000, //area in hectares

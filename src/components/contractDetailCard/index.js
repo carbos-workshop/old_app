@@ -10,11 +10,8 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -25,6 +22,7 @@ import { connect } from 'react-redux'
 
 import {
   updateC3PricePerTon,
+  encounteredC3ApiError,
 } from '../../c3/c3Actions'
 import {
   trimDecimals
@@ -101,6 +99,9 @@ const mapDispatchToProps = (dispatch) => {
     onC3PricePerTonUpdate: ppt => {
       dispatch(updateC3PricePerTon(ppt))
     },
+    setApiError: status => {
+      dispatch(encounteredC3ApiError(status))
+    }
   }
 }
 
@@ -127,11 +128,10 @@ class ContractDetailCard extends React.Component {
   componentWillMount(){
     getEthExchangeRate()
       .then( res => {
+        if(!res.data[0]){this.props.setApiError(true)} //api error catch
         let ethExchangeRate = res.data[0].price_usd
-        console.log('ethExchangeRate', ethExchangeRate);
         getUsdPricePerTon()
           .then( usdppt => {
-            console.log('usdppt', usdppt);
             let ethppt =  convert.usdToEther(usdppt, ethExchangeRate)
             this.setState({
               price: ethppt * this.props.c3.carbon.total,
@@ -139,7 +139,13 @@ class ContractDetailCard extends React.Component {
               usdppt: usdppt,
             })
             this.props.onC3PricePerTonUpdate(ethppt)
+          }).catch(err => {
+            console.error(err)
+            this.props.setApiError(true)
           })
+      }).catch(err => {
+        console.error(err)
+        this.props.setApiError(true)
       })
   }
 

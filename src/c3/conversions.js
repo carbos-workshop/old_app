@@ -1,7 +1,3 @@
-import {
-  encounteredC3ApiError
-} from './c3Actions'
-
 export default {
   acresToSquareMeters: acres => {
     return acres * 4046.856

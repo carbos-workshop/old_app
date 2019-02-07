@@ -12,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import {connect} from "react-redux";
@@ -44,6 +43,9 @@ const styles = theme => ({
   },
   rightIcon:{
     marginLeft: theme.spacing.unit,
+  },
+  highlightedText: {
+    marginLeft: '4px',
   },
   link:{
     textDecoration: 'none',
@@ -255,8 +257,8 @@ class C3ProcessForm extends React.Component {
            <DialogContent>
              <Typography className={classes.disclaimerText} variant="body2">
                Submitting a Contract requires a deposit of 5% the contract's value.
-               You will need <a target="_blank" className={classes.link} href="https://metamask.io/">MetaMask</a> installed and funded with at least
-               <strong>{calculateDeposit(this.props.c3.carbon.total, this.props.c3.ppt)} ETH</strong> in order to continue with contract submission.
+               You will need <a target="_blank" rel="noopener noreferrer" className={classes.link} href="https://metamask.io/">MetaMask</a> installed and funded with at least
+               <strong className={classes.highlightedText}>{calculateDeposit(this.props.c3.carbon.total, this.props.c3.ppt)} ETH</strong> in order to continue with contract submission.
              </Typography>
              <Typography variant="body2">
                <strong>This deposit will be returned to you</strong>, minus gas costs, once the contract has been endorsed.
