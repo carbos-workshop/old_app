@@ -2,12 +2,12 @@ import { Connect } from 'uport-connect'
 import Web3 from 'web3'
 
 export const uport = new Connect(
-  'Carbos_Local_3',
+  'Carbos_Local_4',
   {
-    description: 'testing so much',
+    //description: 'testing the days away',//these don't work for an inexplicable reason
     network: 'rinkeby',
-    bannerImage: 'https://assets.wordpress.envato-static.com/uploads/2018/01/image1.png',
-    profileImage: 'https://assets.wordpress.envato-static.com/uploads/2018/01/image1.png'
+    //bannerImage: 'https://i.imgur.com/Twnh2oQ.png', //these don't work for an inexplicable reason
+    //profileImage: 'https://i.imgur.com/Twnh2oQ.png' //these don't work for an inexplicable reason
   })
 const provider = uport.getProvider()
 export const web3 = new Web3(provider)
