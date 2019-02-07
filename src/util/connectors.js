@@ -11,8 +11,6 @@ export const uport = new Connect(
   })
 const provider = uport.getProvider()
 export const web3 = new Web3(provider)
-console.log(uport);
-console.log(web3);
 
 export async function connectToMetaMask() {
   // Modern dapp browsers...

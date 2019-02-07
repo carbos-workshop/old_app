@@ -4,29 +4,32 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    height: '100px',
-    width: '100%',
-    background: 'gold',
+
+  },
+  header: {
+    marginBottom: theme.spacing.unit * 2
   },
 });
 
 class Dashboard extends Component {
-  constructor(props, { authData }) {
-    super(props)
-    authData = this.props
-  }
+  // constructor(props, { authData }) {
+  //   super(props)
+  //   authData = this.props
+  // }
 
 
   render() {
     const { classes } = this.props
     return(
       <div className={classes.root}>
-        <Typography variant="h2">
+        <Typography className={classes.header} variant="h4">
           Dashboard
         </Typography>
         <Typography variant="body1">
-          -DEtials about C3s owned
-          Congratulations {this.props.authData.name}! If you're seeing this page, you've logged in with UPort successfully.
+          This is your Carbos Dashboard.  Carbos Contracts you are associated with will appear here.
+        </Typography>
+        <Typography variant="body1">
+          This feature is currently under development.
         </Typography>
       </div>
     )

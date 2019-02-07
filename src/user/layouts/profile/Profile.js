@@ -4,9 +4,10 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    height: '100px',
-    width: '100%',
-    background: 'aqua',
+
+  },
+  header: {
+    marginBottom: theme.spacing.unit * 2
   },
 });
 
@@ -21,14 +22,24 @@ class Profile extends Component {
     const { classes } = this.props
     return(
       <div className={classes.root}>
-        <Typography variant="h2">
-          uPort Profile
+        <Typography className={classes.header} variant="h4">
+          Carbos Profile
         </Typography>
         <Typography variant="body1">
-          Change these details in UPort to see them reflected here.
           Name: {this.props.authData.name}
         </Typography>
-
+        <Typography variant="body1">
+          Location: {this.props.authData.country}
+        </Typography>
+        <Typography variant="body1">
+          uPort Wallet Address: {this.props.authData.address}
+        </Typography>
+        <Typography variant="body1">
+          Additional configuration options for you carbos account and profile will appear here. Changes you make in uPort will be reflected here.
+        </Typography>
+        <Typography variant="body1">
+          This feature is currently under development.
+        </Typography>
       </div>
     )
   }
