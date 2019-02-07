@@ -257,8 +257,10 @@ class C3ProcessForm extends React.Component {
            <DialogContent>
              <Typography className={classes.disclaimerText} variant="body2">
                Submitting a Contract requires a deposit of 5% the contract's value.
+             </Typography>
+             <Typography className={classes.disclaimerText} variant="body2">
                You will need <a target="_blank" rel="noopener noreferrer" className={classes.link} href="https://metamask.io/">MetaMask</a> installed and funded with at least
-               <strong className={classes.highlightedText}>{calculateDeposit(this.props.c3.carbon.total, this.props.c3.ppt)} ETH</strong> in order to continue with contract submission.
+               <strong className={classes.highlightedText}>{calculateDeposit(this.props.c3.carbon.total, this.props.c3.ppt)} <span className="ether-sign">Ξ</span></strong> in order to continue with contract submission.
              </Typography>
              <Typography variant="body2">
                <strong>This deposit will be returned to you</strong>, minus gas costs, once the contract has been endorsed.

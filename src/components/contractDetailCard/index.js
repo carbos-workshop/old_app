@@ -19,7 +19,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Slider from '@material-ui/lab/Slider';
 import { connect } from 'react-redux'
-
+import logo from '../../img/logo@2x.png'
 import {
   updateC3PricePerTon,
   encounteredC3ApiError,
@@ -43,6 +43,9 @@ const styles = theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+  },
+  disabled: {
+    color:theme.palette.text.disabled,
   },
   actions: {
     display: 'flex',
@@ -192,18 +195,20 @@ class ContractDetailCard extends React.Component {
           {`${trimDecimals(this.props.c3.carbon.total, 6)} tons`}
         </Typography>
         <Typography variant="subtitle2">
-          {`${this.props.c3.carbon.total * this.getModifiedPricePerTon('ETH')} Ξ`}
+          {`${this.props.c3.carbon.total * this.getModifiedPricePerTon('ETH')} `}<span className="ether-sign">Ξ</span>
         </Typography>
       </div>
     )
+
+    // <Avatar component={()=>(
+    //   <Identicon size="medium" address="" />
+    // )}/>
 
     return (
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar component={()=>(
-              <Identicon size="medium" address="0xF5A5d5c30BfAC14bf207b6396861aA471F9A711D" />
-            )}/>
+            <Avatar src={logo}/>
           }
           title={<Typography variant="h5">Carbon Conservation Contract ({this.props.c3.description})</Typography>}
           subheader={subheader}
@@ -283,7 +288,7 @@ class ContractDetailCard extends React.Component {
           </CardContent>
         </Collapse>
         <CardActions className={classes.actions} disableActionSpacing>
-          <Typography className={classes.forceRight} variant="button">Additional Configuration</Typography>
+          <Typography className={classnames([classes.forceRight, classes.disabled])} variant="button">Additional Configuration</Typography>
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
