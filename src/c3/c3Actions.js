@@ -1,5 +1,6 @@
 export const C3_OWNER_FIRSTNAME_UPDATED = 'C3_OWNER_FIRSTNAME_UPDATED'
 export const C3_OWNER_LASTNAME_UPDATED = 'C3_OWNER_LASTNAME_UPDATED'
+export const C3_OWNER_ADDRESS_UPDATED = 'C3_OWNER_ADDRESS_UPDATED'
 export const C3_POSTAL_ADDRESS_STREET_UPDATED = 'C3_POSTAL_ADDRESS_STREET_UPDATED'
 export const C3_POSTAL_ADDRESS_COUNTY_UPDATED = 'C3_POSTAL_ADDRESS_COUNTY_UPDATED'
 export const C3_POSTAL_ADDRESS_ZIP_UPDATED = 'C3_POSTAL_ADDRESS_ZIP_UPDATED'
@@ -11,6 +12,7 @@ export const C3_ABOVE_GROUND_CARBON_UPDATED = 'C3_ABOVE_GROUND_CARBON_UPDATED'
 export const C3_BELOW_GROUND_CARBON_UPDATED = 'C3_BELOW_GROUND_CARBON_UPDATED'
 export const C3_OWNER_NAME_MISMATCH_UPDATED = 'C3_OWNER_NAME_MISMATCH_UPDATED'
 export const C3_PRICE_PER_TON_UPDATED = 'C3_PRICE_PER_TON_UPDATED'
+export const C3_API_ERROR_ENCOUNTERED = 'C3_API_ERROR_ENCOUNTERED'
 
 
 
@@ -26,6 +28,13 @@ function C3OwnerLastnameUpdated(name) {
   return {
     type: C3_OWNER_LASTNAME_UPDATED,
     payload: name
+  }
+}
+
+function C3OwnerAddressUpdated(address) {
+  return {
+    type: C3_OWNER_ADDRESS_UPDATED,
+    payload: address
   }
 }
 
@@ -106,6 +115,13 @@ function C3PricePerTonUpdated(ppt) {
   }
 }
 
+function C3ApiErrorEncountered(status) {
+  return {
+    type: C3_API_ERROR_ENCOUNTERED,
+    payload: status
+  }
+}
+
 export function updateC3OwnerFirstname(name) {
   return function(dispatch) {
     dispatch(C3OwnerFirstnameUpdated(name))
@@ -115,6 +131,12 @@ export function updateC3OwnerFirstname(name) {
 export function updateC3OwnerLastname(name) {
   return function(dispatch) {
     dispatch(C3OwnerLastnameUpdated(name))
+  }
+}
+
+export function updateC3OwnerAddress(address) {
+  return function(dispatch) {
+    dispatch(C3OwnerAddressUpdated(address))
   }
 }
 
@@ -181,5 +203,11 @@ export function updateC3OwnerNameMismatch(status) {
 export function updateC3PricePerTon(ppt) {
   return function(dispatch) {
     dispatch(C3PricePerTonUpdated(ppt))
+  }
+}
+
+export function encounteredC3ApiError(status) {
+  return function(dispatch) {
+    dispatch(C3ApiErrorEncountered(status))
   }
 }

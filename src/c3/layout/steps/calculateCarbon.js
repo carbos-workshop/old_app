@@ -13,14 +13,15 @@ import {
   updateC3AboveGroundCarbon,
   updateC3BelowGroundCarbon,
   updateC3ELUDescription,
+  encounteredC3ApiError,
 } from '../../c3Actions'
 import {
   trimDecimals
 } from '../../../util/utils.js'
-import convert from '../../conversions.js'
+import convert from '../../conversions'
 import PieChart from 'react-chartjs-2'
 import Warning from '../../../components/warning'
-
+import { calculateActualLandArea } from '../../utils'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -39,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onC3ELUDescriptionUpdate: elu => {
       dispatch(updateC3ELUDescription(elu))
+    },
+    setC3ApiError: status => {
+      dispatch(encounteredC3ApiError(status))
     },
   }
 }
@@ -119,7 +123,7 @@ class CalculateCarbon extends React.Component{
       .then(res => {
         this.props.onC3BelowGroundCarbonUpdate(
           this.calculateBelowGroundCarbon(
-            this.calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft),
+            calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft),
             res.data.properties
           )
         )
@@ -144,7 +148,7 @@ class CalculateCarbon extends React.Component{
         else {
           this.props.onC3AboveGroundCarbonUpdate(
             this.calculateAboveGroundCarbon(
-              this.calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft),
+              calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft),
               parseFloat(res.data.results[1].attributes.Biomass_pe)
             )
           )
@@ -168,18 +172,10 @@ class CalculateCarbon extends React.Component{
     return convert.kilogramsToTons(slice1 + slice2 + slice3) * .9 //TEMP * .9 temp band aid to subtract out soil coarse fragments
   }
 
-  calculateActualLandArea = (total, building) => {
-    if (building) {
-      return total - convert.squareFeetToAcres(building)
-    }
-    else {
-      console.log('No building footprint provided to calculate actual land area.')
-      return total
-    }
-  }
 
   receivedApiError = error => {
     console.log(error);
+    this.props.setC3ApiError(true)
     this.setState({
       apiError: true
     })

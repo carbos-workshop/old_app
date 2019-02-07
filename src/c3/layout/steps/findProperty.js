@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import {
   updateC3OwnerFirstname,
   updateC3OwnerLastname,
+  updateC3OwnerAddress,
   updateC3PostalAddressStreet,
   updateC3PostalAddressState,
   updateC3PostalAddressCounty,
@@ -44,7 +45,7 @@ const states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado',
 const mapStateToProps = (state, ownProps) => {
   return {
     c3: state.c3,
-    user: state.user
+    user: state.user.data
   }
 }
 
@@ -55,6 +56,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onOwnerLastnameUpdate: name => {
       dispatch(updateC3OwnerLastname(name))
+    },
+    onOwnerAddressUpdate: address => {
+      dispatch(updateC3OwnerAddress(address))
     },
     onPostalAddressStreetUpdate: address => {
       dispatch(updateC3PostalAddressStreet(address))
@@ -96,11 +100,12 @@ class FindProperty extends React.Component {
 
   componentWillMount(){
     //attempt to set initial firstname and lastname fields based on uPort name
-    if (this.props.user.data){
-      if (this.props.user.data.name.split(' ').length > 1){
-        this.props.onOwnerFirstnameUpdate(this.props.user.data.name.split(' ')[0])
-        this.props.onOwnerLastnameUpdate(this.props.user.data.name.split(' ')[1])
+    if (this.props.user){
+      if (this.props.user.name.split(' ').length > 1){
+        this.props.onOwnerFirstnameUpdate(this.props.user.name.split(' ')[0])
+        this.props.onOwnerLastnameUpdate(this.props.user.name.split(' ')[1])
       }
+      this.props.onOwnerAddressUpdate(this.props.user.address)
     }
   }
 

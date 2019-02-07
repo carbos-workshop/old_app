@@ -1,14 +1,30 @@
 import axios from 'axios'
 // import jsonp from 'jsonp'
 //required for EPA Biomass map projection
-import convert from './conversions'
-const transform = convert.coordinateSystem('EPSG:4326', '3857')
+import epsg from 'epsg-index/all.json'
+import proj4 from 'proj4'
 
 const KEY = 'vzczNNHVi5' //TODO
 const reportAllBaseURL = 'https://reportallusa.com/api/parcels.php?'
 const soilGridsBaseURL = 'https://rest.soilgrids.org/query?'
 const ecologicalLandUnitsBaseURL = 'https://rmgsc.cr.usgs.gov/arcgis/rest/services/globalelus/MapServer/identify?'
 const epaBiomassBaseURL = 'https://geodata.epa.gov/arcgis/rest/services/ORD/ROE_BiomassPerSquareMile/MapServer/identify?'
+const transform = convertCoordinateSystem('EPSG:4326', '3857')
+
+function convertCoordinateSystem(from, to) {
+  const leadingEPSG = /^epsg:/i
+  if ('string' !== typeof from) throw new Error('from must be a string')
+  from = from.replace(leadingEPSG, '')
+  const fromEPSG = epsg[from]
+  if (!fromEPSG) throw new Error(from + ' is not a valid EPSG coordinate system')
+
+  if ('string' !== typeof to) throw new Error('to must be a string')
+  to = to.replace(leadingEPSG, '')
+  const toEPSG = epsg[to]
+  if (!toEPSG) throw new Error(to + ' is not a valid EPSG coordinate system')
+
+  return proj4(fromEPSG.proj4, toEPSG.proj4)
+}
 
 //TEMP TO SAVE API CALLS
 let response = [{
@@ -125,10 +141,4 @@ export async function getUsdPricePerTon(){
   // get usd price per tons
   let price = 50
   return await price
-}
-
-export async function getEthPricePerTon(){
-  // get usd price per tons
-  let price = 50
-  return await convert.usdToEther(price)
 }

@@ -2,6 +2,7 @@ const initialState = {
   owner: {
     firstname: 'x',
     lastname: 'x',
+    address: '',
   },
   postalAddress: {
     street: 'x',
@@ -19,7 +20,8 @@ const initialState = {
     aboveGround: 0,
     belowGround: 0,
   },
-  sumbitted: false
+  sumbitted: false,
+  apiError: false,
 }
 
 function c3Reducer(state = initialState, action) {
@@ -36,6 +38,13 @@ function c3Reducer(state = initialState, action) {
         owner: {
           ...state.owner,
           lastname: action.payload
+        }
+      }
+    case 'C3_OWNER_ADDRESS_UPDATED':
+      return { ...state,
+        owner: {
+          ...state.owner,
+          address: action.payload
         }
       }
     case 'C3_POSTAL_ADDRESS_STREET_UPDATED':
@@ -101,6 +110,10 @@ function c3Reducer(state = initialState, action) {
       case 'C3_PRICE_PER_TON_UPDATED':
         return { ...state,
           ppt: action.payload
+        }
+      case 'C3_API_ERROR_ENCOUNTERED':
+        return { ...state,
+          apiError: action.payload
         }
     default:
       return state

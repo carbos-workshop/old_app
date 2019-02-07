@@ -13,6 +13,7 @@ import { connect } from 'react-redux'
 import {
   updateC3Property,
   updateC3PropertyConfirmation,
+  encounteredC3ApiError
 } from '../../c3Actions'
 import {
   getParcelByOwnerName,
@@ -64,6 +65,9 @@ const mapDispatchToProps = (dispatch) => {
     onOwnerPropertyConfirmationUpdate: status => {
       dispatch(updateC3PropertyConfirmation(status))
     },
+    setC3ApiError: status => {
+      dispatch(encounteredC3ApiError(status))
+    },
   }
 }
 
@@ -95,6 +99,7 @@ class ConfirmProperty extends React.Component {
         }
       })
       .catch( error => {
+        this.props.setC3ApiError(true)
         console.log(error);
       })
   }
@@ -120,6 +125,7 @@ class ConfirmProperty extends React.Component {
         }
       })
       .catch( error => {
+        this.props.setC3ApiError(true)
         console.log(error);
       })
   }

@@ -30,7 +30,8 @@ import {
   trimDecimals
 } from '../../util/utils.js'
 import {
-  getEthPricePerTon,
+  getUsdPricePerTon,
+  getEthExchangeRate
 } from '../../c3/requests'
 import convert from '../../c3/conversions'
 
@@ -124,18 +125,21 @@ class ContractDetailCard extends React.Component {
   };
 
   componentWillMount(){
-    getEthPricePerTon()
-      .then( ethRatio => {
-        convert.etherToUsd(ethRatio)
-          .then(usdRatio=>{
+    getEthExchangeRate()
+      .then( res => {
+        let ethExchangeRate = res.data[0].price_usd
+        console.log('ethExchangeRate', ethExchangeRate);
+        getUsdPricePerTon()
+          .then( usdppt => {
+            console.log('usdppt', usdppt);
+            let ethppt =  convert.usdToEther(usdppt, ethExchangeRate)
             this.setState({
-              price: ethRatio * this.props.c3.carbon.total,
-              ppt: ethRatio,
-              usdppt: usdRatio,
+              price: ethppt * this.props.c3.carbon.total,
+              ppt: ethppt,
+              usdppt: usdppt,
             })
-            this.props.onC3PricePerTonUpdate(ethRatio)
+            this.props.onC3PricePerTonUpdate(ethppt)
           })
-
       })
   }
 

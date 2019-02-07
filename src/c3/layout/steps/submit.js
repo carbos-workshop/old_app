@@ -3,11 +3,12 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
-// import Button from '@material-ui/core/Button';
-// import {
-//   createTransactionObject,
-// } from '../../../util/utils'
+import {
+  updateC3OwnerAddress
+} from '../../c3Actions'
 import { connectToMetaMask, web3, uport } from '../../../util/connectors'
+import convert from '../../conversions'
+import { calculateActualLandArea } from '../../utils'
 
 const styles = theme => ({
   root: {
@@ -26,7 +27,9 @@ const styles = theme => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    onC3OwnerAddressUpdate: address => {
+      dispatch(updateC3OwnerAddress(address))
+    },
   }
 }
 
@@ -64,6 +67,7 @@ class Submit extends React.Component{
       })
     }
     else if (res[0]){
+      this.props.onC3OwnerAddressUpdate(res[0])
       this.setState({
         loading: {
           ...this.state.loading,
@@ -80,7 +84,7 @@ class Submit extends React.Component{
   buildC3Transaction = (escrow,account)  => {
     console.log('sending from  -> ', account);
     console.log('sending to  -> ', escrow);
-
+    console.log('sending data ->', this.buildC3Object())
 /*----------------------------UPORT ONLY - BROKEN------------------------------
     let value = web3.utils.toWei('0.001', 'ether') //any string value higher than this breaks uPort signature feature...
     return {
@@ -128,6 +132,30 @@ class Submit extends React.Component{
       })
 /*-----------------------------------------------------------------------*/
 
+  }
+
+  buildC3Object = () => {
+    //possible redundancies in storing BOTH ra_id and lat_lng, either one can be used to lookup geometry again
+    //lat_lng being more flexible, ra_id tying up completely to reportall
+    return {
+      geometry: web3.utils.soliditySha3(this.props.c3.property.geom_as_wkt), //hash of the property's multipolygon shape (ESRI LAT/LNG PAIRS)
+      ra_id: this.props.c3.property.rausa_id, //reportall lookup
+      lat_lng: [this.props.c3.property.latitude, this.props.c3.property.longitude], //property point lookup
+      hectares: convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000, //area in hectares
+      owner: {
+        firstname: this.props.c3.owner.firstname, //set by uPort, overwritten by property form
+        lastname: this.props.c3.owner.lastname, //set by uPort, overwritten by property form
+        address: this.props.c3.owner.address, //set by uPort, overwritten by MetaMask in submit process
+        did: this.props.user.did //set by uPort, NOT STORED IN REDUX C3 because we do not ever want to overwrite this
+      },
+      description: this.props.c3.description, //ELU code
+      price_per_ton: this.props.c3.ppt, //price in ETH per ton TODO:check against set exchange rate, make sure not lower in contract for deposit
+      carbon: {
+        above_ground: this.props.c3.carbon.aboveGround,
+        below_ground: this.props.c3.carbon.belowGround,
+        total: this.props.c3.carbon.total,
+      }
+    }
   }
 
 
