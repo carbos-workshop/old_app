@@ -45,6 +45,17 @@ const styles = theme => ({
   rightIcon:{
     marginLeft: theme.spacing.unit,
   },
+  link:{
+    textDecoration: 'none',
+    color: theme.palette.primary.main,
+    fontWeight: '700',
+    '&:hover':{
+      color: theme.palette.primary.light,
+    },
+    '&:active':{
+      color: theme.palette.primary.dark,
+    },
+  },
   disclaimerText:{
     // marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit * 2,
@@ -238,23 +249,21 @@ class C3ProcessForm extends React.Component {
         )}
         <Dialog
            open={this.state.openDisclaimer}
-           onClose={this.handleCloseDisclaimer}
+           onClose={()=>{this.setState({ openDisclaimer: false })}}
          >
            <DialogTitle>{"Connecting To MetaMask"}</DialogTitle>
            <DialogContent>
-             <DialogContentText>
-               <Typography className={classes.disclaimerText} variant="body2">
-                 You will need MetaMask installed and funded with at least [TODO] ETH in order to continue with contract submission.
-                 Submitting a Contract requires a deposit of 5% the contract's value.
-               </Typography>
-               <Typography variant="body2">
-                 <strong>This deposit will be returned to you</strong>, minus gas costs, once the contract has been endorsed.
-               </Typography>
-             </DialogContentText>
+             <Typography className={classes.disclaimerText} variant="body2">
+               Submitting a Contract requires a deposit of 5% the contract's value.
+               You will need <a target="_blank" className={classes.link} href="https://metamask.io/">MetaMask</a> installed and funded with at least <strong>[TODO] ETH</strong> in order to continue with contract submission.
+             </Typography>
+             <Typography variant="body2">
+               <strong>This deposit will be returned to you</strong>, minus gas costs, once the contract has been endorsed.
+             </Typography>
            </DialogContent>
            <DialogActions>
-             <Button onClick={this.handleCloseDisclaimer} color="primary" autoFocus>
-               Got it!
+             <Button onClick={this.handleCloseDisclaimer} autoFocus>
+               I'm Ready!
              </Button>
            </DialogActions>
          </Dialog>
