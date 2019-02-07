@@ -45,6 +45,10 @@ const styles = theme => ({
   rightIcon:{
     marginLeft: theme.spacing.unit,
   },
+  disclaimerText:{
+    // marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 2,
+  }
 });
 
 function getSteps() {
@@ -239,15 +243,12 @@ class C3ProcessForm extends React.Component {
            <DialogTitle>{"Connecting To MetaMask"}</DialogTitle>
            <DialogContent>
              <DialogContentText>
-               <Typography variant="subtitle2">
+               <Typography className={classes.disclaimerText} variant="body2">
                  You will need MetaMask installed and funded with at least [TODO] ETH in order to continue with contract submission.
-                 Submitting a Contract requires a deposit of 10% the contract's value.
+                 Submitting a Contract requires a deposit of 5% the contract's value.
                </Typography>
-               <Typography variant="subtitle2">
-                 This deposit will be returned to you once the contract has been endorsed, minus gas costs.
-               </Typography>
-               <Typography variant="subtitle2">
-                 While we plan on moving all payment processing to uPort in the future, we need to connect to MetaMask in order to submit this contract.
+               <Typography variant="body2">
+                 <strong>This deposit will be returned to you</strong>, minus gas costs, once the contract has been endorsed.
                </Typography>
              </DialogContentText>
            </DialogContent>
