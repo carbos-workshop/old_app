@@ -138,5 +138,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "truffle-hdwallet-provider": "^1.0.3"
   }
 }
