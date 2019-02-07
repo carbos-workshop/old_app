@@ -236,12 +236,19 @@ class C3ProcessForm extends React.Component {
            open={this.state.openDisclaimer}
            onClose={this.handleCloseDisclaimer}
          >
-           <DialogTitle>{"Connecting To Meta Mask"}</DialogTitle>
+           <DialogTitle>{"Connecting To MetaMask"}</DialogTitle>
            <DialogContent>
              <DialogContentText>
-               Submitting a Contract requires a deposit of 10% the contract's value.
-               This deposit will be returned to you once the contract has been endorsed, minus gas costs.
-               We need to connect to Meta Mask in order to submit this contract.
+               <Typography variant="subtitle2">
+                 You will need MetaMask installed and funded with at least [TODO] ETH in order to continue with contract submission.
+                 Submitting a Contract requires a deposit of 10% the contract's value.
+               </Typography>
+               <Typography variant="subtitle2">
+                 This deposit will be returned to you once the contract has been endorsed, minus gas costs.
+               </Typography>
+               <Typography variant="subtitle2">
+                 While we plan on moving all payment processing to uPort in the future, we need to connect to MetaMask in order to submit this contract.
+               </Typography>
              </DialogContentText>
            </DialogContent>
            <DialogActions>

@@ -10,6 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -47,9 +48,12 @@ const styles = theme => ({
   actions: {
     display: 'flex',
   },
+  forceRight: {
+    marginLeft: 'auto',
+    padding: `0px ${theme.spacing.unit * 2}px`,
+  },
   expand: {
     transform: 'rotate(0deg)',
-    marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -59,7 +63,7 @@ const styles = theme => ({
   },
   explaination:{
     margin: theme.spacing.unit,
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   avatar: {
     backgroundColor: theme.palette.primary.main,
@@ -266,11 +270,10 @@ class ContractDetailCard extends React.Component {
                   </TableRow>
               </TableBody>
             </Table>
-
-
           </CardContent>
         </Collapse>
         <CardActions className={classes.actions} disableActionSpacing>
+          <Typography className={classes.forceRight} variant="button">Additional Configuration</Typography>
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
@@ -278,8 +281,7 @@ class ContractDetailCard extends React.Component {
             onClick={this.handleExpandClick}
             aria-expanded={this.state.expanded}
             aria-label="Show more"
-          >
-            <ExpandMoreIcon />
+          > <ExpandMoreIcon />
           </IconButton>
         </CardActions>
       </Card>

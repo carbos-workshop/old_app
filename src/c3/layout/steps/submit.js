@@ -49,10 +49,10 @@ class Submit extends React.Component{
 
   componentDidMount(){
 
+/*--------------------------UPORT ONLY - BROKEN---------------------------------
     this.deployC3(this.buildC3Transaction('0x0000000000000000000000000000000000000000', this.props.user.address))
-
-  /*-------------------------WORKS - METAMASK---------------------------------
-   WORKS - METAMASK
+-----------------------------------------------------------------------*/
+  /*-------------------------METAMASK ONLY---------------------------------*/
   connectToMetaMask().then(res => {
     if (res === false){
       this.setState({
@@ -73,7 +73,7 @@ class Submit extends React.Component{
       this.deployC3(this.buildC3Transaction('0x0000000000000000000000000000000000000000', res[0]))
     } else {console.log('There was a problem connecting to Meta Mask')}
   })
-  -----------------------------------------------------------------------*/
+  /*-----------------------------------------------------------------------*/
 
   }
 
@@ -81,33 +81,37 @@ class Submit extends React.Component{
     console.log('sending from  -> ', account);
     console.log('sending to  -> ', escrow);
 
-    let value = web3.utils.toWei('0.001', 'ether') //VALUE MUST BE string? IN WEI, any high number (like in eth) breaks it
+/*----------------------------UPORT ONLY - BROKEN------------------------------
+    let value = web3.utils.toWei('0.001', 'ether') //any string value higher than this breaks uPort signature feature...
     return {
       from : account,
       to: escrow,
       value: value,
       appName: 'Carbos-Local-Test',
     }
+-----------------------------------------------------------------------*/
 
-/* --------------------------WORKS - METAMASK--------------------------------
+/* --------------------------METAMASK ONLY-------------------------------- */
     return {
       from: account || this.props.user.address,
       to: escrow,
       data: '',
       value: web3.utils.toWei('0.5', 'ether'),
     }
------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
   }
 
   deployC3 = transaction => {
       console.log('need to deploy -> ', transaction);
 
+/*-------------------------UPORT ONLY - BORKEN -------------------------------
       web3.eth.sendTransaction(transaction, (err, res)=>{
         console.log('err',err);
         console.log('res',res);
       })
+-----------------------------------------------------------------------*/
 
-/* --------------------------WORKS - METAMASK--------------------------------
+/* --------------------------WORKS - METAMASK--------------------------------*/
       window.web3.eth.sendTransaction(transaction, (error, res) => {
         if (error){
           this.setState({
@@ -122,7 +126,7 @@ class Submit extends React.Component{
           console.log('res->',res);
         }
       })
------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------*/
 
   }
 
