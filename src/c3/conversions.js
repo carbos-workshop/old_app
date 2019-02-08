@@ -24,5 +24,5 @@ export default {
   etherToUsd: (eth, exchangeRate) => {
     if (!exchangeRate) { return eth * 100 } //api error set ETH echange rate to ETH=100USD
     return exchangeRate * eth
-  }
+  },
 }

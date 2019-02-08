@@ -135,25 +135,37 @@ class Submit extends React.Component{
   }
 
   buildC3Object = () => {
+
     //possible redundancies in storing BOTH ra_id and lat_lng, either one can be used to lookup geometry again
     //lat_lng being more flexible, ra_id tying up completely to reportall
     return {
+      //HASH
       geometry_hash: web3.utils.soliditySha3(this.props.c3.property.geom_as_wkt), //hash of the property's multipolygon shape (ESRI LAT/LNG PAIRS)
+      //INT IN WEI
       ra_id: this.props.c3.property.rausa_id, //reportall lookup
-      lat_lng: [this.props.c3.property.latitude, this.props.c3.property.longitude], //property point lookup
-      hectares: convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000, //area in hectares
+      // PAIR OF INTS IN WEI
+      location: {
+        lat: web3.utils.toWei(this.props.c3.property.latitude.toString()),
+        lng: web3.utils.toWei(this.props.c3.property.longitude.toString()),
+      },
+      // BigNumber
+      hectares: web3.utils.toWei((convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000).toString()), //area in hectares
+      //4 STRINGS
       owner: {
         firstname: this.props.c3.owner.firstname, //set by uPort, overwritten by property form
         lastname: this.props.c3.owner.lastname, //set by uPort, overwritten by property form
         address: this.props.c3.owner.address, //set by uPort, overwritten by MetaMask in submit process
         did: this.props.user.did //set by uPort, NOT STORED IN REDUX C3 because we do not ever want to overwrite this
       },
+      //STRING
       description: this.props.c3.description, //ELU code
-      price_per_ton: this.props.c3.ppt, //price in ETH per ton TODO:check against set exchange rate, make sure not lower in contract for deposit
+      //INT IN WEI
+      //price_per_ton: this.props.c3.ppt, //price in ETH per ton TODO:check against set exchange rate, make sure not lower in contract for deposit
+      //3 INT IN WEI
       carbon: {
-        above_ground: this.props.c3.carbon.aboveGround,
-        below_ground: this.props.c3.carbon.belowGround,
-        total: this.props.c3.carbon.total,
+        above_ground: web3.utils.toWei(this.props.c3.carbon.aboveGround.toString()),
+        below_ground: web3.utils.toWei(this.props.c3.carbon.belowGround.toString()),
+        total: web3.utils.toWei(this.props.c3.carbon.total.toString()),
       }
     }
   }
