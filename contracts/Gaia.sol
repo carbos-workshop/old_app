@@ -1,6 +1,15 @@
 pragma solidity ^0.5;
 
 contract Gaia {
+    // function() external payable {}
+    address public carbos;
+
+    constructor() public {
+      carbos = msg.sender;
+    }
+
+
+
        // function sendDeposit() public gaiaOnly { GAIA JUST TRANSFERS BALNCE TO HERE WITH CONSTRUCTION
         //only gaia can hold funds in escrow
         //define payee/submitter
