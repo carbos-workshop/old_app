@@ -1,8 +1,7 @@
-pragma solidity 0.4.25;
+pragma solidity ^0.5.3;
 
 contract Endorsement {
     address public owner;
-    string public name;
 
     event Vote(string c3_name, uint vote_count);
 
@@ -34,12 +33,11 @@ contract Endorsement {
     c3[] public c3_array;
     mapping(address => Voter) public voters;
 
-    constructor(string _name) public {
+    constructor() public {
       owner = msg.sender;
-      name  = _name;
     }
 
-    function addc3(string _name, address _c3_address) public {
+    function addc3(string memory _name, address _c3_address) public {
       c3_array.push(c3(_name, _c3_address, 0));
     }
 
