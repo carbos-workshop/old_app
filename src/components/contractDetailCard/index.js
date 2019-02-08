@@ -33,7 +33,7 @@ import {
 } from '../../c3/requests'
 import convert from '../../c3/conversions'
 
-import { Identicon } from 'ethereum-react-components';
+// import { Identicon } from 'ethereum-react-components';
 import LeafletMap from '../map'
 
 const styles = theme => ({
@@ -50,6 +50,13 @@ const styles = theme => ({
   actions: {
     display: 'flex',
   },
+  carbosAvatar:{
+    width: 60,
+    height: 60,
+  },
+  // avatarImg:{
+  //   objectFit: 'contain'
+  // },
   forceRight: {
     marginLeft: 'auto',
     padding: `0px ${theme.spacing.unit * 2}px`,
@@ -174,6 +181,13 @@ class ContractDetailCard extends React.Component {
   render() {
     const { classes } = this.props;
 
+    const CarbosAvatar = withStyles({
+      img: {
+        objectFit: 'contain',
+      },
+    })(Avatar);
+
+
     const contractValueRows = [
       createData('Carbon (Tons)',
         trimDecimals(this.props.c3.carbon.aboveGround, 6),
@@ -208,7 +222,7 @@ class ContractDetailCard extends React.Component {
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar src={logo}/>
+            <CarbosAvatar className={classes.carbosAvatar} src={logo}/>
           }
           title={<Typography variant="h5">Carbon Conservation Contract ({this.props.c3.description})</Typography>}
           subheader={subheader}
