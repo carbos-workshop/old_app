@@ -27,13 +27,13 @@ contract Escrow {
     address public endorser;
     address payable public carbos;
     address payable public deployer;
-    uint expiredDate;
-    uint forfeitDate;
+    uint public expiredDate;
+    uint public forfeitDate;
 
-    constructor(address payable _deployer, address _endorser, address payable _carbos) public {
+    constructor(address payable _deployer, address _endorser, address payable _carbos) payable public {
         //receives the proper 5% balance on creation from gaia
-        if (msg.value > 0){
-          currentState = State.AWAITING_ENDORSEMENT
+        if (msg.value > 0) {
+          currentState = State.AWAITING_ENDORSEMENT;
         }
         //assign addresses and timestamps
         endorser = _endorser;
