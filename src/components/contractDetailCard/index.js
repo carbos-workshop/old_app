@@ -224,7 +224,7 @@ class ContractDetailCard extends React.Component {
           avatar={
             <CarbosAvatar className={classes.carbosAvatar} src={logo}/>
           }
-          title={<Typography variant="h5">Carbon Conservation Contract ({this.props.c3.description})</Typography>}
+          title={<Typography variant="h5">{this.props.c3.description}</Typography>}
           subheader={subheader}
         />
         <CardMedia
