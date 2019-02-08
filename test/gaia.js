@@ -13,6 +13,5 @@ contract('Gaia', function(accounts) {
     assert.equal(carbos, accounts[0], "Did not set carbos to msg.sender")
   })
 
-  
 
 });
