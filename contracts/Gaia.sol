@@ -1,11 +1,25 @@
 pragma solidity ^0.5;
 
+
+//Import Contracts
+import "./Endorsement.sol";
+import "./C3.sol";
+import"./Escrow.sol";
+import "./C3PO.sol";
+
+
 contract Gaia {
     // function() external payable {}
     address public carbos;
+    address public endorsement;
+
+    mapping(address => address) pending_c3_to_users;
+
 
     constructor() public {
       carbos = msg.sender;
+      Endorsement e = new Endorsement(address(this));
+      endorsement = address(e);
     }
 
 

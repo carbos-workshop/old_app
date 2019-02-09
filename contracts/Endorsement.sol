@@ -5,6 +5,7 @@ import "./Escrow.sol";
 
 contract Endorsement {
     address public owner;
+    address public gaia;
 
     event Vote(
       string contract_type,
@@ -48,8 +49,9 @@ contract Endorsement {
     Contract[] public contracts_array;
     mapping(address => Voter) public voters;
 
-    constructor() public {
+    constructor(address _gaia) public {
       owner = msg.sender;
+      gaia = _gaia;
     }
 
     function addContract(string memory _contract__type, address _contract_address, address _escrow_address) public {
