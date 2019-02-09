@@ -10,7 +10,7 @@ import "./C3PO.sol";
 contract Gaia {
     // function() external payable {}
     address public carbos;
-    Endorserment endorser;
+    address public endorsement;
     address[] public allC3s;
 
 
@@ -31,6 +31,8 @@ contract Gaia {
     constructor() public {
       carbos = msg.sender;
       Endorsement e = new Endorsement(address(this));
+      endorsement = address(e);
+
     }
 
 

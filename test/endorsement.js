@@ -28,12 +28,17 @@ contract('Endorsement', function(accounts) {
     assert.equal(deployedFromAddress, carbosAddress, "Did not set Carbos address correctly when deploying.")
   });
 
+  it("...get voters from mapping", async () => {
+    let auth = await endorsement.methods.returnVotersAuthorized(accounts[0]).call()
+    assert.equal(auth, false, "voter is not authorized")
+  });
+
   it("...should set allow carbos to set carbos as an authorized voter", async () => {
     endorsement.methods.authorize(accounts[0]).call({ from: accounts[0] })
-    // let voter = await endorsement.voters.call(accounts[0])
-    assert.equal(false, true, "Carbos address was not authorized to vote.")
+    let voter = await endorsement.methods.returnVotersAuthorized(accounts[0]).call()
+    assert.equal(voter, true, "Carbos address was not authorized to vote.")
   });
-  //
+
   // it("...should set allow carbos to authorize other addresses", async () => {
   //   assert.isOk(false, "Test not written.")
   // });
