@@ -1,100 +1,121 @@
 pragma solidity ^0.5;
 
 import "./Escrow.sol";
-//import "./C3.sol";
 
 contract Endorsement {
-    address public owner;
     address public gaia;
+    address public carbos;
+    uint internal requiredEndorsements;
 
+    // emitied on successful vote
     event Vote(
-      string contract_type,
-      address contract_address,
-      address escrow_address,
-      uint vote_count
-    );
-    event Endorsed(
-      string contract_type,
-      address contract_address,
-      address escrow_address,
-      uint vote_count
+      string classification,
+      address addr,
+      address escrow,
+      uint count
     );
 
-    //Might need to make this the address of the actual C3 contract
+    //emitted on full endorsement
+    event Endorsed(
+      string classification,
+      address addr,
+      address escrow,
+      uint count
+    );
+
+    event Authorized(
+      address voter
+    );
+
+    //actual store for number of votes
     struct Contract{
-      string  contract_type;
-      address contract_address;
-      address escrow_address;
-      uint    vote_count;
+      string  classification;//type
+      address escrow; //affiliated escrow holding account
+      uint    count; //numVotes
     }
 
     struct Voter{
       bool authorized;
-      mapping(address => uint) voted; //attempt to stop people from voting on the same c3
+      mapping(address => bool) voted; //can only vote one tile on address (true = has voted)
     }
 
-    //This will probably be GAIA
-    modifier ownerOnly(){
-      require(msg.sender == owner);
+    modifier carbosOnly(){
+      require(msg.sender == carbos);
+      _;
+    }
+
+    modifier gaiaOnly(){
+      require(msg.sender == gaia);
       _;
     }
 
     modifier isAuthorized() {
-      require(voters[msg.sender].authorized == true || msg.sender == owner, "Not authorized to vote");
+      require(voters[msg.sender].authorized == true, "Not authorized to vote");
       _;
     }
 
+    mapping(address => Contract) public contracts; //lookup for Contract's endorsement status
+    mapping(address => Voter) public voters; //lookup for voters voting status on a contract
 
-    uint public total_votes;
-    Contract[] public contracts_array;
-    mapping(address => Voter) public voters;
-
-    constructor(address _gaia) public {
-      owner = msg.sender;
-      gaia = _gaia;
+    constructor(address _carbos) public {
+      gaia = msg.sender;
+      carbos = _carbos;
+      emit Authorized(_carbos);
     }
 
-    function addContract(string memory _contract__type, address _contract_address, address _escrow_address) public {
-      contracts_array.push(Contract(_contract__type, _contract_address, _escrow_address, 0));
+    //gaia needs to ensure that Contract and Escrow accounts are corrent otherwise this is abusable
+    function addContract(string memory _classification, address _contract, address _escrow) public gaiaOnly {
+      contracts[_contract] = Contract(_classification, _escrow, 0);
     }
 
-    function authorize(address _voter) public ownerOnly{
+    //carbos can add voters to authorized mapping of voters
+    function authorize(address _voter) public carbosOnly{
         voters[_voter].authorized = true;
+        emit Authorized(_voter);
     }
 
-    function vote(uint contractID) public isAuthorized{
-      require(contractID < contracts_array.length, "Not a valid c3 index");
-      require(voters[msg.sender].voted[contracts_array[contractID].contract_address] != 1, "Voter has already voted for this C3");
+    //carbos can fully release and endoresement
+    function fullyEndorse(address _contract) public carbosOnly{
+        contracts[_contract].count = requiredEndorsements;
+        checkForRelease(_contract);
+    }
 
-
-      voters[msg.sender].voted[contracts_array[contractID].contract_address] = 1;
-      contracts_array[contractID].vote_count += 1;
+    function vote(address _contract) public isAuthorized{
+      require(voters[msg.sender].voted[_contract] = false, "Voter has already voted for this C3");
+      //voter has used their one vote
+      voters[msg.sender].voted[_contract] = true;
+      //increment endorsements on Contract struct
+      contracts[_contract].count += 1;
 
       emit Vote(
-        contracts_array[contractID].contract_type,
-        contracts_array[contractID].contract_address,
-        contracts_array[contractID].escrow_address,
-        contracts_array[contractID].vote_count
+        contracts[_contract].classification,
+        _contract,
+        contracts[_contract].escrow,
+        contracts[_contract].count
       );
-
-      if(contracts_array[contractID].vote_count >= 5) {
-        releaseDownpayment(contracts_array[contractID].escrow_address);
-
-        emit Endorsed(
-          contracts_array[contractID].contract_type,
-          contracts_array[contractID].contract_address,
-          contracts_array[contractID].escrow_address,
-          contracts_array[contractID].vote_count
-        );
-      }
-
+      //see if releaseDeposit can be called
+      checkForRelease(_contract);
     }
 
-    //TODO: update c3 contracts to endorsed.
-    //TODO: call Escrow contract to release downpayment.
-    function releaseDownpayment(address escrow_address) internal {
-        Escrow to_pay = Escrow(escrow_address);
-        to_pay.endorsementComplete();
+    function checkForRelease(address _contract) internal {
+      //release is count > requiredEndorsements
+      if(contracts[_contract].count >= requiredEndorsements) {
+        releaseDeposit(contracts[_contract].escrow);
+
+        emit Endorsed(
+          contracts[_contract].classification,
+          _contract,
+          contracts[_contract].escrow,
+          contracts[_contract].count
+        );
+      }
+    }
+
+    function releaseDeposit(address escrow) internal {
+        Escrow payee = Escrow(escrow);
+        payee.endorsementComplete();
+
+        //TODO: update c3 contracts to endorsed.
     }
 
 }
