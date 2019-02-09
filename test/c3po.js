@@ -20,11 +20,10 @@ contract('C3PO', function(accounts) {
   it("...should initialize USDPPT to 50", async () => {
     let usdppt = await c3po.USDPPT()
     assert.equal(usdppt, 50, "Did not properly initialize USPPT")
-
   })
 
   it("...should not allow other accounts to change USDPPT", async () => {
-      await truffleAssert.reverts(c3po.setUSDPPT(80, { from: accounts[1] }), "Allows addresses other than carbos to set USDPPT")
+      await truffleAssert.reverts(c3po.setUSDPPT(80, { from: accounts[1] }))
   })
 
   it("...should allow carbos to change USDPPT", async () => {
