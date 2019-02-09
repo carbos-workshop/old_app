@@ -60,6 +60,7 @@ contract Endorsement {
     constructor(address _carbos) public {
       carbos = _carbos;
       gaia = msg.sender;
+      voters[_carbos].authorized = true;
     }
 
     //gaia needs to ensure that Contract and Escrow accounts are corrent otherwise this is abusable
@@ -73,7 +74,7 @@ contract Endorsement {
         emit Authorized(_voter);
     }
 
-    //carbos can fully release and endoresement
+    //carbos can fully release an endoresement
     function fullyEndorse(address _contract) public carbosOnly{
         contracts[_contract].count = requiredEndorsements;
         checkForRelease(_contract);
