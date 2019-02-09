@@ -1,5 +1,6 @@
 var Gaia = artifacts.require("./Gaia.sol");
 var Endorsement = artifacts.require("./Endorsement.sol");
+
 const truffleAssert = require('truffle-assertions')
 
 contract('Endorsement', function(accounts) {
@@ -25,13 +26,14 @@ contract('Endorsement', function(accounts) {
   it("...should set carbos address to carbos", async () => {
     let deployedFromAddress = await endorsement.methods.carbos().call()
     let carbosAddress = await gaia.carbos()
+    console.log(carbosAddress,deployedFromAddress,address[0]);
     assert.equal(deployedFromAddress, carbosAddress, "Did not set Carbos address correctly when deploying.")
   });
 
   it("...should set allow carbos to set carbos as an authorized voter", async () => {
     endorsement.methods.authorize(accounts[0]).call({ from: accounts[0] })
-    // let voter = await endorsement.voters.call(accounts[0])
-    assert.equal(false, true, "Carbos address was not authorized to vote.")
+    let voter = await endorsement.methods.voters(accounts[0]).call()
+    assert.equal(voter, true, "Carbos address was not authorized to vote.")
   });
   //
   // it("...should set allow carbos to authorize other addresses", async () => {

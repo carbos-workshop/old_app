@@ -17,7 +17,7 @@ contract Gaia {
 
     constructor() public {
       carbos = msg.sender;
-      Endorsement e = new Endorsement(msg.sender);
+      Endorsement e = new Endorsement(address(this));
       endorsement = address(e);
     }
 
