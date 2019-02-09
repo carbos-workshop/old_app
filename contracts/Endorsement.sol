@@ -57,9 +57,15 @@ contract Endorsement {
     mapping(address => Contract) public contracts; //lookup for Contract's endorsement status
     mapping(address => Voter) public voters; //lookup for voters voting status on a contract
 
+<<<<<<< HEAD
     constructor(address _gaia) public {
       gaia = _gaia;
       carbos = msg.sender;
+=======
+    constructor(address _carbos) public {
+      carbos = _carbos;
+      gaia = msg.sender;
+>>>>>>> refs/remotes/origin/development
     }
 
 
