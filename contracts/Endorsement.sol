@@ -57,9 +57,9 @@ contract Endorsement {
     mapping(address => Contract) public contracts; //lookup for Contract's endorsement status
     mapping(address => Voter) public voters; //lookup for voters voting status on a contract
 
-    constructor(address _gaia) public {
-      carbos = msg.sender;
-      gaia = _gaia;
+    constructor(address _carbos) public {
+      carbos = _carbos;
+      gaia = msg.sender;
     }
 
     //gaia needs to ensure that Contract and Escrow accounts are corrent otherwise this is abusable

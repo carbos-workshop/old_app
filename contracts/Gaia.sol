@@ -10,7 +10,8 @@ import "./C3PO.sol";
 contract Gaia {
     // function() external payable {}
     address public carbos;
-    Endorserment endorser;
+    // Endorserment public endorser;
+    address public endorsement;
     address[] public allC3s;
 
 
@@ -24,13 +25,13 @@ contract Gaia {
 
     //stores all the c3s addresses to their corrispoding User
     mapping(address => address) public pending_c3;
-    mapping(address => address) endorsed_c3;
+    mapping(address => address) public endorsed_c3;
 
 
 
     constructor() public {
       carbos = msg.sender;
-      Endorsement e = new Endorsement(address(this));
+      Endorsement e = new Endorsement(msg.sender);
       endorsement = address(e);
     }
 
