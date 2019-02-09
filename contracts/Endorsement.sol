@@ -6,8 +6,18 @@ import "./Escrow.sol";
 contract Endorsement {
     address public owner;
 
-    event Vote(string contract_type, address contract_address, address escrow_address, uint vote_count);
-    event Endorsed(string contract_type, address contract_address, address escrow_address, uint vote_count);
+    event Vote(
+      string contract_type,
+      address contract_address,
+      address escrow_address,
+      uint vote_count
+    );
+    event Endorsed(
+      string contract_type,
+      address contract_address,
+      address escrow_address,
+      uint vote_count
+    );
 
     //Might need to make this the address of the actual C3 contract
     struct Contract{
@@ -58,11 +68,22 @@ contract Endorsement {
       voters[msg.sender].voted[contracts_array[contractID].contract_address] = 1;
       contracts_array[contractID].vote_count += 1;
 
-      emit Vote(contracts_array[contractID].contract_type, contracts_array[contractID].contract_address, contracts_array[contractID].escrow_address, contracts_array[contractID].vote_count);
+      emit Vote(
+        contracts_array[contractID].contract_type,
+        contracts_array[contractID].contract_address,
+        contracts_array[contractID].escrow_address,
+        contracts_array[contractID].vote_count
+      );
 
       if(contracts_array[contractID].vote_count >= 5) {
         releaseDownpayment(contracts_array[contractID].escrow_address);
-        emit Endorsed(contracts_array[contractID].contract_type, contracts_array[contractID].contract_address, contracts_array[contractID].escrow_address, contracts_array[contractID].vote_count);
+
+        emit Endorsed(
+          contracts_array[contractID].contract_type,
+          contracts_array[contractID].contract_address,
+          contracts_array[contractID].escrow_address,
+          contracts_array[contractID].vote_count
+        );
       }
 
     }
