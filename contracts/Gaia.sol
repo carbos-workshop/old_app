@@ -4,7 +4,6 @@ pragma solidity ^0.5;
 //Import Contracts
 import "./Endorsement.sol";
 import "./C3.sol";
-import"./Escrow.sol";
 import "./C3PO.sol";
 
 
@@ -18,7 +17,7 @@ contract Gaia {
 
     constructor() public {
       carbos = msg.sender;
-      Endorsement e = new Endorsement(address(this));
+      Endorsement e = new Endorsement(msg.sender);
       endorsement = address(e);
     }
 
