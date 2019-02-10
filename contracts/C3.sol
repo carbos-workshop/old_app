@@ -50,11 +50,11 @@ contract C3 {
       uint _hectares,
       uint _latitude,
       uint _longitude,
-      uint _ppt;
+      uint _ppt,
       uint _raId,
-      string _description,
-      string _ownerDID,
-      string _geometryHash,
+      string memory _description,
+      string memory _ownerDID,
+      string memory _geometryHash,
       address payable _ownerAddress,
       address _endorser,
       address _carbos
@@ -72,7 +72,7 @@ contract C3 {
       ownerDID = ownerDID;
       geometryHash = _geometryHash;
       ownerAddress = _ownerAddress;
-      endorsement = _endorser;
+      endorser = _endorser;
       carbos = _carbos;
       currentState = State.AWAITING_ENDORSEMENT;
     }
@@ -87,7 +87,7 @@ contract C3 {
 
     function buyCarbon(uint _tons) public payable requireState(State.VERIFIED){
       //require tons to be positive and if too large = buyableCarbon
-      require(_tons > 0), "Tons must be a positive value";
+      require(_tons > 0, "Tons must be a positive value");
       //if _tons is too high, buy all carbon remaining
       if (_tons > buyableCarbon) {
         _tons = buyableCarbon;
@@ -99,7 +99,7 @@ contract C3 {
       //subtract _tons from buyableCarbon
       buyableCarbon = buyableCarbon - _tons;
       //add buyer to buyers map with _tons (for address-based lookup of tonnage)
-      buyers[msg.sender].tonnage = _tons;
+      buyers[msg.sender] = _tons;
       //add buyer to allBuyers array for address lookups
       allBuyers.push(msg.sender);
     }
