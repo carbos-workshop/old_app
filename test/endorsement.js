@@ -1,5 +1,5 @@
-var Gaia = artifacts.require("./Gaia.sol");
-var Endorsement = artifacts.require("./Endorsement.sol");
+const Gaia = artifacts.require("./Gaia.sol");
+const Endorsement = artifacts.require("./Endorsement.sol");
 
 const truffleAssert = require('truffle-assertions')
 
