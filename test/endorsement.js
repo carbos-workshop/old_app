@@ -13,6 +13,11 @@ contract('Endorsement', function(accounts) {
     endorsement = await new web3.eth.Contract(Endorsement.abi, address)
   })
 
+  afterEach( async () => {
+    gaia = null
+    endorsement = null
+  })
+
   it("...should be deployed", async () => {
     assert.isOk(endorsement)
   });
@@ -24,30 +29,26 @@ contract('Endorsement', function(accounts) {
   });
 
   it("...should set carbos address to carbos", async () => {
-    let deployedFromAddress = await endorsement.methods.carbos().call()
-    let carbosAddress = await gaia.carbos()
-    assert.equal(deployedFromAddress, carbosAddress, "Did not set Carbos address correctly when deploying.")
-  });
-
-  it("...get voters from mapping", async () => {
-    let auth = await endorsement.methods.returnVotersAuthorized(accounts[0]).call()
-    assert.equal(auth, false, "voter is not authorized")
+    let carbosAddressEndorse = await endorsement.methods.carbos().call()
+    let carbosAddressGaia = await gaia.carbos()
+    assert.equal(carbosAddressEndorse, carbosAddressGaia, "Did not set Carbos address correctly when deploying.")
   });
 
   it("...should set allow carbos to set carbos as an authorized voter", async () => {
-    endorsement.methods.authorize(accounts[0]).call({ from: accounts[0] })
-    let voter = await endorsement.methods.returnVotersAuthorized(accounts[0]).call()
+    let voter = await endorsement.methods.voters(accounts[0]).call()
     assert.equal(voter, true, "Carbos address was not authorized to vote.")
   });
+  //
+  it("...should allow carbos to authorize other addresses", async () => {
+    await endorsement.methods.authorize(accounts[1]).send({from: accounts[0]})
+    let voter = await endorsement.methods.voters(accounts[1]).call()
+    assert.equal(voter, true, "Carbos address was not able to authorize other addresses to vote.")
+  });
+  //
+  it("...should not allow other addresses to authorize voters", async () => {
+    await truffleAssert.reverts(endorsement.methods.authorize(accounts[2]).send({from: accounts[1]}))
+  });
 
-  // it("...should set allow carbos to authorize other addresses", async () => {
-  //   assert.isOk(false, "Test not written.")
-  // });
-  //
-  // it("...should not allow other addresses to authorize voters", async () => {
-  //   assert.isOk(false, "Test not written.")
-  // });
-  //
   // it("...should allow Gaia to add a Contract for endorsement", async () => {
   //   assert.isOk(false, "Test not written.")
   // });

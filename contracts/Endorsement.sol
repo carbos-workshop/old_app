@@ -57,21 +57,12 @@ contract Endorsement {
     mapping(address => Contract) public contracts; //lookup for Contract's endorsement status
     mapping(address => Voter) public voters; //lookup for voters voting status on a contract
 
-<<<<<<< HEAD
-    constructor(address _gaia) public {
-      gaia = _gaia;
-      carbos = msg.sender;
-=======
     constructor(address _carbos) public {
       carbos = _carbos;
       gaia = msg.sender;
->>>>>>> refs/remotes/origin/development
+      voters[_carbos].authorized = true;
     }
 
-
-    function returnVotersAuthorized(address _input) public returns(bool){
-      return voters[_input].authorized;
-    }
 
 
     //gaia needs to ensure that Contract and Escrow accounts are corrent otherwise this is abusable
@@ -85,7 +76,7 @@ contract Endorsement {
         emit Authorized(_voter);
     }
 
-    //carbos can fully release and endoresement
+    //carbos can fully release an endoresement
     function fullyEndorse(address _contract) public carbosOnly{
         contracts[_contract].count = requiredEndorsements;
         checkForRelease(_contract);
