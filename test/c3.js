@@ -9,7 +9,7 @@ contract('C3', function(accounts) {
   beforeEach( async () => {
     gaia = await Gaia.deployed({ from : accounts[0] })
     // send a c3, get address
-    c3 = await new web3.eth.Contract(Endorsement.abi, address)
+    // c3 = await new web3.eth.Contract(Endorsement.abi, address)
   })
 
   it("...should be deployed", async () => {
