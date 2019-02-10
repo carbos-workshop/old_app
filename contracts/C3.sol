@@ -3,8 +3,8 @@ pragma solidity ^0.5;
 contract C3 {
     enum State{
       AWAITING_ENDORSEMENT,
-      VERIFIED,
-      INVALID
+      VERIFIED
+      // INVALID
     }
     State public currentState;
 
@@ -18,10 +18,10 @@ contract C3 {
         _;
     }
 
-    modifier carbosOnly(){
-        require(msg.sender == carbos);
-        _;
-    }
+    // modifier carbosOnly(){
+    //     require(msg.sender == carbos);
+    //     _;
+    // }
 
 
     uint public totalCarbon;
@@ -34,11 +34,11 @@ contract C3 {
     uint public raId;
     uint public ppt;
     string public description;
-    string public ownerDID;
+    // string public ownerDID;
     string public geometryHash;
     address payable public ownerAddress;
     address public endorser;
-    address public carbos;
+    // address public carbos;
     mapping(address => uint) public buyers;
     address[] public allBuyers;  //may be reduntant storage with transactional history providing addresses
 
@@ -53,11 +53,11 @@ contract C3 {
       uint _ppt,
       uint _raId,
       string memory _description,
-      string memory _ownerDID,
+      // string memory _ownerDID,
       string memory _geometryHash,
       address payable _ownerAddress,
-      address _endorser,
-      address _carbos
+      address _endorser
+      // address _carbos
     ) public{
       totalCarbon = _totalCarbon;
       aboveGroundCarbon = _aboveGroundCarbon;
@@ -69,11 +69,11 @@ contract C3 {
       ppt = _ppt;
       raId = _raId;
       description = _description;
-      ownerDID = ownerDID;
+      // ownerDID = ownerDID;
       geometryHash = _geometryHash;
       ownerAddress = _ownerAddress;
       endorser = _endorser;
-      carbos = _carbos;
+      // carbos = _carbos;
       currentState = State.AWAITING_ENDORSEMENT;
     }
 
@@ -81,9 +81,9 @@ contract C3 {
       currentState = State.VERIFIED;
     }
 
-    function invalidate() public carbosOnly {
-      currentState = State.INVALID;
-    }
+    // function invalidate() public carbosOnly {
+    //   currentState = State.INVALID;
+    // }
 
     function buyCarbon(uint _tons) public payable requireState(State.VERIFIED){
       //require tons to be positive and if too large = buyableCarbon

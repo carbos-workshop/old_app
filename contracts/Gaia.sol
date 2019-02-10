@@ -16,6 +16,10 @@ contract Gaia {
     address public endorsement;
     address[] public allC3s; //might want to move it only storing endorsed C3s
 
+    event Generated(
+      address contractAddress,
+      address escrowAddress
+    );
 
     struct User {
       string name;
@@ -37,6 +41,7 @@ contract Gaia {
       carbos = msg.sender;
       endorser = new Endorsement(msg.sender);
       endorsement = address(endorser);
+      //TODO MAKE perma-link to c3p0
     }
 
 
@@ -61,20 +66,51 @@ contract Gaia {
     * @param userAddress: payable? address of the contract owner
     * @param: TODO add remaining c3 params
     */
-    function genC3(address payable _user_address, uint value) public payable returns(address){
-
+    function genC3(
+      uint _totalCarbon,
+      uint _aboveGroundCarbon,
+      uint _belowGroundCarbon,
+      uint _hectares,
+      uint _latitude,
+      uint _longitude,
+      uint _raId,
+      string memory _description,
+      // string memory _ownerDID,
+      string memory _geometryHash
+    ) public payable {
+        // TODO get ppt from C3P0, check that _ppt is NOT LOWER
+        uint _ppt = (1/2) * 1 ether; //TEMP
+        //require msg.value > deposit
+        //convert _totalCarbon to ether value (resrote point), then multiply by ppt
+        require(msg.value >= ((_ppt * (_totalCarbon/10**18))/20), "Message did not contain a large enough deposit.  Expected 5% of total value.");
         //create and add C3 contract to the mappings
-        C3 new_c3 = new C3(value);
-        pending_c3[address(new_c3)] = _user_address;
-        //users[_user_address].c3s.push(address(new_c3));
+        C3 newC3 = new C3(
+          _totalCarbon,
+          _aboveGroundCarbon,
+          _belowGroundCarbon,
+          _hectares,
+          _latitude,
+          _longitude,
+          _ppt,
+          _raId,
+          _description,
+          // _ownerDID,
+          _geometryHash,
+          msg.sender,
+          endorsement
+          // carbos
+        );
+        //TODO reject c3s that have a identical geometryHash
+        pending_c3[address(newC3)] = msg.sender;
+        users[msg.sender].c3s.push(address(newC3));
 
-        uint deposit = value / 20;
-        //create and connect an Escrow contract to the mappings
-        //Also will have to check if the value is enough for gas price.
-        Escrow newEscrow = (new Escrow).value(deposit * 1 ether)(_user_address, endorsement, carbos);
+        //create escrow and transfer value
+        Escrow newEscrow = (new Escrow).value(msg.value)(msg.sender, address(endorser), carbos);
 
-        endorser.addContract("C3 Contract", address(new_c3), address(newEscrow));
+        endorser.addContract("Carbon Conservation Contract", address(newC3), address(newEscrow));
+        emit Generated(address(newC3), address(newEscrow));
     }
+
 
     /*
     * @function: returns all of the C3s that a user owns or partially owns
