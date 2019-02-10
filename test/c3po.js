@@ -1,4 +1,5 @@
 const truffleAssert = require('truffle-assertions')
+// var Oraclize = artifacts.require("./Oraclize.sol");
 var C3PO = artifacts.require("./C3PO.sol");
 
 contract('C3PO', function(accounts) {
@@ -6,6 +7,7 @@ contract('C3PO', function(accounts) {
   let c3po
   beforeEach( async () => {
     c3po = await C3PO.deployed({ from : accounts[0]})
+    // oraclize = await Oraclize.deployed({ from : accounts[0]})
   })
 
   it("...should be deployed", async () => {
@@ -30,6 +32,12 @@ contract('C3PO', function(accounts) {
     let usdppt = c3po.setUSDPPT(80, { from: accounts[0] })
     let newppt = await c3po.USDPPT()
     assert.equal(newppt, 80, "Does not allow carbos to change USDPPT")
+  })
+
+  it("...should return a ppt value in ETH", async () => {
+    // let usdppt = c3po.setUSDPPT(80, { from: accounts[0] })
+    // let newppt = await c3po.USDPPT()
+    // assert.equal(newppt, 80, "Does not allow carbos to change USDPPT")
   })
 
 });
