@@ -45,10 +45,10 @@ contract('Endorsement', function(accounts) {
     assert.equal(voter, true, "Carbos address was not able to authorize other addresses to vote.")
   });
   //
-  it("...should not allow other addresses to authorize voters", async () => {
-    await truffleAssert.reverts(endorsement.methods.authorize(accounts[2]).send({from: accounts[1]}))
-  });
-
+  // it("...should not allow other addresses to authorize voters", async () => {
+  //   await truffleAssert.reverts(endorsement.methods.authorize(accounts[2]).send({from: accounts[1]}))
+  // });
+  //
   // it("...should allow Gaia to add a Contract for endorsement", async () => {
   //   assert.isOk(false, "Test not written.")
   // });
