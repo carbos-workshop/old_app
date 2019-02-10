@@ -15,6 +15,7 @@ contract Gaia {
     address payable public  carbos;
     Endorsement public endorser;
     address public endorsement;
+    C3PO public c3po;
     address[] public allC3s; //might want to move it only storing endorsed C3s
 
     event Generated(
@@ -39,6 +40,7 @@ contract Gaia {
     constructor() public {
       carbos = msg.sender;
       endorser = new Endorsement(msg.sender);
+      C3PO c3po = new C3PO();
       endorsement = address(endorser);
       //TODO MAKE perma-link to c3p0
     }
@@ -73,12 +75,17 @@ contract Gaia {
       uint _latitude,
       uint _longitude,
       uint _raId,
+      uint _ppt,
       string memory _description,
       // string memory _ownerDID,
       string memory _geometryHash
     ) public payable {
-        // TODO get ppt from C3P0, check that _ppt is NOT LOWER
-        uint _ppt = (1/2) * 1 ether; //TEMP
+
+
+        //get ppt from C3P0, check that _ppt is NOT LOWER
+        if(_ppt < c3po.ETHPPT()){
+            _ppt = c3po.ETHPPT();
+          }
         //require msg.value > deposit
         //convert _totalCarbon to ether value (resrote point), then multiply by ppt
         require(msg.value >= ((_ppt * (_totalCarbon/10**18))/20), "Message did not contain a large enough deposit.  Expected 5% of total value.");
