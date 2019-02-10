@@ -65,6 +65,7 @@ contract('Gaia', function(accounts) {
         staticC3.latitude,
         staticC3.longitude,
         staticC3.raId,
+        staticC3.ppt,
         staticC3.description,
         staticC3.geometryHash,
         { from: accounts[3] , value: web3.utils.toWei('2', 'ether')} //TODO fix hardcoded 2 ether
@@ -86,6 +87,7 @@ contract('Gaia', function(accounts) {
       staticC3.latitude,
       staticC3.longitude,
       staticC3.raId,
+      staticC3.ppt,
       staticC3.description,
       staticC3.geometryHash,
       { from: accounts[1] , value: web3.utils.toWei('2', 'ether')} //TODO fix hardcoded 2 ether
@@ -101,6 +103,7 @@ contract('Gaia', function(accounts) {
       staticC3.latitude,
       staticC3.longitude,
       staticC3.raId,
+      staticC3.ppt,
       staticC3.description,
       staticC3.geometryHash,
       { from: accounts[2] , value: web3.utils.toWei('2', 'ether')} //TODO fix hardcoded 2 ether
@@ -116,6 +119,7 @@ contract('Gaia', function(accounts) {
       staticC3.latitude,
       staticC3.longitude,
       staticC3.raId,
+      staticC3.ppt,
       staticC3.description,
       staticC3.geometryHash,
       { from: accounts[3] , value: web3.utils.toWei('2', 'ether')} //TODO fix hardcoded 2 ether
@@ -143,6 +147,7 @@ contract('Gaia', function(accounts) {
       staticC3.latitude,
       staticC3.longitude,
       staticC3.raId,
+      staticC3.ppt,
       staticC3.description,
       staticC3.geometryHash,
       { from: accounts[0] , value: web3.utils.toWei('2', 'ether')} //TODO fix hardcoded 2 ether
@@ -157,6 +162,7 @@ contract('Gaia', function(accounts) {
       staticC3.latitude,
       staticC3.longitude,
       staticC3.raId,
+      staticC3.ppt,
       staticC3.description,
       staticC3.geometryHash,
       { from: accounts[0] , value: web3.utils.toWei('2', 'ether')} //TODO fix hardcoded 2 ether

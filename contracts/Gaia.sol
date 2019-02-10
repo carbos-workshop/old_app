@@ -40,9 +40,8 @@ contract Gaia {
     constructor() public {
       carbos = msg.sender;
       endorser = new Endorsement(msg.sender);
-      C3PO c3po = new C3PO();
+      c3po = new C3PO();
       endorsement = address(endorser);
-      //TODO MAKE perma-link to c3p0
     }
 
 
