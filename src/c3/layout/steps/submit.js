@@ -147,6 +147,7 @@ class Submit extends React.Component{
         latitude: web3.utils.toWei(this.props.c3.property.latitude.toString()),
         longitude: web3.utils.toWei(this.props.c3.property.longitude.toString()),
       // },
+      ppt: web3.utils.toWei(this.props.c3.ppt.toString()),
       // BigNumber
       hectares: web3.utils.toWei((convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000).toString()), //area in hectares
       //4 STRINGS

@@ -14,6 +14,7 @@ const staticC3 = {
   latitude: "39612359801573200000",
   longitude: "-104921698900218000000",
   raId: "47357",
+  ppt: "420494827446343300",
 }
 
 contract('Gaia', function(accounts) {
