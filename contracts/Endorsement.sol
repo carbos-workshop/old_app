@@ -63,6 +63,8 @@ contract Endorsement {
       voters[_carbos].authorized = true;
     }
 
+
+
     //gaia needs to ensure that Contract and Escrow accounts are corrent otherwise this is abusable
     function addContract(string memory _classification, address _contract, address _escrow) public gaiaOnly {
       contracts[_contract] = Contract(_classification, _escrow, 0);
