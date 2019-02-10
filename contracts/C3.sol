@@ -77,7 +77,7 @@ contract C3 {
       currentState = State.AWAITING_ENDORSEMENT;
     }
 
-    function receiveEndorsement() public endorserOnly requireState(State.AWAITING_ENDORSEMENT) {
+    function endorsementComplete() public endorserOnly requireState(State.AWAITING_ENDORSEMENT) {
       currentState = State.VERIFIED;
     }
 

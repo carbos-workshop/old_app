@@ -4,6 +4,7 @@ pragma solidity ^0.5;
 //Import Contracts
 import "./Endorsement.sol";
 import "./C3.sol";
+import "./Escrow.sol";
 import "./C3PO.sol";
 
 
