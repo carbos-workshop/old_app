@@ -40,7 +40,7 @@ contract Escrow {
         carbos = _carbos;
         deployer = _deployer;
         expiredDate = now + (30 * 1 days);
-        forfeitDate = now + (90 * 1 days);
+        forfeitDate = now + (60 * 1 days);
     }
 
     function endorsementComplete() public endorserOnly requireState(State.AWAITING_ENDORSEMENT){
@@ -51,13 +51,13 @@ contract Escrow {
     }
 
     function cancel() public carbosOnly {
-        //if fraud discovered, can immediately terminate escrow and send deposit to _carbos
-        carbos.transfer(address(this).balance);
+        //if needed, can return balance and cancel the escrow
+        deployer.transfer(address(this).balance);
         currentState = State.CANCELED;
     }
 
     function forfeit() public carbosOnly requireState(State.AWAITING_ENDORSEMENT){
-        //after 90 days, can transfer funds to _carbos
+        //after 60 days, can only transfer funds to _carbos
         require(now >= forfeitDate, "Contract is still active.");
         carbos.transfer(address(this).balance);
         currentState = State.FORFEIT;

@@ -1,6 +1,7 @@
 pragma solidity ^0.5;
 
 import "./Escrow.sol";
+import "./C3.sol";
 
 contract Endorsement {
     address public gaia;
@@ -102,7 +103,7 @@ contract Endorsement {
     function checkForRelease(address _contract) internal {
       //release is count > requiredEndorsements
       if(contracts[_contract].count >= requiredEndorsements) {
-        releaseDeposit(contracts[_contract].escrow);
+        releaseC3Deposit(contracts[_contract].escrow);
 
         emit Endorsed(
           contracts[_contract].classification,
@@ -113,11 +114,15 @@ contract Endorsement {
       }
     }
 
-    function releaseDeposit(address escrow) internal {
-        Escrow payee = Escrow(escrow);
-        payee.endorsementComplete();
+    function releaseC3Deposit(address _contract) internal {
+      //verify c3
+      C3 c3 = C3(_contract);
+      c3.endorsementComplete();
 
-        //TODO: update c3 contracts to endorsed.
+      //release escrow
+      Escrow deposit = Escrow(contracts[_contract].escrow);
+      deposit.endorsementComplete();
+
     }
 
 }
