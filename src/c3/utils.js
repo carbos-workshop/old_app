@@ -14,5 +14,5 @@ export function calculateDeposit(totalTonsCarbon, ppt){
   if (!totalTonsCarbon || !ppt){
     return 0
   }
-  return (totalTonsCarbon * ppt * 0.05) //5% deposit
+  return (totalTonsCarbon * ppt)/20 //5% deposit
 }

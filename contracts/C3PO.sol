@@ -10,17 +10,19 @@ In the future, we may switch this functionality to an oracle.
 
 contract C3PO {
 
-  uint public USDPPT;
+  uint256 public USDPPT;
+  uint256 public ETHPPT;
+  uint256 public ETHConversionRate;
   address public carbos;
-
-  event UpdatePPT(
-    string updateMessage,
-    uint PPT
-  );
+  event LogNewUSDPPT(uint PPT);
+  event LogNewETHPPT(uint PPT);
 
   constructor() public {
     carbos = msg.sender;
     USDPPT = 50; //50 USD
+    //update conversion rate
+    ETHConversionRate = 120; //TEMP -> TODO UPDATE() TO ORACLE
+    setETHPPT();
   }
 
   modifier carbosOnly(){
@@ -28,9 +30,16 @@ contract C3PO {
       _;
   }
 
+  function setETHPPT() internal {
+     ETHPPT = (USDPPT*10**18) / ETHConversionRate;
+     emit LogNewETHPPT(ETHPPT);
+  }
+
   function setUSDPPT(uint PPT) public carbosOnly{
     USDPPT = PPT;
-    emit UpdatePPT('Updated USDPPT.', PPT);
+    //Update conversion rate
+    setETHPPT();
+    emit LogNewUSDPPT(PPT);
   }
 
 }
