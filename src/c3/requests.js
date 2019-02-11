@@ -8,7 +8,10 @@ import C3PO from '../abis/C3PO.json';
 //price oracle
 import Web3 from 'web3'
 const web3 = new Web3(window.web3.currentProvider)
-let c3po = new web3.eth.Contract(C3PO.abi, "0x7bb53B80ccA74eEC085c93995Fb72a7057bb53aa")
+let c3po = new web3.eth.Contract(C3PO.abi, C3PO.networks[4].address)
+
+console.log('abi->', C3PO);
+console.log('c3po->', c3po);
 
 
 const KEY = 'vzczNNHVi5' //TODO
