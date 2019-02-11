@@ -81,7 +81,7 @@ class Submit extends React.Component{
 
   }
 
-  buildC3Transaction = (escrow,account)  => {
+  buildC3Transaction = (escrow, account)  => {
     console.log('sending from  -> ', account);
     console.log('sending to  -> ', escrow);
     console.log('sending data ->', this.buildC3Object())
@@ -100,7 +100,7 @@ class Submit extends React.Component{
       from: account || this.props.user.address,
       to: escrow,
       data: '',
-      value: web3.utils.toWei('0.01', 'ether'), //need to slightly round up ppt* total carbon to prevent not enough value error
+      value: 0//web3.utils.toWei('0.01', 'ether'), //need to slightly round up ppt* total carbon to prevent not enough value error
     }
 /*-----------------------------------------------------------------------*/
   }
@@ -135,38 +135,19 @@ class Submit extends React.Component{
   }
 
   buildC3Object = () => {
-    // const BN = web3.utils.BN;
-    //possible redundancies in storing BOTH ra_id and lat_lng, either one can be used to lookup geometry again
     //lat_lng being more flexible, ra_id tying up completely to reportall
     return {
       geometryHash: web3.utils.soliditySha3(this.props.c3.property.geom_as_wkt), //hash of the property's multipolygon shape (ESRI LAT/LNG PAIRS)
-      //INT IN WEI
       raId: this.props.c3.property.rausa_id, //reportall lookup
-      // PAIR OF INTS IN WEI
-      // location: {
-        latitude: web3.utils.toWei(this.props.c3.property.latitude.toString()),
-        longitude: web3.utils.toWei(this.props.c3.property.longitude.toString()),
-      // },
+      latitude: web3.utils.toWei(this.props.c3.property.latitude.toString()),
+      longitude: web3.utils.toWei(this.props.c3.property.longitude.toString()),
       ppt: web3.utils.toWei(this.props.c3.ppt.toString()),
-      // BigNumber
       hectares: web3.utils.toWei((convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000).toString()), //area in hectares
-      //4 STRINGS
-      // owner: {
-        // firstname: this.props.c3.owner.firstname, //set by uPort, overwritten by property form
-        // lastname: this.props.c3.owner.lastname, //set by uPort, overwritten by property form
-        address: this.props.c3.owner.address, //set by uPort, overwritten by MetaMask in submit process
-        // did: this.props.user.did //set by uPort, NOT STORED IN REDUX C3 because we do not ever want to overwrite this
-      // },
-      //STRING
+      address: this.props.c3.owner.address, //set by uPort, overwritten by MetaMask in submit process
       description: this.props.c3.description, //ELU code
-      //INT IN WEI
-      //price_per_ton: this.props.c3.ppt, //price in ETH per ton TODO:check against set exchange rate, make sure not lower in contract for deposit
-      //3 INT IN WEI
-      // carbon: {
-        aboveGroundCarbon: web3.utils.toWei(this.props.c3.carbon.aboveGround.toString()),
-        belowGroundCarbon: web3.utils.toWei(this.props.c3.carbon.belowGround.toString()),
-        totalCarbon: web3.utils.toWei(this.props.c3.carbon.total.toString()),
-      // }
+      aboveGroundCarbon: web3.utils.toWei(this.props.c3.carbon.aboveGround.toString()),
+      belowGroundCarbon: web3.utils.toWei(this.props.c3.carbon.belowGround.toString()),
+      totalCarbon: web3.utils.toWei(this.props.c3.carbon.total.toString()),
     }
 
   }
