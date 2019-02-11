@@ -29,7 +29,7 @@ const styles = theme => ({
 
 class App extends Component {
   //
-  componentDidMount() {
+  componentWillMount() {
     connectToMetaMask()
   }
 

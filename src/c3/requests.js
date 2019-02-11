@@ -3,12 +3,12 @@ import axios from 'axios'
 //required for EPA Biomass map projection
 import epsg from 'epsg-index/all.json'
 import proj4 from 'proj4'
-import C3PO from '../../build/contracts/C3PO';
+import C3PO from '../abis/C3PO.json';
 
 //price oracle
 import Web3 from 'web3'
 const web3 = new Web3(window.web3.currentProvider)
-let c3po = new web3.eth.Contract(C3PO.abi, "0x97A449388bCf0d20EA5cC283a213C0DA689a2aA1")
+let c3po = new web3.eth.Contract(C3PO.abi, "0x7bb53B80ccA74eEC085c93995Fb72a7057bb53aa")
 
 
 const KEY = 'vzczNNHVi5' //TODO
