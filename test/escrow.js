@@ -53,45 +53,45 @@ contract('Escrow', function(accounts) {
   })
 
   it("...should contain the correct balance", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should set carbos to the proper address", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should set deployed to the proper address", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should set the proper expiry and forfeit dates", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should be awaiting endorsement", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should not allow addresses to transfer the balance", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should not allow addresses call cancel()", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should not allow addresses call forfeit()", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   it("...should allow carbos to call cancel() and retreive deposit", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
   // ensure Escrow is not destroyed from previous test
 
   it("...should not allow carbos to call forfiet() before forfeit date", async () => {
-
+    assert.isOk(false, "test not written")
   })
 
 

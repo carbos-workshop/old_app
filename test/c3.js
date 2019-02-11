@@ -49,25 +49,26 @@ contract('C3', function(accounts) {
     assert.isOk(c3)
   })
 
-  // it("...should correctly store all params", async () => {
-  //   // convert params and match to original object
-  // })
-  //
-  // it("...should be awaitng endorsement", async () => {
-  //
-  // })
-  //
-  // it("...should not be buyable until verified", async () => {
-  //
-  // })
-  //
-  // it("...should be buyable once verified", async () => {
-  //
-  // })
-  //
-  // it("...should correctly transfer value to owner once purchased", async () => {
-  //
-  // })
+  it("...should correctly store all params", async () => {
+    // convert params and match to original object
+    assert.isOk(false, "test not written")
+  })
+
+  it("...should be awaitng endorsement", async () => {
+    assert.isOk(false, "test not written")
+  })
+
+  it("...should not be buyable until verified", async () => {
+    assert.isOk(false, "test not written")
+  })
+
+  it("...should be buyable once verified", async () => {
+    assert.isOk(false, "test not written")
+  })
+
+  it("...should correctly transfer value to owner once purchased", async () => {
+    assert.isOk(false, "test not written")
+  })
 
   //TODO
   // emit tokens, etc,

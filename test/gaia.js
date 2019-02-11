@@ -60,14 +60,13 @@ contract('Gaia', function(accounts) {
     assert.isOk(gaia.endorsement())
   })
 
-  // it("...should be deploy a C3PO contract", async () => {
-  //
-  // })
+  it("...should be deploy a C3PO contract", async () => {
+    assert.isOk(false, "test not written")
+  })
 
-  // it("...should set carbos address in endorsement contract", async () => {
-  //
-  // })
-
+  it("...should set carbos address in endorsement contract", async () => {
+    assert.isOk(false, "test not written")
+  })
 
   it("...should generate a C3 after calling genC3", async () => {
     let callGenC3 = await generateC3From(accounts[3])
@@ -75,9 +74,9 @@ contract('Gaia', function(accounts) {
     assert.isOk(c3)
   })
 
-  // it("...should reject C3 with geometryHashes that have already been submitted", async () => {
-  //
-  // })
+  it("...should reject C3 with geometryHashes that have already been submitted", async () => {
+    assert.isOk(false, "test not written")
+  })
 
   it("...should generate an Escrow acount after calling genC3", async () => {
     let callGenC3 = await generateC3From(accounts[3])
@@ -110,15 +109,12 @@ contract('Gaia', function(accounts) {
     ), true, "c3 addresses were not mapped correctly to deployer addresses by Gaia")
   })
 
-  // it("...should allow users to lookup their C3s", async () => {
-  //
-  // })
+  it("...should allow users to lookup their C3s", async () => {
+    assert.isOk(false, "test not written")
+  })
 
-  // it("...should be able to lookup all C3s", async () => {
-  //
-  // })
-
-
-
+  it("...should be able to lookup all C3s", async () => {
+    assert.isOk(false, "test not written")
+  })
 
 });
