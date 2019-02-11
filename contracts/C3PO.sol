@@ -14,8 +14,6 @@ contract C3PO {
   uint256 public ETHPPT;
   uint256 public ETHConversionRate;
   address public carbos;
-  // event LogNewETHConversionRate(uint ETHConversionRate);
-  // event LogNewOraclizeQuery(string description);
   event LogNewUSDPPT(uint PPT);
   event LogNewETHPPT(uint PPT);
 
@@ -36,7 +34,6 @@ contract C3PO {
      ETHPPT = (USDPPT*10**18) / ETHConversionRate;
      emit LogNewETHPPT(ETHPPT);
   }
-//
 
   function setUSDPPT(uint PPT) public carbosOnly{
     USDPPT = PPT;
