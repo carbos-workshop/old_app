@@ -95,10 +95,10 @@ contract('Gaia', function(accounts) {
 
   it("...should map multiple C3 addresses to their deployers", async () => {
     let firstC3Call = await generateC3From(accounts[1])
-    firstC3 = await new web3.eth.Contract(C3.abi, firstC3Call.logs[0].args[0])
+    let firstC3 = await new web3.eth.Contract(C3.abi, firstC3Call.logs[0].args[0])
 
     let secondC3Call = await generateC3From(accounts[2])
-    secondC3 = await new web3.eth.Contract(C3.abi, secondC3Call.logs[0].args[0])
+    let secondC3 = await new web3.eth.Contract(C3.abi, secondC3Call.logs[0].args[0])
 
     let address1 = await gaia.c3s(firstC3._address)
     let address2 = await gaia.c3s(secondC3._address)
@@ -110,7 +110,20 @@ contract('Gaia', function(accounts) {
   })
 
   it("...should allow users to lookup their C3s", async () => {
-    assert.isOk(false, "test not written")
+    let firstC3Call = await generateC3From(accounts[6])
+    let firstC3 = await new web3.eth.Contract(C3.abi, firstC3Call.logs[0].args[0])
+
+    let secondC3Call = await generateC3From(accounts[6])
+    let secondC3 = await new web3.eth.Contract(C3.abi, secondC3Call.logs[0].args[0])
+
+
+
+    let res = await gaia.getUsersC3(accounts[6])
+
+    let address1 = firstC3._address
+    let address2 = secondC3._address
+
+    assert.equal((address1 === res[0] && address2 === res[1]), true, "returns all users C3s")
   })
 
   it("...should be able to lookup all C3s", async () => {

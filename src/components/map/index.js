@@ -52,16 +52,21 @@ class LeafletMap extends React.Component {
     const { classes } = this.props
     return(
       <div className={classes.root}>
-        <Map className={classes.map} center={this.props.center} zoom={18}>
-          <TileLayer
-            url={this.state.tiles}
-          	attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-          	subdomains='abcd'
-          />
-        <Polygon color={this.props.theme.palette.primary.main} positions={this.readGeometry(this.props.geometry).coordinates}>
+        {
+          this.props.geometry.length
+          ?
+          <Map className={classes.map} center={this.props.center} zoom={18}>
+            <TileLayer
+              url={this.state.tiles}
+              attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+              subdomains='abcd'
+            />
+          <Polygon color={this.props.theme.palette.primary.main} positions={this.readGeometry(this.props.geometry).coordinates}>
 
-        </Polygon>
-        </Map>
+          </Polygon>
+          </Map>
+          : null
+        }
       </div>
     )
   }

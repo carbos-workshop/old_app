@@ -20,7 +20,6 @@ export function loginUser() {
     })
 
     uport.onResponse('disclosureReq').then(res => {
-      console.log(res);
       dispatch(userLoggedIn(res.payload))
 
       // Used a manual redirect here as opposed to a wrapper.

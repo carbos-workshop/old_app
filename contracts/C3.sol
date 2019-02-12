@@ -22,8 +22,8 @@ contract C3 {
     uint public aboveGroundCarbon;
     uint public belowGroundCarbon;
     uint public hectares;
-    uint public latitude;
-    uint public longitude;
+    int public latitude;
+    int public longitude;
     uint public raId;
     uint public ppt;
     string public description;
@@ -39,8 +39,8 @@ contract C3 {
       uint _aboveGroundCarbon,
       uint _belowGroundCarbon,
       uint _hectares,
-      uint _latitude,
-      uint _longitude,
+      int _latitude,
+      int _longitude,
       uint _ppt,
       uint _raId,
       string memory _description,

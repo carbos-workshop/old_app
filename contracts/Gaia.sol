@@ -48,8 +48,8 @@ contract Gaia {
       uint _aboveGroundCarbon,
       uint _belowGroundCarbon,
       uint _hectares,
-      uint _latitude,
-      uint _longitude,
+      int _latitude,
+      int _longitude,
       uint _raId,
       uint _ppt,
       string memory _description,
@@ -95,5 +95,9 @@ contract Gaia {
         endorser.addContract("Carbon Conservation Contract", address(newC3), address(newEscrow));
 
         emit Generated(address(newC3), address(newEscrow));
+    }
+
+    function getUsersC3(address userAddress) public view returns(address[] memory) {
+        return users[userAddress];
     }
 }

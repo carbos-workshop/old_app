@@ -21,6 +21,7 @@ const initialState = {
     belowGround: 0,
   },
   sumbitted: false,
+  complete: false,
   apiError: false,
 }
 
@@ -114,6 +115,10 @@ function c3Reducer(state = initialState, action) {
       case 'C3_API_ERROR_ENCOUNTERED':
         return { ...state,
           apiError: action.payload
+        }
+      case 'C3_FINISHED':
+        return { ...state,
+          complete: action.payload
         }
     default:
       return state
