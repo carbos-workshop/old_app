@@ -28,6 +28,9 @@ import Web3 from 'web3'
 import LeafletMap from '../map'
 import C3 from '../../abis/C3.json'
 import {
+  getParcelByPoint
+} from '../../c3/requests'
+import {
   trimDecimals
 } from '../../util/utils.js'
 
@@ -109,8 +112,6 @@ class C3Card extends React.Component {
   //TODO BatchRequest this
   getC3Info = async(c3, address) => {
     let State = await c3.methods.currentState().call()
-    let test = await c3.methods.longitude().call()
-    console.log(test);
     return {
       totalCarbon: await c3.methods.totalCarbon().call(),
       buyableCarbon: await c3.methods.buyableCarbon().call(),
@@ -129,8 +130,21 @@ class C3Card extends React.Component {
 
   handleExpandClick = () => {
     //get geometry and then set loadingMap to false
-
-    this.setState(state => ({ expanded: !state.expanded }));
+    if (!this.state.geometry.length > 0) {
+      getParcelByPoint(this.state.latitude, this.state.longitude)
+        .then( res => {
+          if (!res.data.results || res.data.results.length > 2) {
+            console.error('Error with Reportall API query', res)
+          }
+          this.setState({
+            expanded: !this.state.expanded,
+            loadingMap: false,
+            geometry: res.data.results[0].geom_as_wkt,
+          })
+        }).catch(console.log)
+    } else {
+      this.setState({expanded: !this.state.expanded,})
+    }
   };
 
   render() {
@@ -141,15 +155,14 @@ class C3Card extends React.Component {
         { name: "Total Carbon", value: trimDecimals(this.state.totalCarbon, 6) },
         { name: "Total Buyable Carbon", value: trimDecimals(this.state.buyableCarbon, 6) },
         { name: "Hectares", value: trimDecimals(this.state.hectares, 6) },
-        // { name: , value: this.state.latitude },
-        // { name: longitude, value: this.state.longitude },
         { name: "ETH Price Per Ton", value: this.state.ppt },
         { name: "Geometry Hash", value: this.state.geometryHash },
     ]
 
     const subheader = (
       <div>
-        <Typography variant="subtitle2">{this.state.contractState}</Typography>
+        <Typography color="primary" variant="subtitle2">{this.state.contractState}</Typography>
+        <Typography variant="subtitle2">{this.state.ppt * this.state.buyableCarbon} <span className="ether-sign">Ξ</span></Typography>
       </div>
     )
     return (

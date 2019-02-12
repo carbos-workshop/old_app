@@ -10,10 +10,6 @@ import Web3 from 'web3'
 const web3 = new Web3(window.web3.currentProvider)
 let c3po = new web3.eth.Contract(C3PO.abi, C3PO.networks[4].address)
 
-console.log('abi->', C3PO);
-console.log('c3po->', c3po);
-
-
 const KEY = 'vzczNNHVi5' //TODO
 const reportAllBaseURL = 'https://reportallusa.com/api/parcels.php?'
 const soilGridsBaseURL = 'https://rest.soilgrids.org/query?'
@@ -107,6 +103,11 @@ export function getParcelByOwnerName(firstname, lastname, location ){
 }
 
 //location required. Can be county, state, or zip code. Can be a combination of city,state.
+export function getParcelByPoint(lat, lng){
+  return axios.get(`${reportAllBaseURL}v=3&return_buildings=true&client=${KEY}&spatial_intersect=POINT(${lng}%20${lat})&si_srid=4326`)
+}
+
+//location required. Can be county, state, or zip code. Can be a combination of city,state.
 export function getParcelByAddress(street, location){
   return new Promise( (resolve,reject) => {resolve({data: {results: response} })}) //TEMP
   // return axios.get(`${reportAllBaseURL}v=3&return_buildings=true&client=${KEY}&region=${location}&address=${street}`)
@@ -123,11 +124,11 @@ export function getEcologicalLandUnits(lat, lng){
 
 export function getBiomass(lat, lng){
   //convert lat/lng strings to numbers then to web mercarder format
-  let y = parseFloat(lat);
-  let x = parseFloat(lng);
-  let coords = transform.forward({x: x, y: y})
 
-  //chrome has problems with this request due to Same Origin CORS Policy
+  let x = parseFloat(lng);
+  let y = parseFloat(lat);
+  let coords = transform.forward({x: x, y: y})
+  //Nathan's chrome has problems with this request due to Same Origin CORS Policy
   return axios.get(`${epaBiomassBaseURL}geometryType=esriGeometryPoint&geometry=${coords.x},${coords.y}&tolerance=0&layers=all&mapExtent=-19942592.3656,2819924.171599999,20012846.0377,11523911.8453&imageDisplay=4096,4096,96&f=json`)
 
   //JSONP request to get around CORS issue in chrome for this API

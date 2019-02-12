@@ -13,6 +13,7 @@ export const C3_BELOW_GROUND_CARBON_UPDATED = 'C3_BELOW_GROUND_CARBON_UPDATED'
 export const C3_OWNER_NAME_MISMATCH_UPDATED = 'C3_OWNER_NAME_MISMATCH_UPDATED'
 export const C3_PRICE_PER_TON_UPDATED = 'C3_PRICE_PER_TON_UPDATED'
 export const C3_API_ERROR_ENCOUNTERED = 'C3_API_ERROR_ENCOUNTERED'
+export const C3_FINISHED = 'C3_FINISHED'
 
 
 
@@ -122,6 +123,13 @@ function C3ApiErrorEncountered(status) {
   }
 }
 
+function C3Finished(status) {
+  return {
+    type: C3_FINISHED,
+    payload: status
+  }
+}
+
 export function updateC3OwnerFirstname(name) {
   return function(dispatch) {
     dispatch(C3OwnerFirstnameUpdated(name))
@@ -209,5 +217,11 @@ export function updateC3PricePerTon(ppt) {
 export function encounteredC3ApiError(status) {
   return function(dispatch) {
     dispatch(C3ApiErrorEncountered(status))
+  }
+}
+
+export function updateC3Finished(status) {
+  return function(dispatch) {
+    dispatch(C3Finished(status))
   }
 }

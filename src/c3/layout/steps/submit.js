@@ -4,8 +4,10 @@ import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from '@material-ui/core/Button';
+import C3 from '../../../components/C3'
 import {
-  updateC3OwnerAddress
+  updateC3OwnerAddress,
+  updateC3Finished
 } from '../../c3Actions'
 import { connectToMetaMask, web3 } from '../../../util/connectors' // { uport }
 import { trimDecimals } from '../../../util/utils' // { uport }
@@ -15,7 +17,6 @@ import {
   calculateActualLandArea,
 } from '../../utils'
 import GAIA from '../../../abis/Gaia.json'
-console.log('GAIA->',GAIA);
 
 const styles = theme => ({
   root: {
@@ -40,6 +41,10 @@ const mapDispatchToProps = (dispatch) => {
     onC3OwnerAddressUpdate: address => {
       dispatch(updateC3OwnerAddress(address))
     },
+    onC3Finished: status => {
+      dispatch(updateC3Finished(status))
+    },
+
   }
 }
 
@@ -88,7 +93,6 @@ class Submit extends React.Component{
   }
 
   deployC3 = async (account)  => {
-    console.log('sending from  -> ', account);
     let c3data = this.buildC3Object()
     let web3 = new Web3(window.web3.currentProvider)
     let gaia = new web3.eth.Contract(GAIA.abi, GAIA.networks[4].address)
@@ -109,11 +113,11 @@ class Submit extends React.Component{
           txHash: res,
           loading: {
             active: true,
-            type: "Transaction Sent. Awaitng Confirmation... (It's not unusual for this to take 5 minutes)",
+            type: "Transaction Sent. Awaiting Confirmation... (It's not unusual for this to take 5 minutes)",
           }
         })
       })
-
+    this.props.onC3Finished(true)
     this.setState({
       loading: {
         active: false,
@@ -179,6 +183,7 @@ class Submit extends React.Component{
               <a className={classes.etherscanLink} target="_blank" rel="noopener noreferrer" href={`https://rinkeby.etherscan.io/tx/${this.state.txHash}`}>View Transaction on Etherscan</a>
             </Button>
             </Typography>
+            <C3 address={this.state.newC3Address}/>
           </div>
         }
       </div>

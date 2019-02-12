@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   updateC3OwnerNameMismatch
 } from '../../c3Actions'
-import ContractDetailCard from '../../../components/contractDetailCard'
+import ContractConfiguration from '../../../components/contractConfiguration'
 import Warning from '../../../components/warning'
 
 const styles = theme => ({
@@ -104,7 +104,7 @@ class Review extends React.Component{
                 <Typography className={classes.explaination} variant="subtitle1">
                   Here are your contract details:
                 </Typography>
-                <ContractDetailCard className={classes.contract} c3={this.props.c3} property={this.props.property}/>
+                <ContractConfiguration className={classes.contract} c3={this.props.c3} property={this.props.property}/>
               </div>
             </div>
         }

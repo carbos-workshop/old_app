@@ -2248,14 +2248,41 @@
   },
   "networks": {
     "4": {
-      "events": {},
+      "events": {
+        "0x8d6b303adfc89c5ff977100a231962a274887543d49dc1af19b53ba62826d87f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "PPT",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewUSDPPT",
+          "type": "event",
+          "signature": "0x8d6b303adfc89c5ff977100a231962a274887543d49dc1af19b53ba62826d87f"
+        },
+        "0xf7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "PPT",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewETHPPT",
+          "type": "event",
+          "signature": "0xf7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c"
+        }
+      },
       "links": {},
-      "address": "0x7ce9eB57F3A8a1a39C5e6c81F3dc30Cca4724672",
-      "transactionHash": "0x2114c219ffbfde8a4b0d7f903dc49b3b97df72625e5a633f860df4e7253b8796"
+      "address": "0x5408c0b94572b390c295a152D8C51b3FDd3e89e7",
+      "transactionHash": "0xd0866d79a0ce887c5740a40589cbabaef7c92522af8abaffc7a6dcafd32d9e63"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-02-11T03:33:52.199Z",
+  "updatedAt": "2019-02-12T22:04:07.636Z",
   "devdoc": {
     "methods": {}
   },
