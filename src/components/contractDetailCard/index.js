@@ -138,10 +138,12 @@ class ContractDetailCard extends React.Component {
   componentWillMount(){
     getEthExchangeRate()
       .then( res => {
-        if(!res.data[0]){this.props.setApiError(true)} //api error catch
-        let ethExchangeRate = res.data[0].price_usd
+        console.log('res->', res);
+        if(!res){this.props.setApiError(true)} //api error catch
+        let ethExchangeRate = res
         getUsdPricePerTon()
           .then( usdppt => {
+            console.log('usdppt->', usdppt);
             let ethppt =  convert.usdToEther(usdppt, ethExchangeRate)
             this.setState({
               price: ethppt * this.props.c3.carbon.total,

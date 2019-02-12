@@ -10,6 +10,8 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import lightTheme from './themes/light.theme.js';
 import './App.css'
 
+import { connectToMetaMask } from './util/connectors'
+
 const styles = theme => ({
   root: {
     margin: '0 auto',
@@ -26,6 +28,11 @@ const styles = theme => ({
 })
 
 class App extends Component {
+  //
+  componentWillMount() {
+    connectToMetaMask()
+  }
+
   render() {
     const { classes } = this.props;
     return (
