@@ -17,6 +17,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -93,6 +97,7 @@ class C3Card extends React.Component {
         latitude: web3.utils.fromWei(res.latitude),
         longitude: web3.utils.fromWei(res.longitude),
         ppt: web3.utils.fromWei(res.ppt),
+        geometryHash: res.geometryHash,
         description: res.description,
         ownerAddress: res.ownerAddress,
         contractState: res.contractState,
@@ -111,6 +116,7 @@ class C3Card extends React.Component {
       buyableCarbon: await c3.methods.buyableCarbon().call(),
       aboveGroundCarbon: await c3.methods.aboveGroundCarbon().call(),
       belowGroundCarbon: await c3.methods.belowGroundCarbon().call(),
+      geometryHash: await c3.methods.geometryHash().call(),
       hectares: await c3.methods.hectares().call(),
       latitude: await c3.methods.latitude().call(),
       longitude: await c3.methods.longitude().call(),
@@ -129,6 +135,18 @@ class C3Card extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const contractInfoRows = [
+        { name: "Above Ground Carbon", value: trimDecimals(this.state.aboveGroundCarbon, 6) },
+        { name: "Below Ground Carbon", value: trimDecimals(this.state.belowGroundCarbon, 6) },
+        { name: "Total Carbon", value: trimDecimals(this.state.totalCarbon, 6) },
+        { name: "Total Buyable Carbon", value: trimDecimals(this.state.buyableCarbon, 6) },
+        { name: "Hectares", value: trimDecimals(this.state.hectares, 6) },
+        // { name: , value: this.state.latitude },
+        // { name: longitude, value: this.state.longitude },
+        { name: "ETH Price Per Ton", value: this.state.ppt },
+        { name: "Geometry Hash", value: this.state.geometryHash },
+    ]
+
     const subheader = (
       <div>
         <Typography variant="subtitle2">{this.state.contractState}</Typography>
@@ -161,6 +179,7 @@ class C3Card extends React.Component {
               [classes.expandOpen]: this.state.expanded,
             })}
             onClick={this.handleExpandClick}
+            disabled={this.state.loading}
             aria-expanded={this.state.expanded}
             aria-label="Show more"
           > <ExpandMoreIcon />
@@ -181,9 +200,20 @@ class C3Card extends React.Component {
             />
           }
           <CardContent>
-            <Typography component="p">
-              info : TODO
-            </Typography>
+            <Table className={classes.table}>
+              <TableBody>
+                {contractInfoRows.map( (row, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">
+                      {row.value}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </CardContent>
         </Collapse>
       </Card>
