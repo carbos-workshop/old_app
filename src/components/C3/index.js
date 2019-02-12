@@ -71,7 +71,7 @@ const styles = theme => ({
     backgroundColor: red[500],
   },
   etherscanLink: {
-    color: theme.palette.primary.main
+    color: theme.palette.text.primary
   },
 });
 

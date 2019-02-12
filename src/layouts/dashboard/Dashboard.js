@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { connectToMetaMask } from '../../util/connectors' // { uport }
+import Web3 from 'web3'
+import GAIA from '../../abis/Gaia.json'
+import C3 from '../../components/C3'
 
 const styles = theme => ({
   root: {
@@ -12,10 +16,34 @@ const styles = theme => ({
 });
 
 class Dashboard extends Component {
+  state = {
+    c3s: []
+  }
   // constructor(props, { authData }) {
   //   super(props)
   //   authData = this.props
   // }
+  componentDidMount(){
+    connectToMetaMask()
+      .then(res => {
+        if (res[0]){
+          this.getUserC3s(res[0])
+            .then( res => {
+              this.setState({
+                c3s: res,
+                address: res[0]
+              })
+            })
+        }
+      })
+  }
+
+  getUserC3s = async(userAddress) => {
+    let web3 = new Web3(window.web3.currentProvider)
+    let gaia = new web3.eth.Contract(GAIA.abi, GAIA.networks[4].address)
+    let c3s = await gaia.methods.getUsersC3(userAddress).call()
+    return c3s
+  }
 
 
   render() {
@@ -25,12 +53,14 @@ class Dashboard extends Component {
         <Typography className={classes.header} variant="h4">
           Dashboard
         </Typography>
-        <Typography variant="body1">
-          This is your Carbos Dashboard.  Carbos Contracts you are associated with will appear here.
+        <Typography variant="body1" className={classes.header}>
+          Here are deployed Carbon Contracts associated with this address ({this.state.address})
         </Typography>
-        <Typography variant="body1">
-          This feature is currently under development.
-        </Typography>
+        {
+          this.state.c3s.map( address => (
+            <C3 key={address} address={address}/>
+          ))
+        }
       </div>
     )
   }
