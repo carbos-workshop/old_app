@@ -96,4 +96,8 @@ contract Gaia {
 
         emit Generated(address(newC3), address(newEscrow));
     }
+
+    function getUsersC3(address userAddress) public view returns(address[] memory) {
+        return users[userAddress];
+    }
 }
