@@ -70,7 +70,10 @@ contract('C3', function(accounts) {
     assert.isOk(false, "test not written")
   })
 
-  //TODO
-  // emit tokens, etc,
+  it("...Test negative longitude", async () => {
+
+    let long = await c3.methods.longitude().call()
+    assert.equal(staticC3.longitude, long, "the negative longitude was stored correctly")
+  })
 
 });
