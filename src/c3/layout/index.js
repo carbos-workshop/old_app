@@ -253,7 +253,7 @@ class C3ProcessForm extends React.Component {
            open={this.state.openDisclaimer}
            onClose={()=>{this.setState({ openDisclaimer: false })}}
          >
-           <DialogTitle>{"Connecting To MetaMask"}</DialogTitle>
+           <DialogTitle>{"Deposit required"}</DialogTitle>
            <DialogContent>
              <Typography className={classes.disclaimerText} variant="body2">
                Submitting a Contract requires a deposit of 5% the contract's value.

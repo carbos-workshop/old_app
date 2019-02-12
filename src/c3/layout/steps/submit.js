@@ -3,13 +3,17 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Button from '@material-ui/core/Button';
 import {
   updateC3OwnerAddress
 } from '../../c3Actions'
 import { connectToMetaMask, web3 } from '../../../util/connectors' // { uport }
+import { trimDecimals } from '../../../util/utils' // { uport }
 import Web3 from 'web3'
 import convert from '../../conversions'
-import { calculateActualLandArea } from '../../utils'
+import {
+  calculateActualLandArea,
+} from '../../utils'
 import GAIA from '../../../abis/Gaia.json'
 console.log('GAIA->',GAIA);
 
@@ -25,6 +29,9 @@ const styles = theme => ({
   },
   hidden: {
     display: 'none'
+  },
+  etherscanLink: {
+    color: theme.palette.text.primary
   }
 })
 
@@ -96,8 +103,7 @@ class Submit extends React.Component{
       c3data.raId,
       c3data.ppt,
       c3data.description,
-      c3data.geometryHash).send({ from: account , value: web3.utils.toWei(deposit.toString()) }, (err, res) => {
-        console.log('res->', res);
+      c3data.geometryHash).send({ from: account , value: web3.utils.toWei(trimDecimals(deposit,18).toString()) }, (err, res) => {
         this.setState({
           ...this.state,
           txHash: res,
@@ -106,7 +112,6 @@ class Submit extends React.Component{
             type: "Transaction Sent. Awaitng Confirmation... (It's not unusual for this to take 5 minutes)",
           }
         })
-        //TODO link to etherscan -> UI
       })
 
     this.setState({
@@ -115,7 +120,7 @@ class Submit extends React.Component{
       },
       newC3Address: contractCall.events.Generated.returnValues.contractAddress,
     })
-      //contractCall.events.Generated.returnValues.contractAddress //C3 address "0xeAF1D655CE98c688757E2e3AeD72f8353109Ea3B"
+      //contractCall.events.Generated.returnValues.contractAddress //C3 address "0x9C839d96eBC28868844E7736cF62128D44281D8F"
       //contractCall.events.Generated.returnValues.escrowAddress //escrow Address
 
   }
@@ -127,13 +132,13 @@ class Submit extends React.Component{
       raId: this.props.c3.property.rausa_id, //reportall lookup
       latitude: web3.utils.toWei(this.props.c3.property.latitude.toString()),
       longitude: web3.utils.toWei(this.props.c3.property.longitude.toString()),
-      ppt: web3.utils.toWei(this.props.c3.ppt.toString()),
-      hectares: web3.utils.toWei((convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000).toString()), //area in hectares
+      ppt: web3.utils.toWei(trimDecimals(this.props.c3.ppt,18).toString()),
+      hectares: web3.utils.toWei(trimDecimals((convert.acresToSquareMeters(calculateActualLandArea(this.props.c3.property.acreage_calc, this.props.c3.property.bldg_sqft))/10000),18).toString()), //area in hectares
       address: this.props.c3.owner.address, //set by uPort, overwritten by MetaMask in submit process
       description: this.props.c3.description, //ELU code
-      aboveGroundCarbon: web3.utils.toWei(this.props.c3.carbon.aboveGround.toString()),
-      belowGroundCarbon: web3.utils.toWei(this.props.c3.carbon.belowGround.toString()),
-      totalCarbon: web3.utils.toWei(this.props.c3.carbon.total.toString()),
+      aboveGroundCarbon: web3.utils.toWei(trimDecimals(this.props.c3.carbon.aboveGround,18).toString()),
+      belowGroundCarbon: web3.utils.toWei(trimDecimals(this.props.c3.carbon.belowGround,18).toString()),
+      totalCarbon: web3.utils.toWei(trimDecimals(this.props.c3.carbon.total,18).toString()),
     }
 
   }
@@ -157,7 +162,9 @@ class Submit extends React.Component{
                 this.state.txHash
                 ?
                 <Typography className={classes.explaination} variant="body2">
-                  {this.state.txHash}
+                <Button>
+                  <a className={classes.etherscanLink} target="_blank" rel="noopener noreferrer" href={`https://rinkeby.etherscan.io/tx/${this.state.txHash}`}>View Transaction on Etherscan</a>
+                </Button>
                 </Typography>
                 : null
               }
@@ -165,7 +172,12 @@ class Submit extends React.Component{
           :
           <div className={classes.loadedRoot}>
             <Typography className={classes.explaination} variant="body2">
-              Transaction mined.  TODO -> display C3 component
+              Transaction sucessfully mined.
+            </Typography>
+            <Typography className={classes.explaination} variant="body2">
+            <Button>
+              <a className={classes.etherscanLink} target="_blank" rel="noopener noreferrer" href={`https://rinkeby.etherscan.io/tx/${this.state.txHash}`}>View Transaction on Etherscan</a>
+            </Button>
             </Typography>
           </div>
         }

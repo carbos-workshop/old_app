@@ -5,10 +5,11 @@ import classNames from 'classnames'
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import { connect } from 'react-redux'
+import { connectToMetaMask } from '../../util/connectors'
 import {
   encounteredC3ApiError
 } from '../../c3/c3Actions'
-import C3 from '../../c3/layout'
+import C3Card from '../../c3/layout'
 
 const styles = theme => ({
   root: {
@@ -44,6 +45,10 @@ class Demo extends Component {
      error: this.props.c3.apiError,
    };
 
+   componentWillMount() {
+     connectToMetaMask()
+   }
+
    handleCloseError = (event, reason) => {
      if (reason === 'clickaway') {
        return;
@@ -60,7 +65,7 @@ class Demo extends Component {
         <Typography className={classes.title} variant="h4">
           Carbon Conservation Contract
         </Typography>
-        <C3 />
+        <C3Card />
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',

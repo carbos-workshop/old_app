@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 // import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
-
+import C3 from '../../components/C3'
 const styles = theme => ({
   root: {
 
@@ -28,6 +28,7 @@ class Home extends Component {
             <Typography variant="body1">graphics</Typography>
           </li>
         </ul>
+        <C3 address="0x32217eBa8d15d307098F0D2ac7e5C5289be66484"/>
       </div>
     )
   }
