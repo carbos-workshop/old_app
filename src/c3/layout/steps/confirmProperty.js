@@ -130,13 +130,6 @@ class ConfirmProperty extends React.Component {
       })
   }
 
-  componentWillUnmount(){
-    // this.setState({
-    //   loading:true,
-    //   properties: [],
-    // })
-  }
-
   selectProperty = property => {
     this.props.onOwnerPropertyUpdate(property)
     this.setState({

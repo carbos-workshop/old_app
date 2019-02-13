@@ -46,7 +46,7 @@ class Header extends React.Component {
             <Button className={classes.button} variant="text">Profile</Button>
           </Link>
           <Link to="/demo">
-            <Button className={classes.button} variant="text">View Demo</Button>
+            <Button className={classes.button} variant="text">Demo</Button>
           </Link>
         </span>
         <LogoutButtonContainer />

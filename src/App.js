@@ -8,12 +8,15 @@ import Header from './components/header'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import lightTheme from './themes/light.theme.js';
+// import darkTheme from './themes/dark.theme.js';
+// import classNames from 'classnames'
 import './App.css'
 
 const styles = theme => ({
   root: {
     margin: '0 auto',
     paddingTop: theme.spacing.unit * 5,
+    paddingBottom: theme.spacing.unit * 5,
     width: '70%',
     flex:'1',
     [theme.breakpoints.down('md')]: {
@@ -26,6 +29,7 @@ const styles = theme => ({
 })
 
 class App extends Component {
+
 
   render() {
     const { classes } = this.props;

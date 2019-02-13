@@ -7,8 +7,11 @@ const styles = theme => ({
 
   },
   header: {
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing.unit * 4
   },
+  profileItem: {
+    margin: theme.spacing.unit * 2
+  }
 });
 
 //TODO move this to larger layout directory
@@ -25,20 +28,17 @@ class Profile extends Component {
         <Typography className={classes.header} variant="h4">
           Carbos Profile
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" className={classes.profileItem}>
+          Additional configuration options and changes you make in uPort will be reflected here.
+        </Typography>
+        <Typography variant="body1" className={classes.profileItem}>
           Name: {this.props.authData.name}
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" className={classes.profileItem}>
           Location: {this.props.authData.country}
         </Typography>
-        <Typography variant="body1">
-          uPort Wallet Address: {this.props.authData.address}
-        </Typography>
-        <Typography variant="body1">
-          Additional configuration options for you carbos account and profile will appear here. Changes you make in uPort will be reflected here.
-        </Typography>
-        <Typography variant="body1">
-          This feature is currently under development.
+        <Typography variant="body1" className={classes.profileItem}>
+          Identity: {this.props.authData.did.split(':')[2]}
         </Typography>
       </div>
     )

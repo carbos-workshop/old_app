@@ -11,6 +11,9 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   min-height: 100%;
   flex: 1;
 }
+.darkapp{
+  background: "#212121"
+}
 .ether-sign{
   font-family: Helvetica !important;
 }
