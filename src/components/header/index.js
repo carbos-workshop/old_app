@@ -9,6 +9,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import logoText from '../../img/carbos.svg'
 
 const styles = theme => ({
   root: {
@@ -18,8 +19,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   homelink: {
-    color: 'white',
-    fontWeight: '300',
+    height: '32px',
   },
   linkWrapper: {
     // marginRight: '5em',
@@ -64,9 +64,7 @@ class Header extends React.Component {
         <AppBar position="static">
           <Toolbar>
             <Link to="/" className={classes.grow}>
-              <Typography variant="h4" color="inherit" className={classes.homelink}>
-                carbos
-              </Typography>
+              <img src={logoText} className={classes.homelink}/>
             </Link>
             <span className={classes.linkWrapper}>
 
