@@ -62,6 +62,7 @@ contract Endorsement {
       carbos = _carbos;
       gaia = msg.sender;
       voters[_carbos].authorized = true;
+      requiredEndorsements = 5;
     }
 
 

@@ -50,7 +50,7 @@ contract Gaia {
       uint _hectares,
       int _latitude,
       int _longitude,
-      uint _raId,
+      // uint _raId,
       uint _ppt,
       string memory _description,
       string memory _geometryHash
@@ -71,7 +71,7 @@ contract Gaia {
           _latitude,
           _longitude,
           _ppt,
-          _raId,
+          // _raId,
           _description,
           _geometryHash,
           msg.sender,
@@ -99,5 +99,9 @@ contract Gaia {
 
     function getUsersC3(address userAddress) public view returns(address[] memory) {
         return users[userAddress];
+    }
+
+    function getAllC3s() public view returns(address[] memory) {
+      return allC3s;
     }
 }

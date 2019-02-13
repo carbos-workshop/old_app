@@ -17,6 +17,8 @@ contract C3 {
         _;
     }
 
+    event Test( string adsf );
+
     uint public totalCarbon;
     uint public buyableCarbon;
     uint public aboveGroundCarbon;
@@ -24,7 +26,7 @@ contract C3 {
     uint public hectares;
     int public latitude;
     int public longitude;
-    uint public raId;
+    // uint public raId;
     uint public ppt;
     string public description;
     string public geometryHash;
@@ -42,7 +44,7 @@ contract C3 {
       int _latitude,
       int _longitude,
       uint _ppt,
-      uint _raId,
+      // uint _raId,
       string memory _description,
       string memory _geometryHash,
       address payable _ownerAddress,
@@ -55,7 +57,7 @@ contract C3 {
       latitude = _latitude;
       longitude = _longitude;
       ppt = _ppt;
-      raId = _raId;
+      // raId = _raId;
       description = _description;
       geometryHash = _geometryHash;
       ownerAddress = _ownerAddress;
@@ -67,6 +69,7 @@ contract C3 {
 
     function endorsementComplete() public endorserOnly requireState(State.AWAITING_ENDORSEMENT) {
       currentState = State.VERIFIED;
+      emit Test('deez nutz');
     }
 
     function buyCarbon(uint _tons) public payable requireState(State.VERIFIED){

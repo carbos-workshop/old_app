@@ -1,9 +1,11 @@
 const truffleAssert = require('truffle-assertions')
 const Gaia = artifacts.require("./Gaia.sol");
 const C3 = artifacts.require("./C3.sol");
+const Endorsement = artifacts.require("./Endorsement.sol");
+const Escrow = artifacts.require("./Escrow.sol");
 
 const staticC3 = {
-  address: "0x190e03ccbf905f67ca2ad39017bfb09660835ca7",
+  // address: "0x190e03ccbf905f67ca2ad39017bfb09660835ca7",
   aboveGroundCarbon: "140824208562901730",
   totalCarbon: "7972507037080358000",
   belowGroundCarbon: "20713788410554585000",
@@ -12,8 +14,8 @@ const staticC3 = {
   hectares: "351143725575757600",
   latitude: "39612359801573200000",
   longitude: "-104921698900218000000",
-  raId: "47357",
-  ppt: "400820612455699830",
+  // raId: "47357",
+  ppt: "420820612455699830",
 }
 
 contract('C3', function(accounts) {
@@ -31,11 +33,11 @@ contract('C3', function(accounts) {
         staticC3.hectares,
         staticC3.latitude,
         staticC3.longitude,
-        staticC3.raId,
+        // staticC3.raId,
         staticC3.ppt,
         staticC3.description,
-        // staticC3.geometryHash,
-        web3.utils.toWei(Math.random().toString()), // ensure hashes dont overlap
+        staticC3.geometryHash,
+        // web3.utils.toWei(Math.random().toString()), // ensure hashes dont overlap
         { from: address , value: web3.utils.toWei(value.toString()) })
     }
   })
@@ -49,17 +51,44 @@ contract('C3', function(accounts) {
     assert.isOk(c3)
   })
 
-  it("...should correctly store all params", async () => {
+  it("...should correctly store all static params", async () => {
     // convert params and match to original object
-    assert.isOk(false, "test not written")
+    let expectedValues = {
+      totalCarbon: await c3.methods.totalCarbon().call(),
+      aboveGroundCarbon: await c3.methods.aboveGroundCarbon().call(),
+      belowGroundCarbon: await c3.methods.belowGroundCarbon().call(),
+      hectares: await c3.methods.hectares().call(),
+      latitude: await c3.methods.latitude().call(),
+      longitude: await c3.methods.longitude().call(),
+      ppt: await c3.methods.ppt().call(),
+      description: await c3.methods.description().call(),
+      geometryHash: await c3.methods.geometryHash().call(),
+    }
+    let c3Values = staticC3
+    delete c3Values.address //set by gaia
+    assert.deepEqual(expectedValues, c3Values, "not equal")
   })
 
   it("...should be awaitng endorsement", async () => {
-    assert.isOk(false, "test not written")
+    let state = await c3.methods.currentState().call()
+    assert.equal(state, 0, "C3 not intialized in AWAITING_ENDORSEMENT state")
   })
 
-  it("...should not be buyable until verified", async () => {
-    assert.isOk(false, "test not written")
+  it("...should enter verified state once endorsed", async () => {
+    let endorserAddress = await c3.methods.endorser().call()
+    // console.log(endorserAddress);
+    let endorser = await new web3.eth.Contract(Endorsement.abi, endorserAddress)
+    //contract exists in endorsement mapping
+    let test = await endorser.methods.contracts(c3._address).call()
+
+    //escrow address tored in endorser
+    // let escrow = await new web3.eth.Contract(Escrow.abi, test.escrow)
+    // let test2 = await escrow.methods.endorser().call()
+    // console.log(test2);
+    let endorsement = await endorser.methods.fullyEndorse(c3._address).call({from: accounts[0]})
+    let state = await c3.methods.currentState().call()
+    console.log(state);
+    assert.equal(state, 1,"C3 did not enter verified state when endorsed")
   })
 
   it("...should be buyable once verified", async () => {
@@ -70,10 +99,9 @@ contract('C3', function(accounts) {
     assert.isOk(false, "test not written")
   })
 
-  it("...Test negative longitude", async () => {
-
+  it("...should return an integer value when passed a negative longitude", async () => {
     let long = await c3.methods.longitude().call()
-    assert.equal(staticC3.longitude, long, "the negative longitude was stored correctly")
+    assert.equal(staticC3.longitude, long, "did not store a negative longitude correctly")
   })
 
 });

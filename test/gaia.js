@@ -2,6 +2,7 @@ var Gaia = artifacts.require("./Gaia.sol");
 var Endorsement = artifacts.require("./Endorsement.sol");
 var Escrow = artifacts.require("./Escrow.sol");
 var C3 = artifacts.require("./C3.sol");
+var C3PO = artifacts.require("./C3PO.sol");
 
 const BN = web3.utils.BN;
 const staticC3 = {
@@ -14,7 +15,7 @@ const staticC3 = {
   hectares: "351143725575757600",
   latitude: "39612359801573200000",
   longitude: "-104921698900218000000",
-  raId: "47357",
+  // raId: "47357",
   ppt: "400820612455699830",
 }
 
@@ -38,7 +39,7 @@ contract('Gaia', function(accounts) {
         staticC3.hectares,
         staticC3.latitude,
         staticC3.longitude,
-        staticC3.raId,
+        // staticC3.raId,
         staticC3.ppt,
         staticC3.description,
         staticC3.geometryHash,
@@ -61,11 +62,15 @@ contract('Gaia', function(accounts) {
   })
 
   it("...should be deploy a C3PO contract", async () => {
-    assert.isOk(false, "test not written")
+    let c3poAddress = await gaia.c3po()
+    c3po = await new web3.eth.Contract(C3PO.abi, c3po)
+    assert.isOk(c3po)
   })
 
   it("...should set carbos address in endorsement contract", async () => {
-    assert.isOk(false, "test not written")
+    let carbos = await gaia.carbos()
+    let endorsementCarbos = await endorser.methods.carbos().call()
+    assert.equal(carbos, endorsementCarbos, "carbos address set in endorsement Contract")
   })
 
   it("...should generate a C3 after calling genC3", async () => {
@@ -127,7 +132,17 @@ contract('Gaia', function(accounts) {
   })
 
   it("...should be able to lookup all C3s", async () => {
-    assert.isOk(false, "test not written")
-  })
+     gaia = await Gaia.new({from: accounts[0]})
+     let firstC3Call = await generateC3From(accounts[1])
+     let firstC3 = await new web3.eth.Contract(C3.abi, firstC3Call.logs[0].args[0])
+
+     let secondC3Call = await generateC3From(accounts[1])
+     let secondC3 = await new web3.eth.Contract(C3.abi, secondC3Call.logs[0].args[0])
+
+     let allc3s = await gaia.getAllC3s()
+     let res = (allc3s[0] === firstC3._address &&
+                allc3s[1] === secondC3._address)
+     assert.equal(res, true, "all C3s found")
+   })
 
 });

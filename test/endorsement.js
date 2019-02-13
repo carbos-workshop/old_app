@@ -48,45 +48,45 @@ contract('Endorsement', function(accounts) {
   it("...should not allow other addresses to authorize voters", async () => {
     await truffleAssert.reverts(endorsement.methods.authorize(accounts[2]).send({from: accounts[1]}))
   });
-
-  it("...should allow Gaia to add a Contract for endorsement", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should not allow other addresses to add a Contract for endorsement", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should allow an authorized voter to endorse a Contract", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should not allow other addresses to endorse a Contract", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should not allow carbos to fully endorse a Contract", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should not allow other addresses to fully endorse a Contract", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should release escrow funds when a Contract receives full endorsement from carbos", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should release escrow funds when a Contract receives 5 endorsements from authorized voters", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should update the state of Contract once the Contract is fully endorsed", async () => {
-    assert.isOk(false, "test not written")
-  });
-
-  it("...should update the state of Contract once the Contract is fully endorsed", async () => {
-    assert.isOk(false, "test not written")
-  });
+  //
+  // it("...should allow Gaia to add a Contract for endorsement", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should not allow other addresses to add a Contract for endorsement", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should allow an authorized voter to endorse a Contract", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should not allow other addresses to endorse a Contract", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should not allow carbos to fully endorse a Contract", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should not allow other addresses to fully endorse a Contract", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should release escrow funds when a Contract receives full endorsement from carbos", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should release escrow funds when a Contract receives 5 endorsements from authorized voters", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should update the state of Contract once the Contract is fully endorsed", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
+  //
+  // it("...should update the state of Contract once the Contract is fully endorsed", async () => {
+  //   assert.isOk(false, "test not written")
+  // });
 
 });
