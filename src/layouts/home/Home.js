@@ -17,20 +17,23 @@ class Home extends Component {
         <Typography variant="h2">
           Carbos
         </Typography>
-        <ul>
-          <li>
-            <Typography variant="body1">need to login to use App</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">description of app</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">graphics</Typography>
-          </li>
-        </ul>
+         <Typography style={{marginTop: '12px'}} variant="body1">Login with uPort to view our Demo. You will need MetaMask installed.</Typography>
       </div>
     )
   }
 }
+
+// <ul>
+//   <li>
+//     <Typography variant="body1">need to login to use App</Typography>
+//   </li>
+//   <li>
+//     <Typography variant="body1">description of app</Typography>
+//   </li>
+//   <li>
+//     <Typography variant="body1">graphics</Typography>
+//   </li>
+// </ul>
+//
 
 export default withStyles(styles)(Home)
