@@ -1,14 +1,14 @@
 const initialState = {
   owner: {
-    firstname: 'x',
-    lastname: 'x',
+    firstname: '',
+    lastname: '',
     address: '',
   },
   postalAddress: {
-    street: 'x',
-    state: 'Hawaii',
-    county: 'x',
-    zip: '1'
+    street: '',
+    state: '',
+    county: '',
+    zip: ''
   },
   property: null,
   propertyConfirmation: false,

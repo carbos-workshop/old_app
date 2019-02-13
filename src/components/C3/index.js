@@ -158,7 +158,8 @@ class C3Card extends React.Component {
 
     const subheader = (
       <div>
-        <Typography color="primary" variant="subtitle2">{this.state.contractState}</Typography>
+        <Typography variant="subtitle2">{this.state.description}</Typography>
+        <Typography variant="subtitle2" color="primary" >{this.state.contractState}</Typography>
         <Typography variant="subtitle2">{this.state.ppt * this.state.buyableCarbon} <span className="ether-sign">Ξ</span></Typography>
       </div>
     )
@@ -175,7 +176,7 @@ class C3Card extends React.Component {
                 <Identicon size="medium" address={this.props.address} />
               )}/>
             }
-            title={<Typography variant="h5">{this.state.description}</Typography>}
+            title={<Typography variant="h5">Land Carbon Conservation Contract</Typography>}
             subheader={subheader}
           />
         }
