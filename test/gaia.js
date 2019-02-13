@@ -139,10 +139,12 @@ contract('Gaia', function(accounts) {
      let secondC3Call = await generateC3From(accounts[1])
      let secondC3 = await new web3.eth.Contract(C3.abi, secondC3Call.logs[0].args[0])
 
-     let allc3s = await gaia.getAllC3s()
-     let res = (allc3s[0] === firstC3._address &&
-                allc3s[1] === secondC3._address)
-     assert.equal(res, true, "all C3s found")
+     let allC3s = await gaia.getAllC3s()
+     assert.equal((
+       allC3s[0] === firstC3._address
+       && allC3s[1] === secondC3._address
+       && allC3s.length === 2
+     ), true, "all C3s found")
    })
 
 });

@@ -58,7 +58,7 @@ contract Endorsement {
     mapping(address => Contract) public contracts; //lookup for Contract's endorsement status
     mapping(address => Voter) public voters; //lookup for voters voting status on a contract
 
-    constructor(address _carbos) public {
+    constructor(address _carbos) public payable{
       carbos = _carbos;
       gaia = msg.sender;
       voters[_carbos].authorized = true;
@@ -104,7 +104,7 @@ contract Endorsement {
     function checkForRelease(address _contract) internal {
       //release is count > requiredEndorsements
       if(contracts[_contract].count >= requiredEndorsements) {
-        releaseC3Deposit(contracts[_contract].escrow);
+        releaseC3Deposit(_contract);
 
         emit Endorsed(
           contracts[_contract].classification,
@@ -120,7 +120,7 @@ contract Endorsement {
       C3 c3 = C3(_contract);
       c3.endorsementComplete();
 
-      //release escrow
+      // release escrow
       Escrow deposit = Escrow(contracts[_contract].escrow);
       deposit.endorsementComplete();
 

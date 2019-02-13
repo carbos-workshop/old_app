@@ -17,8 +17,6 @@ contract C3 {
         _;
     }
 
-    event Test( string adsf );
-
     uint public totalCarbon;
     uint public buyableCarbon;
     uint public aboveGroundCarbon;
@@ -69,7 +67,6 @@ contract C3 {
 
     function endorsementComplete() public endorserOnly requireState(State.AWAITING_ENDORSEMENT) {
       currentState = State.VERIFIED;
-      emit Test('deez nutz');
     }
 
     function buyCarbon(uint _tons) public payable requireState(State.VERIFIED){

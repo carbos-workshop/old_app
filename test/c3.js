@@ -2,7 +2,6 @@ const truffleAssert = require('truffle-assertions')
 const Gaia = artifacts.require("./Gaia.sol");
 const C3 = artifacts.require("./C3.sol");
 const Endorsement = artifacts.require("./Endorsement.sol");
-const Escrow = artifacts.require("./Escrow.sol");
 
 const staticC3 = {
   // address: "0x190e03ccbf905f67ca2ad39017bfb09660835ca7",
@@ -76,19 +75,11 @@ contract('C3', function(accounts) {
 
   it("...should enter verified state once endorsed", async () => {
     let endorserAddress = await c3.methods.endorser().call()
-    // console.log(endorserAddress);
     let endorser = await new web3.eth.Contract(Endorsement.abi, endorserAddress)
-    //contract exists in endorsement mapping
-    let test = await endorser.methods.contracts(c3._address).call()
-
-    //escrow address tored in endorser
-    // let escrow = await new web3.eth.Contract(Escrow.abi, test.escrow)
-    // let test2 = await escrow.methods.endorser().call()
-    // console.log(test2);
-    let endorsement = await endorser.methods.fullyEndorse(c3._address).call({from: accounts[0]})
+    // cendorse c3 as carbos account
+    let endorsement = await endorser.methods.fullyEndorse(c3._address).send({from: accounts[0]})
     let state = await c3.methods.currentState().call()
-    console.log(state);
-    assert.equal(state, 1,"C3 did not enter verified state when endorsed")
+    assert.equal(state, 1, "C3 did not enter verified state when endorsed")
   })
 
   it("...should be buyable once verified", async () => {
