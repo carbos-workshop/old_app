@@ -13,16 +13,16 @@ const styles = theme => ({
   header: {
     marginBottom: theme.spacing.unit * 2
   },
+  address: {
+    color: theme.palette.primary.main
+  }
 });
 
 class Dashboard extends Component {
   state = {
     c3s: []
   }
-  // constructor(props, { authData }) {
-  //   super(props)
-  //   authData = this.props
-  // }
+
   componentDidMount(){
     connectToMetaMask()
       .then(res => {
@@ -54,7 +54,7 @@ class Dashboard extends Component {
           Dashboard
         </Typography>
         <Typography variant="body1" className={classes.header}>
-          Here are deployed Carbon Contracts associated with this address ({this.state.address})
+          Here are deployed Carbon Contracts associated with <span className={classes.address}>{this.state.address}</span>
         </Typography>
         {
           this.state.c3s.map( address => (

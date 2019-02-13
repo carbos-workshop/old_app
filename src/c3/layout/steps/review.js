@@ -101,7 +101,7 @@ class Review extends React.Component{
                 null
               }
               <div className={classes.contractWrapper}>
-                <Typography className={classes.explaination} variant="subtitle1">
+                <Typography className={classes.explaination} variant="body2">
                   Here are your contract details:
                 </Typography>
                 <ContractConfiguration className={classes.contract} c3={this.props.c3} property={this.props.property}/>

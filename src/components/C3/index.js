@@ -16,14 +16,11 @@ import { Identicon } from 'ethereum-react-components';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Web3 from 'web3'
 import LeafletMap from '../map'
 import C3 from '../../abis/C3.json'
@@ -124,7 +121,7 @@ class C3Card extends React.Component {
       ppt: await c3.methods.ppt().call(),
       description: await c3.methods.description().call(),
       ownerAddress: await c3.methods.ownerAddress().call(),
-      contractState: (State == 0 ? "Awaiting Endorsement" : "Verified")
+      contractState: (State === 1 ? "Verified" : "Awaiting Endorsement")
     }
   }
 
@@ -161,7 +158,8 @@ class C3Card extends React.Component {
 
     const subheader = (
       <div>
-        <Typography color="primary" variant="subtitle2">{this.state.contractState}</Typography>
+        <Typography variant="subtitle2">{this.state.description}</Typography>
+        <Typography variant="subtitle2" color="primary" >{this.state.contractState}</Typography>
         <Typography variant="subtitle2">{this.state.ppt * this.state.buyableCarbon} <span className="ether-sign">Ξ</span></Typography>
       </div>
     )
@@ -178,7 +176,7 @@ class C3Card extends React.Component {
                 <Identicon size="medium" address={this.props.address} />
               )}/>
             }
-            title={<Typography variant="h5">{this.state.description}</Typography>}
+            title={<Typography variant="h5">Land Carbon Conservation Contract</Typography>}
             subheader={subheader}
           />
         }

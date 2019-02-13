@@ -26,7 +26,6 @@ import { calculateActualLandArea } from '../../utils'
 const mapStateToProps = (state, ownProps) => {
   return {
     c3: state.c3,
-    // user: state.user
   }
 }
 

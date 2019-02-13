@@ -113,7 +113,7 @@ class Submit extends React.Component{
           txHash: res,
           loading: {
             active: true,
-            type: "Transaction Sent. Awaiting Confirmation... (It's not unusual for this to take 5 minutes)",
+            type: "Transaction Sent. Awaiting Confirmation... (This can take a while)",
           }
         })
       })
