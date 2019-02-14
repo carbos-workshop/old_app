@@ -48,18 +48,21 @@ contract('Escrow', function(accounts) {
     c3 = await new web3.eth.Contract(Escrow.abi, c3Call.logs[0].args[0])
   })
 
-  // it("...should be deployed", async () => {
-  //   assert.isOk(escrow)
-  // })
-  //
-  // it("...should contain the correct balance", async () => {
-  //   assert.isOk(false, "test not written")
-  // })
-  //
-  // it("...should set carbos to the proper address", async () => {
-  //   assert.isOk(false, "test not written")
-  // })
-  //
+  it("...should be deployed", async () => {
+    assert.isOk(escrow)
+  })
+
+  it("...should contain the correct balance", async () => {
+    let value = (web3.utils.fromWei(staticC3.totalCarbon) * web3.utils.fromWei(staticC3.ppt))/20
+    let escrowBalance = await web3.eth.getBalance(escrow._address)
+    escrowBalance = web3.utils.fromWei(escrowBalance)
+    assert.equal(escrowBalance, value, "the balance is the expected value")
+  })
+
+  it("...should set carbos to the proper address", async () => {
+    assert.isOk(false, "test not written")
+  })
+
   // it("...should set deployed to the proper address", async () => {
   //   assert.isOk(false, "test not written")
   // })
