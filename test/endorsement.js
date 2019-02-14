@@ -87,10 +87,7 @@ contract('Endorsement', function(accounts) {
   });
 
   it("...should not allow other addresses to directly add a Contract for endorsement", async () => {
-      let c3Call = await generateC3From(accounts[5])
-      let test = await endorsement.methods.addContract('test',c3Call.logs[0].args[0], c3Call.logs[0].args[1])
-      console.log(test);
-      await truffleAssert.reverts(endorsement.methods.addContract('test',c3Call.logs[0].args[0], c3Call.logs[0].args[1]))
+      await truffleAssert.reverts(endorsement.methods.addContract('test', accounts[2], accounts[1]).send({from: accounts[3]}))
   });
 
   it("...should allow an authorized voter to endorse a Contract", async () => {
