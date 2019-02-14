@@ -20,9 +20,9 @@ contract('C3PO', function(accounts) {
     assert.equal(carbos, accounts[0], "Did not set carbos to msg.sender")
   })
 
-  it("...should initialize USDPPT to 50", async () => {
+  it("...should initialize USDPPT to 30", async () => {
     let usdppt = await c3po.USDPPT()
-    assert.equal(usdppt.toNumber(), 50, "Did not properly initialize USPPT")
+    assert.equal(usdppt.toNumber(), 30, "Did not properly initialize USPPT")
   })
 
   it("...should return an ETHPPT value", async () => {
@@ -30,7 +30,7 @@ contract('C3PO', function(accounts) {
     //only checks 6 decimals
     let ethppt = await c3po.ETHPPT();
     ethppt = web3.utils.fromWei(ethppt.toString());
-    let expected = web3.utils.fromWei(web3.utils.toWei((50/120).toString()));
+    let expected = web3.utils.fromWei(web3.utils.toWei((30/120).toString()));
     expected = Math.round(expected * 1000000) / 1000000
     ethppt = Math.round(ethppt * 1000000) / 1000000
     assert.equal(ethppt, expected,"Does not return a valid ETHPPT")

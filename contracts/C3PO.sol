@@ -19,7 +19,7 @@ contract C3PO {
 
   constructor() public {
     carbos = msg.sender;
-    USDPPT = 50; //50 USD
+    USDPPT = 30; //50 USD
     //update conversion rate
     ETHConversionRate = 120; //TEMP -> TODO UPDATE() TO ORACLE
     setETHPPT();
