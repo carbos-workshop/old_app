@@ -37,7 +37,7 @@ contract Endorsement {
 
     struct Voter{
       bool authorized;
-      mapping(address => bool) voted; //can only vote one tile on address (true = has voted)
+      mapping(address => uint) voted; //can only vote one tile on address (true = has voted)
     }
 
     modifier carbosOnly(){
@@ -85,9 +85,9 @@ contract Endorsement {
     }
 
     function vote(address _contract) public isAuthorized{
-      require(voters[msg.sender].voted[_contract] = false, "Voter has already voted for this C3");
+      require(voters[msg.sender].voted[_contract] == 0, "Voter has already voted for this C3");
       //voter has used their one vote
-      voters[msg.sender].voted[_contract] = true;
+      voters[msg.sender].voted[_contract] = 1;
       //increment endorsements on Contract struct
       contracts[_contract].count += 1;
 
@@ -123,7 +123,6 @@ contract Endorsement {
       // release escrow
       Escrow deposit = Escrow(contracts[_contract].escrow);
       deposit.endorsementComplete();
-
     }
 
 }

@@ -90,16 +90,30 @@ contract('Endorsement', function(accounts) {
       await truffleAssert.reverts(endorsement.methods.addContract('test', accounts[2], accounts[1]).send({from: accounts[3]}))
   });
 
-  it("...should allow an authorized voter to endorse a Contract", async () => {
-    assert.isOk(false, "test not written")
+  it("...should allow an authorized voter to vote on a Contract", async () => {
+    let c3Call = await generateC3From(accounts[5])
+    c3 = await new web3.eth.Contract(C3.abi, c3Call.logs[0].args[0])
+    await endorsement.methods.authorize(accounts[3]).send({from: accounts[0]})
+    await endorsement.methods.vote(c3._address).send({from: accounts[3]})
+    let contractStatus = await endorsement.methods.contracts(c3._address).call()
+    assert.equal(contractStatus.count, 1, "endorsement vote from authorized voter not properly registered")
   });
 
   it("...should not allow other addresses to endorse a Contract", async () => {
-    assert.isOk(false, "test not written")
+    await truffleAssert.reverts(endorsement.methods.vote(c3._address).send({from: accounts[4]}))
   });
 
-  it("...should not allow carbos to fully endorse a Contract", async () => {
+  it("...should allow carbos to fully endorse a Contract", async () => {
+    let c3Call = await generateC3From(accounts[1])
+    c3 = await new web3.eth.Contract(C3.abi, c3Call.logs[0].args[0])
+    // await endorsement.methods.authorize(accounts[3]).send({from: accounts[0]})
+    // await endorsement.methods.vote(c3._address).send({from: accounts[3]})
+    await endorsement.methods.fullyEndorse(c3._address).send({from: accounts[0]})
+
+      // check c3 and escrow for proper results
+      
     assert.isOk(false, "test not written")
+
   });
 
   it("...should not allow other addresses to fully endorse a Contract", async () => {
