@@ -110,24 +110,24 @@
       "signature": "0x93fa216f"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5033600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506032600081905550607860028190555061007961007e640100000000026401000000009004565b6100d9565b600254670de0b6b3a76400006000540281151561009757fe5b046001819055507ff7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c6001546040518082815260200191505060405180910390a1565b6102e9806100e86000396000f3fe60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635b12278d1461007257806393fa216f1461009d578063a27361dd146100d8578063bccc69f814610103578063edb840db1461012e575b600080fd5b34801561007e57600080fd5b50610087610185565b6040518082815260200191505060405180910390f35b3480156100a957600080fd5b506100d6600480360360208110156100c057600080fd5b810190808035906020019092919050505061018b565b005b3480156100e457600080fd5b506100ed610230565b6040518082815260200191505060405180910390f35b34801561010f57600080fd5b50610118610236565b6040518082815260200191505060405180910390f35b34801561013a57600080fd5b5061014361023c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60025481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101e757600080fd5b806000819055506101f6610262565b7f8d6b303adfc89c5ff977100a231962a274887543d49dc1af19b53ba62826d87f816040518082815260200191505060405180910390a150565b60015481565b60005481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600254670de0b6b3a76400006000540281151561027b57fe5b046001819055507ff7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c6001546040518082815260200191505060405180910390a156fea165627a7a723058200cacbf90cd70af7a5b6f11b377f7b7c068141830fd80b8adeae54d555079d2b80029",
-  "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635b12278d1461007257806393fa216f1461009d578063a27361dd146100d8578063bccc69f814610103578063edb840db1461012e575b600080fd5b34801561007e57600080fd5b50610087610185565b6040518082815260200191505060405180910390f35b3480156100a957600080fd5b506100d6600480360360208110156100c057600080fd5b810190808035906020019092919050505061018b565b005b3480156100e457600080fd5b506100ed610230565b6040518082815260200191505060405180910390f35b34801561010f57600080fd5b50610118610236565b6040518082815260200191505060405180910390f35b34801561013a57600080fd5b5061014361023c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60025481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101e757600080fd5b806000819055506101f6610262565b7f8d6b303adfc89c5ff977100a231962a274887543d49dc1af19b53ba62826d87f816040518082815260200191505060405180910390a150565b60015481565b60005481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600254670de0b6b3a76400006000540281151561027b57fe5b046001819055507ff7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c6001546040518082815260200191505060405180910390a156fea165627a7a723058200cacbf90cd70af7a5b6f11b377f7b7c068141830fd80b8adeae54d555079d2b80029",
+  "bytecode": "0x608060405234801561001057600080fd5b5033600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550601e600081905550607860028190555061007961007e640100000000026401000000009004565b6100d9565b600254670de0b6b3a76400006000540281151561009757fe5b046001819055507ff7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c6001546040518082815260200191505060405180910390a1565b6102e9806100e86000396000f3fe60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635b12278d1461007257806393fa216f1461009d578063a27361dd146100d8578063bccc69f814610103578063edb840db1461012e575b600080fd5b34801561007e57600080fd5b50610087610185565b6040518082815260200191505060405180910390f35b3480156100a957600080fd5b506100d6600480360360208110156100c057600080fd5b810190808035906020019092919050505061018b565b005b3480156100e457600080fd5b506100ed610230565b6040518082815260200191505060405180910390f35b34801561010f57600080fd5b50610118610236565b6040518082815260200191505060405180910390f35b34801561013a57600080fd5b5061014361023c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60025481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101e757600080fd5b806000819055506101f6610262565b7f8d6b303adfc89c5ff977100a231962a274887543d49dc1af19b53ba62826d87f816040518082815260200191505060405180910390a150565b60015481565b60005481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600254670de0b6b3a76400006000540281151561027b57fe5b046001819055507ff7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c6001546040518082815260200191505060405180910390a156fea165627a7a72305820a00a92c807629476113add006762f659bd98a525c5af94e10570b1cf5e1ac0aa0029",
+  "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635b12278d1461007257806393fa216f1461009d578063a27361dd146100d8578063bccc69f814610103578063edb840db1461012e575b600080fd5b34801561007e57600080fd5b50610087610185565b6040518082815260200191505060405180910390f35b3480156100a957600080fd5b506100d6600480360360208110156100c057600080fd5b810190808035906020019092919050505061018b565b005b3480156100e457600080fd5b506100ed610230565b6040518082815260200191505060405180910390f35b34801561010f57600080fd5b50610118610236565b6040518082815260200191505060405180910390f35b34801561013a57600080fd5b5061014361023c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60025481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101e757600080fd5b806000819055506101f6610262565b7f8d6b303adfc89c5ff977100a231962a274887543d49dc1af19b53ba62826d87f816040518082815260200191505060405180910390a150565b60015481565b60005481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600254670de0b6b3a76400006000540281151561027b57fe5b046001819055507ff7672011775d500bfa8ec2823f3010d4c76b44b2bfdac23bde6b4bf62019583c6001546040518082815260200191505060405180910390a156fea165627a7a72305820a00a92c807629476113add006762f659bd98a525c5af94e10570b1cf5e1ac0aa0029",
   "sourceMap": "395:729:1:-;;;590:186;8:9:-1;5:2;;;30:1;27;20:12;5:2;590:186:1;626:10;617:6;;:19;;;;;;;;;;;;;;;;;;651:2;642:6;:11;;;;717:3;697:17;:23;;;;760:11;:9;;;:11;;;:::i;:::-;395:729;;856:118;920:17;;910:6;903;;:13;902:35;;;;;;;;893:6;:44;;;;949:20;962:6;;949:20;;;;;;;;;;;;;;;;;;856:118::o;395:729::-;;;;;;;",
   "deployedSourceMap": "395:729:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;464:32;;8:9:-1;5:2;;;30:1;27;20:12;5:2;464:32:1;;;;;;;;;;;;;;;;;;;;;;;978:143;;8:9:-1;5:2;;;30:1;27;20:12;5:2;978:143:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;978:143:1;;;;;;;;;;;;;;;;;;;;439:21;;8:9:-1;5:2;;;30:1;27;20:12;5:2;439:21:1;;;;;;;;;;;;;;;;;;;;;;;414;;8:9:-1;5:2;;;30:1;27;20:12;5:2;414:21:1;;;;;;;;;;;;;;;;;;;;;;;500;;8:9:-1;5:2;;;30:1;27;20:12;5:2;500:21:1;;;;;;;;;;;;;;;;;;;;;;;;;;;464:32;;;;:::o;978:143::-;831:6;;;;;;;;;;;817:20;;:10;:20;;;809:29;;;;;;;;1039:3;1030:6;:12;;;;1077:11;:9;:11::i;:::-;1099:17;1112:3;1099:17;;;;;;;;;;;;;;;;;;978:143;:::o;439:21::-;;;;:::o;414:::-;;;;:::o;500:::-;;;;;;;;;;;;;:::o;856:118::-;920:17;;910:6;903;;:13;902:35;;;;;;;;893:6;:44;;;;949:20;962:6;;949:20;;;;;;;;;;;;;;;;;;856:118::o",
-  "source": "pragma solidity ^0.5;\n\n/*\nCarbon Conservation Contract Price Oracle (C3PO)\nsets a USD per ton carbon price point that cannot be undercut\nthis prevents abuse of the deposit system in C3 creatation.\nOnly Carbos can set this price. We are using USD rather than ETH, because it's much easier to price USD against the current market.\nIn the future, we may switch this functionality to an oracle.\n*/\n\ncontract C3PO {\n\n  uint256 public USDPPT;\n  uint256 public ETHPPT;\n  uint256 public ETHConversionRate;\n  address public carbos;\n  event LogNewUSDPPT(uint PPT);\n  event LogNewETHPPT(uint PPT);\n\n  constructor() public {\n    carbos = msg.sender;\n    USDPPT = 50; //50 USD\n    //update conversion rate\n    ETHConversionRate = 120; //TEMP -> TODO UPDATE() TO ORACLE\n    setETHPPT();\n  }\n\n  modifier carbosOnly(){\n      require(msg.sender == carbos);\n      _;\n  }\n\n  function setETHPPT() internal {\n     ETHPPT = (USDPPT*10**18) / ETHConversionRate;\n     emit LogNewETHPPT(ETHPPT);\n  }\n\n  function setUSDPPT(uint PPT) public carbosOnly{\n    USDPPT = PPT;\n    //Update conversion rate\n    setETHPPT();\n    emit LogNewUSDPPT(PPT);\n  }\n\n}\n",
-  "sourcePath": "/Users/ntutchton/Repositories/carbos_app/app/contracts/C3PO.sol",
+  "source": "pragma solidity ^0.5;\n\n/*\nCarbon Conservation Contract Price Oracle (C3PO)\nsets a USD per ton carbon price point that cannot be undercut\nthis prevents abuse of the deposit system in C3 creatation.\nOnly Carbos can set this price. We are using USD rather than ETH, because it's much easier to price USD against the current market.\nIn the future, we may switch this functionality to an oracle.\n*/\n\ncontract C3PO {\n\n  uint256 public USDPPT;\n  uint256 public ETHPPT;\n  uint256 public ETHConversionRate;\n  address public carbos;\n  event LogNewUSDPPT(uint PPT);\n  event LogNewETHPPT(uint PPT);\n\n  constructor() public {\n    carbos = msg.sender;\n    USDPPT = 30; //50 USD\n    //update conversion rate\n    ETHConversionRate = 120; //TEMP -> TODO UPDATE() TO ORACLE\n    setETHPPT();\n  }\n\n  modifier carbosOnly(){\n      require(msg.sender == carbos);\n      _;\n  }\n\n  function setETHPPT() internal {\n     ETHPPT = (USDPPT*10**18) / ETHConversionRate;\n     emit LogNewETHPPT(ETHPPT);\n  }\n\n  function setUSDPPT(uint PPT) public carbosOnly{\n    USDPPT = PPT;\n    //Update conversion rate\n    setETHPPT();\n    emit LogNewUSDPPT(PPT);\n  }\n\n}\n",
+  "sourcePath": "/Users/alektutchton/Documents/Carbos/app/contracts/C3PO.sol",
   "ast": {
-    "absolutePath": "/Users/ntutchton/Repositories/carbos_app/app/contracts/C3PO.sol",
+    "absolutePath": "/Users/alektutchton/Documents/Carbos/app/contracts/C3PO.sol",
     "exportedSymbols": {
       "C3PO": [
-        315
+        308
       ]
     },
-    "id": 316,
+    "id": 309,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 229,
+        "id": 222,
         "literals": [
           "solidity",
           "^",
@@ -142,19 +142,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 315,
+        "id": 308,
         "linearizedBaseContracts": [
-          315
+          308
         ],
         "name": "C3PO",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 231,
+            "id": 224,
             "name": "USDPPT",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "414:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -163,7 +163,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 230,
+              "id": 223,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "414:7:1",
@@ -177,10 +177,10 @@
           },
           {
             "constant": false,
-            "id": 233,
+            "id": 226,
             "name": "ETHPPT",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "439:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -189,7 +189,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 232,
+              "id": 225,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "439:7:1",
@@ -203,10 +203,10 @@
           },
           {
             "constant": false,
-            "id": 235,
+            "id": 228,
             "name": "ETHConversionRate",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "464:32:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -215,7 +215,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 234,
+              "id": 227,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "464:7:1",
@@ -229,10 +229,10 @@
           },
           {
             "constant": false,
-            "id": 237,
+            "id": 230,
             "name": "carbos",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "500:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -241,7 +241,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 236,
+              "id": 229,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "500:7:1",
@@ -257,20 +257,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 241,
+            "id": 234,
             "name": "LogNewUSDPPT",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 240,
+              "id": 233,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 239,
+                  "id": 232,
                   "indexed": false,
                   "name": "PPT",
                   "nodeType": "VariableDeclaration",
-                  "scope": 241,
+                  "scope": 234,
                   "src": "544:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -279,7 +279,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 238,
+                    "id": 231,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "544:4:1",
@@ -299,20 +299,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 245,
+            "id": 238,
             "name": "LogNewETHPPT",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 244,
+              "id": 237,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 243,
+                  "id": 236,
                   "indexed": false,
                   "name": "PPT",
                   "nodeType": "VariableDeclaration",
-                  "scope": 245,
+                  "scope": 238,
                   "src": "576:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -321,7 +321,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 242,
+                    "id": 235,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "576:4:1",
@@ -340,25 +340,25 @@
           },
           {
             "body": {
-              "id": 264,
+              "id": 257,
               "nodeType": "Block",
               "src": "611:165:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 251,
+                    "id": 244,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 248,
+                      "id": 241,
                       "name": "carbos",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 237,
+                      "referencedDeclaration": 230,
                       "src": "617:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -371,18 +371,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 249,
+                        "id": 242,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1097,
+                        "referencedDeclaration": 2610,
                         "src": "626:3:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 250,
+                      "id": 243,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -402,25 +402,25 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 252,
+                  "id": 245,
                   "nodeType": "ExpressionStatement",
                   "src": "617:19:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 255,
+                    "id": 248,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 253,
+                      "id": 246,
                       "name": "USDPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 231,
+                      "referencedDeclaration": 224,
                       "src": "642:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -431,8 +431,8 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "hexValue": "3530",
-                      "id": 254,
+                      "hexValue": "3330",
+                      "id": 247,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -442,10 +442,10 @@
                       "src": "651:2:1",
                       "subdenomination": null,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_rational_50_by_1",
-                        "typeString": "int_const 50"
+                        "typeIdentifier": "t_rational_30_by_1",
+                        "typeString": "int_const 30"
                       },
-                      "value": "50"
+                      "value": "30"
                     },
                     "src": "642:11:1",
                     "typeDescriptions": {
@@ -453,25 +453,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 256,
+                  "id": 249,
                   "nodeType": "ExpressionStatement",
                   "src": "642:11:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 259,
+                    "id": 252,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 257,
+                      "id": 250,
                       "name": "ETHConversionRate",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 235,
+                      "referencedDeclaration": 228,
                       "src": "697:17:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -483,7 +483,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "313230",
-                      "id": 258,
+                      "id": 251,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -504,7 +504,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 260,
+                  "id": 253,
                   "nodeType": "ExpressionStatement",
                   "src": "697:23:1"
                 },
@@ -514,18 +514,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 261,
+                      "id": 254,
                       "name": "setETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 295,
+                      "referencedDeclaration": 288,
                       "src": "760:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 262,
+                    "id": 255,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -539,32 +539,32 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 263,
+                  "id": 256,
                   "nodeType": "ExpressionStatement",
                   "src": "760:11:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 265,
+            "id": 258,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 246,
+              "id": 239,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "601:2:1"
             },
             "returnParameters": {
-              "id": 247,
+              "id": 240,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "611:0:1"
             },
-            "scope": 315,
+            "scope": 308,
             "src": "590:186:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -572,7 +572,7 @@
           },
           {
             "body": {
-              "id": 275,
+              "id": 268,
               "nodeType": "Block",
               "src": "801:51:1",
               "statements": [
@@ -586,7 +586,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 271,
+                        "id": 264,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -595,18 +595,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 268,
+                            "id": 261,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1097,
+                            "referencedDeclaration": 2610,
                             "src": "817:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 269,
+                          "id": 262,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -624,11 +624,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 270,
+                          "id": 263,
                           "name": "carbos",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 237,
+                          "referencedDeclaration": 230,
                           "src": "831:6:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -649,21 +649,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 267,
+                      "id": 260,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1100,
-                        1101
+                        2613,
+                        2614
                       ],
-                      "referencedDeclaration": 1100,
+                      "referencedDeclaration": 2613,
                       "src": "809:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 272,
+                    "id": 265,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -677,23 +677,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 273,
+                  "id": 266,
                   "nodeType": "ExpressionStatement",
                   "src": "809:29:1"
                 },
                 {
-                  "id": 274,
+                  "id": 267,
                   "nodeType": "PlaceholderStatement",
                   "src": "846:1:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 276,
+            "id": 269,
             "name": "carbosOnly",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 266,
+              "id": 259,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "799:2:1"
@@ -703,25 +703,25 @@
           },
           {
             "body": {
-              "id": 294,
+              "id": 287,
               "nodeType": "Block",
               "src": "886:88:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 288,
+                    "id": 281,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 279,
+                      "id": 272,
                       "name": "ETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 233,
+                      "referencedDeclaration": 226,
                       "src": "893:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -736,7 +736,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 287,
+                      "id": 280,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -750,18 +750,18 @@
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             },
-                            "id": 284,
+                            "id": 277,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 280,
+                              "id": 273,
                               "name": "USDPPT",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 231,
+                              "referencedDeclaration": 224,
                               "src": "903:6:1",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -776,7 +776,7 @@
                                 "typeIdentifier": "t_rational_1000000000000000000_by_1",
                                 "typeString": "int_const 1000000000000000000"
                               },
-                              "id": 283,
+                              "id": 276,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -784,7 +784,7 @@
                               "leftExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "3130",
-                                "id": 281,
+                                "id": 274,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -804,7 +804,7 @@
                               "rightExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "3138",
-                                "id": 282,
+                                "id": 275,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -832,7 +832,7 @@
                             }
                           }
                         ],
-                        "id": 285,
+                        "id": 278,
                         "isConstant": false,
                         "isInlineArray": false,
                         "isLValue": false,
@@ -849,11 +849,11 @@
                       "operator": "/",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 286,
+                        "id": 279,
                         "name": "ETHConversionRate",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 235,
+                        "referencedDeclaration": 228,
                         "src": "920:17:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -872,7 +872,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 289,
+                  "id": 282,
                   "nodeType": "ExpressionStatement",
                   "src": "893:44:1"
                 },
@@ -882,11 +882,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 291,
+                        "id": 284,
                         "name": "ETHPPT",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 233,
+                        "referencedDeclaration": 226,
                         "src": "962:6:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -901,18 +901,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 290,
+                      "id": 283,
                       "name": "LogNewETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 245,
+                      "referencedDeclaration": 238,
                       "src": "949:12:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 292,
+                    "id": 285,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -926,32 +926,32 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 293,
+                  "id": 286,
                   "nodeType": "EmitStatement",
                   "src": "944:25:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 295,
+            "id": 288,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setETHPPT",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 277,
+              "id": 270,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "874:2:1"
             },
             "returnParameters": {
-              "id": 278,
+              "id": 271,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "886:0:1"
             },
-            "scope": 315,
+            "scope": 308,
             "src": "856:118:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -959,25 +959,25 @@
           },
           {
             "body": {
-              "id": 313,
+              "id": 306,
               "nodeType": "Block",
               "src": "1024:97:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 304,
+                    "id": 297,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 302,
+                      "id": 295,
                       "name": "USDPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 231,
+                      "referencedDeclaration": 224,
                       "src": "1030:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -988,11 +988,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 303,
+                      "id": 296,
                       "name": "PPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 297,
+                      "referencedDeclaration": 290,
                       "src": "1039:3:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1005,7 +1005,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 305,
+                  "id": 298,
                   "nodeType": "ExpressionStatement",
                   "src": "1030:12:1"
                 },
@@ -1015,18 +1015,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 306,
+                      "id": 299,
                       "name": "setETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 295,
+                      "referencedDeclaration": 288,
                       "src": "1077:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 307,
+                    "id": 300,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1040,7 +1040,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 308,
+                  "id": 301,
                   "nodeType": "ExpressionStatement",
                   "src": "1077:11:1"
                 },
@@ -1050,11 +1050,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 310,
+                        "id": 303,
                         "name": "PPT",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 297,
+                        "referencedDeclaration": 290,
                         "src": "1112:3:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1069,18 +1069,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 309,
+                      "id": 302,
                       "name": "LogNewUSDPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 241,
+                      "referencedDeclaration": 234,
                       "src": "1099:12:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 311,
+                    "id": 304,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1094,27 +1094,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 312,
+                  "id": 305,
                   "nodeType": "EmitStatement",
                   "src": "1094:22:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 314,
+            "id": 307,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 300,
+                "id": 293,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 299,
+                  "id": 292,
                   "name": "carbosOnly",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 276,
+                  "referencedDeclaration": 269,
                   "src": "1014:10:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1128,15 +1128,15 @@
             "name": "setUSDPPT",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 298,
+              "id": 291,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 297,
+                  "id": 290,
                   "name": "PPT",
                   "nodeType": "VariableDeclaration",
-                  "scope": 314,
+                  "scope": 307,
                   "src": "997:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1145,7 +1145,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 296,
+                    "id": 289,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "997:4:1",
@@ -1161,36 +1161,36 @@
               "src": "996:10:1"
             },
             "returnParameters": {
-              "id": 301,
+              "id": 294,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1024:0:1"
             },
-            "scope": 315,
+            "scope": 308,
             "src": "978:143:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 316,
+        "scope": 309,
         "src": "395:729:1"
       }
     ],
     "src": "0:1125:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/ntutchton/Repositories/carbos_app/app/contracts/C3PO.sol",
+    "absolutePath": "/Users/alektutchton/Documents/Carbos/app/contracts/C3PO.sol",
     "exportedSymbols": {
       "C3PO": [
-        315
+        308
       ]
     },
-    "id": 316,
+    "id": 309,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 229,
+        "id": 222,
         "literals": [
           "solidity",
           "^",
@@ -1205,19 +1205,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 315,
+        "id": 308,
         "linearizedBaseContracts": [
-          315
+          308
         ],
         "name": "C3PO",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 231,
+            "id": 224,
             "name": "USDPPT",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "414:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1226,7 +1226,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 230,
+              "id": 223,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "414:7:1",
@@ -1240,10 +1240,10 @@
           },
           {
             "constant": false,
-            "id": 233,
+            "id": 226,
             "name": "ETHPPT",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "439:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1252,7 +1252,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 232,
+              "id": 225,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "439:7:1",
@@ -1266,10 +1266,10 @@
           },
           {
             "constant": false,
-            "id": 235,
+            "id": 228,
             "name": "ETHConversionRate",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "464:32:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1278,7 +1278,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 234,
+              "id": 227,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "464:7:1",
@@ -1292,10 +1292,10 @@
           },
           {
             "constant": false,
-            "id": 237,
+            "id": 230,
             "name": "carbos",
             "nodeType": "VariableDeclaration",
-            "scope": 315,
+            "scope": 308,
             "src": "500:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1304,7 +1304,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 236,
+              "id": 229,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "500:7:1",
@@ -1320,20 +1320,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 241,
+            "id": 234,
             "name": "LogNewUSDPPT",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 240,
+              "id": 233,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 239,
+                  "id": 232,
                   "indexed": false,
                   "name": "PPT",
                   "nodeType": "VariableDeclaration",
-                  "scope": 241,
+                  "scope": 234,
                   "src": "544:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1342,7 +1342,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 238,
+                    "id": 231,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "544:4:1",
@@ -1362,20 +1362,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 245,
+            "id": 238,
             "name": "LogNewETHPPT",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 244,
+              "id": 237,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 243,
+                  "id": 236,
                   "indexed": false,
                   "name": "PPT",
                   "nodeType": "VariableDeclaration",
-                  "scope": 245,
+                  "scope": 238,
                   "src": "576:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1384,7 +1384,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 242,
+                    "id": 235,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "576:4:1",
@@ -1403,25 +1403,25 @@
           },
           {
             "body": {
-              "id": 264,
+              "id": 257,
               "nodeType": "Block",
               "src": "611:165:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 251,
+                    "id": 244,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 248,
+                      "id": 241,
                       "name": "carbos",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 237,
+                      "referencedDeclaration": 230,
                       "src": "617:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1434,18 +1434,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 249,
+                        "id": 242,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1097,
+                        "referencedDeclaration": 2610,
                         "src": "626:3:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 250,
+                      "id": 243,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1465,25 +1465,25 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 252,
+                  "id": 245,
                   "nodeType": "ExpressionStatement",
                   "src": "617:19:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 255,
+                    "id": 248,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 253,
+                      "id": 246,
                       "name": "USDPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 231,
+                      "referencedDeclaration": 224,
                       "src": "642:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1494,8 +1494,8 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "hexValue": "3530",
-                      "id": 254,
+                      "hexValue": "3330",
+                      "id": 247,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1505,10 +1505,10 @@
                       "src": "651:2:1",
                       "subdenomination": null,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_rational_50_by_1",
-                        "typeString": "int_const 50"
+                        "typeIdentifier": "t_rational_30_by_1",
+                        "typeString": "int_const 30"
                       },
-                      "value": "50"
+                      "value": "30"
                     },
                     "src": "642:11:1",
                     "typeDescriptions": {
@@ -1516,25 +1516,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 256,
+                  "id": 249,
                   "nodeType": "ExpressionStatement",
                   "src": "642:11:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 259,
+                    "id": 252,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 257,
+                      "id": 250,
                       "name": "ETHConversionRate",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 235,
+                      "referencedDeclaration": 228,
                       "src": "697:17:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1546,7 +1546,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "313230",
-                      "id": 258,
+                      "id": 251,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1567,7 +1567,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 260,
+                  "id": 253,
                   "nodeType": "ExpressionStatement",
                   "src": "697:23:1"
                 },
@@ -1577,18 +1577,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 261,
+                      "id": 254,
                       "name": "setETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 295,
+                      "referencedDeclaration": 288,
                       "src": "760:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 262,
+                    "id": 255,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1602,32 +1602,32 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 263,
+                  "id": 256,
                   "nodeType": "ExpressionStatement",
                   "src": "760:11:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 265,
+            "id": 258,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 246,
+              "id": 239,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "601:2:1"
             },
             "returnParameters": {
-              "id": 247,
+              "id": 240,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "611:0:1"
             },
-            "scope": 315,
+            "scope": 308,
             "src": "590:186:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1635,7 +1635,7 @@
           },
           {
             "body": {
-              "id": 275,
+              "id": 268,
               "nodeType": "Block",
               "src": "801:51:1",
               "statements": [
@@ -1649,7 +1649,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 271,
+                        "id": 264,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1658,18 +1658,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 268,
+                            "id": 261,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1097,
+                            "referencedDeclaration": 2610,
                             "src": "817:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 269,
+                          "id": 262,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1687,11 +1687,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 270,
+                          "id": 263,
                           "name": "carbos",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 237,
+                          "referencedDeclaration": 230,
                           "src": "831:6:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1712,21 +1712,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 267,
+                      "id": 260,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1100,
-                        1101
+                        2613,
+                        2614
                       ],
-                      "referencedDeclaration": 1100,
+                      "referencedDeclaration": 2613,
                       "src": "809:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 272,
+                    "id": 265,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1740,23 +1740,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 273,
+                  "id": 266,
                   "nodeType": "ExpressionStatement",
                   "src": "809:29:1"
                 },
                 {
-                  "id": 274,
+                  "id": 267,
                   "nodeType": "PlaceholderStatement",
                   "src": "846:1:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 276,
+            "id": 269,
             "name": "carbosOnly",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 266,
+              "id": 259,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "799:2:1"
@@ -1766,25 +1766,25 @@
           },
           {
             "body": {
-              "id": 294,
+              "id": 287,
               "nodeType": "Block",
               "src": "886:88:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 288,
+                    "id": 281,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 279,
+                      "id": 272,
                       "name": "ETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 233,
+                      "referencedDeclaration": 226,
                       "src": "893:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1799,7 +1799,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 287,
+                      "id": 280,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1813,18 +1813,18 @@
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             },
-                            "id": 284,
+                            "id": 277,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 280,
+                              "id": 273,
                               "name": "USDPPT",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 231,
+                              "referencedDeclaration": 224,
                               "src": "903:6:1",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -1839,7 +1839,7 @@
                                 "typeIdentifier": "t_rational_1000000000000000000_by_1",
                                 "typeString": "int_const 1000000000000000000"
                               },
-                              "id": 283,
+                              "id": 276,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -1847,7 +1847,7 @@
                               "leftExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "3130",
-                                "id": 281,
+                                "id": 274,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -1867,7 +1867,7 @@
                               "rightExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "3138",
-                                "id": 282,
+                                "id": 275,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -1895,7 +1895,7 @@
                             }
                           }
                         ],
-                        "id": 285,
+                        "id": 278,
                         "isConstant": false,
                         "isInlineArray": false,
                         "isLValue": false,
@@ -1912,11 +1912,11 @@
                       "operator": "/",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 286,
+                        "id": 279,
                         "name": "ETHConversionRate",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 235,
+                        "referencedDeclaration": 228,
                         "src": "920:17:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1935,7 +1935,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 289,
+                  "id": 282,
                   "nodeType": "ExpressionStatement",
                   "src": "893:44:1"
                 },
@@ -1945,11 +1945,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 291,
+                        "id": 284,
                         "name": "ETHPPT",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 233,
+                        "referencedDeclaration": 226,
                         "src": "962:6:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1964,18 +1964,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 290,
+                      "id": 283,
                       "name": "LogNewETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 245,
+                      "referencedDeclaration": 238,
                       "src": "949:12:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 292,
+                    "id": 285,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1989,32 +1989,32 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 293,
+                  "id": 286,
                   "nodeType": "EmitStatement",
                   "src": "944:25:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 295,
+            "id": 288,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setETHPPT",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 277,
+              "id": 270,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "874:2:1"
             },
             "returnParameters": {
-              "id": 278,
+              "id": 271,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "886:0:1"
             },
-            "scope": 315,
+            "scope": 308,
             "src": "856:118:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2022,25 +2022,25 @@
           },
           {
             "body": {
-              "id": 313,
+              "id": 306,
               "nodeType": "Block",
               "src": "1024:97:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 304,
+                    "id": 297,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 302,
+                      "id": 295,
                       "name": "USDPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 231,
+                      "referencedDeclaration": 224,
                       "src": "1030:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2051,11 +2051,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 303,
+                      "id": 296,
                       "name": "PPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 297,
+                      "referencedDeclaration": 290,
                       "src": "1039:3:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2068,7 +2068,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 305,
+                  "id": 298,
                   "nodeType": "ExpressionStatement",
                   "src": "1030:12:1"
                 },
@@ -2078,18 +2078,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 306,
+                      "id": 299,
                       "name": "setETHPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 295,
+                      "referencedDeclaration": 288,
                       "src": "1077:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 307,
+                    "id": 300,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2103,7 +2103,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 308,
+                  "id": 301,
                   "nodeType": "ExpressionStatement",
                   "src": "1077:11:1"
                 },
@@ -2113,11 +2113,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 310,
+                        "id": 303,
                         "name": "PPT",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 297,
+                        "referencedDeclaration": 290,
                         "src": "1112:3:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -2132,18 +2132,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 309,
+                      "id": 302,
                       "name": "LogNewUSDPPT",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 241,
+                      "referencedDeclaration": 234,
                       "src": "1099:12:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 311,
+                    "id": 304,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2157,27 +2157,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 312,
+                  "id": 305,
                   "nodeType": "EmitStatement",
                   "src": "1094:22:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 314,
+            "id": 307,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 300,
+                "id": 293,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 299,
+                  "id": 292,
                   "name": "carbosOnly",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 276,
+                  "referencedDeclaration": 269,
                   "src": "1014:10:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2191,15 +2191,15 @@
             "name": "setUSDPPT",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 298,
+              "id": 291,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 297,
+                  "id": 290,
                   "name": "PPT",
                   "nodeType": "VariableDeclaration",
-                  "scope": 314,
+                  "scope": 307,
                   "src": "997:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2208,7 +2208,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 296,
+                    "id": 289,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "997:4:1",
@@ -2224,19 +2224,19 @@
               "src": "996:10:1"
             },
             "returnParameters": {
-              "id": 301,
+              "id": 294,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1024:0:1"
             },
-            "scope": 315,
+            "scope": 308,
             "src": "978:143:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 316,
+        "scope": 309,
         "src": "395:729:1"
       }
     ],
@@ -2279,10 +2279,16 @@
       "links": {},
       "address": "0x35103E86Bc5C8bC8EC74257921563a31f15c65f1",
       "transactionHash": "0x113cfe2a0f7679ca128410bbfdfca35655babc571576af39f4f23002c965703a"
+    },
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xa553EB250f658A15Cd2B721498eC149Ea3ceFC5b",
+      "transactionHash": "0x27b80af485d7b532d26072763e2fc2c839aada92833581453c8d4ef38b906af2"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-02-12T23:38:52.837Z",
+  "updatedAt": "2019-02-16T02:49:33.805Z",
   "devdoc": {
     "methods": {}
   },

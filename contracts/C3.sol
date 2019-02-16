@@ -1,5 +1,7 @@
 pragma solidity ^0.5;
 
+import './Carbos.sol';
+
 contract C3 {
     enum State{
       AWAITING_ENDORSEMENT,
