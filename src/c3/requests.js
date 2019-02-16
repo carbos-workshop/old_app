@@ -143,7 +143,10 @@ export function getParcelByAddress(street, location){
 
 //get soil information from Soil Grids API based on lat lng point
 export function getSoilCarbon(lat, lng){
-  return axios.get(`${soilGridsBaseURL}lon=${lng}&lat=${lat}&attributes=ORCDRC,BLDFIE`)
+  //TEMP
+  return new Promise( (resolve,reject) => {resolve(soilGrids)})
+
+  // return axios.get(`${soilGridsBaseURL}lon=${lng}&lat=${lat}&attributes=ORCDRC,BLDFIE`)
 }
 
 export function getEcologicalLandUnits(lat, lng){
