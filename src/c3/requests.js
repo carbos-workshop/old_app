@@ -31,8 +31,36 @@ function convertCoordinateSystem(from, to) {
 
   return proj4(fromEPSG.proj4, toEPSG.proj4)
 }
-
-//TEMP TO SAVE API CALLS
+//TEMP workaround for soilgrids API death
+let soilGrids = {
+  data: {
+    properties: {
+        soilmask: "soil",
+        BLDFIE: {
+            M: {
+                sl1: 1420,
+                sl2: 1400,
+                sl3: 1453,
+                sl4: 1516,
+                sl5: 1562,
+                sl6: 1559,
+                sl7: 1579
+            }
+        },
+        ORCDRC: {
+            M: {
+                sl1: 29,
+                sl2: 19,
+                sl3: 15,
+                sl4: 8,
+                sl5: 5,
+                sl6: 3,
+                sl7: 3
+            }
+        },
+    }
+  }
+}//TEMP TO SAVE API CALLS
 // let response = [{
 //             "parcel_id": "115640001",
 //             "county_id": "6065",
@@ -115,7 +143,10 @@ export function getParcelByAddress(street, location){
 
 //get soil information from Soil Grids API based on lat lng point
 export function getSoilCarbon(lat, lng){
-  return axios.get(`${soilGridsBaseURL}lon=${lng}&lat=${lat}&attributes=ORCDRC,BLDFIE`)
+  //TEMP
+  return new Promise( (resolve,reject) => {resolve(soilGrids)})
+
+  // return axios.get(`${soilGridsBaseURL}lon=${lng}&lat=${lat}&attributes=ORCDRC,BLDFIE`)
 }
 
 export function getEcologicalLandUnits(lat, lng){
