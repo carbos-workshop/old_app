@@ -5,6 +5,9 @@ export default {
   acresToSquareMiles: acres => {
     return acres/640
   },
+  acresToHectares: acres => {
+    return acres * .4046856
+  },
   gramsToTons: g => {
     return g/1000000
   },
