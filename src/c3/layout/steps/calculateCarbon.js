@@ -163,12 +163,21 @@ class CalculateCarbon extends React.Component{
   //@param area = area in acres
   //@param data contains two major objects ORCDRC (organic carbon content permille) and BLDFIE (bulk earth density kg/m3)
   calculateBelowGroundCarbon = (area, data) => {
+
+    let slice1 = data.OCSTHA.M.sd1 * convert.acresToHectares(area)
+    let slice2 = data.OCSTHA.M.sd2 * convert.acresToHectares(area)
+    let slice3 = data.OCSTHA.M.sd3 * convert.acresToHectares(area)
+
+    console.log('received', 'area-> ', area, 'data -> ', data)
+    console.log('output -> ', slice1, slice2, slice3);
+
+    //legacy soil grids calcs
     //average the BLDFIE densities across soil slices and multiply by slice volume to get kg soil per 'slice'
     //then average ORCDRC ermilles across the 'slice' height take the permille of the 'slice'
-    let slice1 = ((data.BLDFIE.M.sl1 + data.BLDFIE.M.sl2)/2) * (convert.acresToSquareMeters(area) * .05) * (((data.ORCDRC.M.sl1 + data.ORCDRC.M.sl2)/2)/1000)
-    let slice2 = ((data.BLDFIE.M.sl2 + data.BLDFIE.M.sl3)/2) * (convert.acresToSquareMeters(area) * .1) * (((data.ORCDRC.M.sl2 + data.ORCDRC.M.sl3)/2)/1000)
-    let slice3 = ((data.BLDFIE.M.sl3 + data.BLDFIE.M.sl4)/2) * (convert.acresToSquareMeters(area) * .15) * (((data.ORCDRC.M.sl3 + data.ORCDRC.M.sl4)/2)/1000)
-    return convert.kilogramsToTons(slice1 + slice2 + slice3) * .9 //TEMP * .9 temp band aid to subtract out soil coarse fragments
+    // let slice1 = ((data.BLDFIE.M.sl1 + data.BLDFIE.M.sl2)/2) * (convert.acresToSquareMeters(area) * .05) * (((data.ORCDRC.M.sl1 + data.ORCDRC.M.sl2)/2)/1000)
+    // let slice2 = ((data.BLDFIE.M.sl2 + data.BLDFIE.M.sl3)/2) * (convert.acresToSquareMeters(area) * .1) * (((data.ORCDRC.M.sl2 + data.ORCDRC.M.sl3)/2)/1000)
+    // let slice3 = ((data.BLDFIE.M.sl3 + data.BLDFIE.M.sl4)/2) * (convert.acresToSquareMeters(area) * .15) * (((data.ORCDRC.M.sl3 + data.ORCDRC.M.sl4)/2)/1000)
+    return (slice1 + slice2 + slice3)/3
   }
 
 
