@@ -1,0 +1,10 @@
+{
+  "zosversion": "2.2",
+  "name": "zepkit",
+  "version": "0.1.0",
+  "contracts": {
+    "Gaia": "Gaia",
+    "C3PO": "C3PO",
+    "C3": "C3"
+  }
+}
