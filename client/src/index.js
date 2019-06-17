@@ -1,12 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './layout/index.scss';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
+import { syncHistoryWithStore } from 'react-router-redux'
+import { UserIsAuthenticated } from './util/wrappers.js'
+import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Layouts
+import App from './App'
+import Home from './layouts/home/Home'
+import Demo from './layouts/demo/Demo'
+import Dashboard from './layouts/dashboard/Dashboard'
+import Profile from './user/layouts/profile/Profile'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// Redux Store
+import store from './store'
+
+const history = syncHistoryWithStore(browserHistory, store)
+
+ReactDOM.render((
+    <Provider store={store}>
+      <Router history={history}>
+        <Route path="/" component={App}>
+          <IndexRoute component={Home} />
+          <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
+          <Route path="profile" component={UserIsAuthenticated(Profile)} />
+          <Route path="demo" component={UserIsAuthenticated(Demo)} />
+          <Route path="*" component={()=>(<p>Not Found</p>)} />
+        </Route>
+      </Router>
+    </Provider>
+  ),
+  document.getElementById('root')
+)
