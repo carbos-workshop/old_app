@@ -1,6 +1,4 @@
 var Gaia = artifacts.require("./Gaia.sol");
-var Endorsement = artifacts.require("./Endorsement.sol");
-var Escrow = artifacts.require("./Escrow.sol");
 var C3 = artifacts.require("./C3.sol");
 var C3PO = artifacts.require("./C3PO.sol");
 
@@ -27,8 +25,8 @@ contract('Gaia', function(accounts) {
   let c3
   before( async () => {
     gaia = await Gaia.deployed({from: accounts[0]})
-    let address = await gaia.endorsement()
-    endorser = await new web3.eth.Contract(Endorsement.abi, address)
+    // let address = await gaia.endorsement()
+    // endorser = await new web3.eth.Contract(Endorsement.abi, address)
 
     generateC3From = async(address) => {
       let value = (web3.utils.fromWei(staticC3.totalCarbon) * web3.utils.fromWei(staticC3.ppt))/20
@@ -57,9 +55,9 @@ contract('Gaia', function(accounts) {
     assert.equal(carbos, accounts[0], "Did not set carbos to msg.sender")
   })
 
-  it("...should be deploy an endorsement contract", async () => {
-    assert.isOk(gaia.endorsement())
-  })
+  // it("...should be deploy an endorsement contract", async () => {
+  //   assert.isOk(gaia.endorsement())
+  // })
 
   it("...should be deploy a C3PO contract", async () => {
     let c3poAddress = await gaia.c3po()
@@ -67,11 +65,11 @@ contract('Gaia', function(accounts) {
     assert.isOk(c3po)
   })
 
-  it("...should set carbos address in endorsement contract", async () => {
-    let carbos = await gaia.carbos()
-    let endorsementCarbos = await endorser.methods.carbos().call()
-    assert.equal(carbos, endorsementCarbos, "carbos address set in endorsement Contract")
-  })
+  // it("...should set carbos address in endorsement contract", async () => {
+  //   let carbos = await gaia.carbos()
+  //   let endorsementCarbos = await endorser.methods.carbos().call()
+  //   assert.equal(carbos, endorsementCarbos, "carbos address set in endorsement Contract")
+  // })
 
   it("...should generate a C3 after calling genC3", async () => {
     let callGenC3 = await generateC3From(accounts[3])
@@ -83,19 +81,19 @@ contract('Gaia', function(accounts) {
     assert.isOk(false, "test not written")
   })
 
-  it("...should generate an Escrow acount after calling genC3", async () => {
-    let callGenC3 = await generateC3From(accounts[3])
-    escrow = await new web3.eth.Contract(Escrow.abi, callGenC3.logs[0].args[1])
-    assert.isOk(escrow)
-  })
+  // it("...should generate an Escrow acount after calling genC3", async () => {
+  //   let callGenC3 = await generateC3From(accounts[3])
+  //   escrow = await new web3.eth.Contract(Escrow.abi, callGenC3.logs[0].args[1])
+  //   assert.isOk(escrow)
+  // })
 
-  it("...should store the proper deposit amount in the generated Escrow account after calling genC3", async () => {
-    let expectedDeposit = (web3.utils.fromWei(staticC3.totalCarbon) * web3.utils.fromWei(staticC3.ppt))/20
-    let callGenC3 = await generateC3From(accounts[3])
-    escrow = await new web3.eth.Contract(Escrow.abi, callGenC3.logs[0].args[1])
-    let balance = await web3.eth.getBalance(escrow._address)
-    assert.equal(expectedDeposit, web3.utils.fromWei(balance), "Escrow account does not have the expected deposit amount")
-  })
+  // it("...should store the proper deposit amount in the generated Escrow account after calling genC3", async () => {
+  //   let expectedDeposit = (web3.utils.fromWei(staticC3.totalCarbon) * web3.utils.fromWei(staticC3.ppt))/20
+  //   let callGenC3 = await generateC3From(accounts[3])
+  //   escrow = await new web3.eth.Contract(Escrow.abi, callGenC3.logs[0].args[1])
+  //   let balance = await web3.eth.getBalance(escrow._address)
+  //   assert.equal(expectedDeposit, web3.utils.fromWei(balance), "Escrow account does not have the expected deposit amount")
+  // })
 
 
   it("...should map multiple C3 addresses to their deployers", async () => {
@@ -120,8 +118,6 @@ contract('Gaia', function(accounts) {
 
     let secondC3Call = await generateC3From(accounts[6])
     let secondC3 = await new web3.eth.Contract(C3.abi, secondC3Call.logs[0].args[0])
-
-
 
     let res = await gaia.getUsersC3(accounts[6])
 

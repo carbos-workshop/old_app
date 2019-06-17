@@ -68,19 +68,19 @@ contract('C3', function(accounts) {
     assert.deepEqual(expectedValues, c3Values, "not equal")
   })
 
-  it("...should be awaitng endorsement", async () => {
-    let state = await c3.methods.currentState().call()
-    assert.equal(state, 0, "C3 not intialized in AWAITING_ENDORSEMENT state")
-  })
-
-  it("...should enter verified state once endorsed", async () => {
-    let endorserAddress = await c3.methods.endorser().call()
-    let endorser = await new web3.eth.Contract(Endorsement.abi, endorserAddress)
-    // cendorse c3 as carbos account
-    let endorsement = await endorser.methods.fullyEndorse(c3._address).send({from: accounts[0]})
-    let state = await c3.methods.currentState().call()
-    assert.equal(state, 1, "C3 did not enter verified state when endorsed")
-  })
+  // it("...should be awaitng endorsement", async () => {
+  //   let state = await c3.methods.currentState().call()
+  //   assert.equal(state, 0, "C3 not intialized in AWAITING_ENDORSEMENT state")
+  // })
+  // 
+  // it("...should enter verified state once endorsed", async () => {
+  //   let endorserAddress = await c3.methods.endorser().call()
+  //   let endorser = await new web3.eth.Contract(Endorsement.abi, endorserAddress)
+  //   // cendorse c3 as carbos account
+  //   let endorsement = await endorser.methods.fullyEndorse(c3._address).send({from: accounts[0]})
+  //   let state = await c3.methods.currentState().call()
+  //   assert.equal(state, 1, "C3 did not enter verified state when endorsed")
+  // })
 
   it("...should be buyable once verified", async () => {
     assert.isOk(false, "test not written")
