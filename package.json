@@ -65,7 +65,7 @@
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
-    "terser": "^3.14.1",
+    "terser": "^4.8.1",
     "terser-webpack-plugin": "^1.1.0",
     "uport-connect": "^1.1.2",
     "url-loader": "1.1.1",
@@ -91,7 +91,7 @@
     "not op_mini all"
   ],
   "resolutions": {
-    "terser": "3.14.1"
+    "terser": "4.8.1"
   },
   "jest": {
     "collectCoverageFrom": [
